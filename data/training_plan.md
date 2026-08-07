@@ -54,16 +54,17 @@ tenir córrer), ja amb les zones de córrer noves del test de laboratori.
 
 | Dia | Sessió |
 |---|---|
-| Dilluns 10/8 | Natació: 45min, tècnica + sèries suaus Z2 |
-| Dimarts 11/8 | Bici Z2 suau 1h15 + Gimnàs força general 30min (≈1h45 total) |
+| Dilluns 10/8 | **Natació 1800m** (piscina 25m). Escalfament: 400m suau (200 crol + 200 combinat). Tècnica: 8x50m drill catch-up amb aletes, sortida 1'10". Sèrie principal: 10x100m Z2 (RPE 5-6), sortida 2'00". Afluixament: 200m suau. |
+| Dimarts 11/8 | **Bici 32km**, Z2 (FC 130-140bpm), ritme suau/conversacional. + **Gimnàs 35min** (mateix lloc, després de dutxa): 3 rondes de: sentadilla goblet 12reps, pes mort a una cama 10reps/cama, press militar mancuernes 10reps, remo amb goma 12reps, plancha 40s. Descans 45-60s entre exercicis. |
 | Dimecres 12/8 | **Descans complet** |
-| Dijous 13/8 | Córrer Z2 (<140bpm) 45-50min + mobilitat 10min |
-| Divendres 14/8 | Natació sèries 40min + Gimnàs força general 40min (≈1h20 total) |
-| Dissabte 15/8 | Bici llarga Z2 2h-2h30, amb 2-3 blocs curts a Z3 (140-150bpm) |
-| Diumenge 16/8 | Córrer suau 50-60min (Z2, <140bpm) o brick curt (bici 30min + córrer 30min) |
+| Dijous 13/8 | **Córrer 8km** continu, ritme 5:45-6:00/km, FC 130-140bpm (Z2 aeròbic base) |
+| Divendres 14/8 | **Natació 2000m** (piscina 25m) + **Gimnàs 35min**. Escalfament: 300m suau. Sèrie pull buoy: 6x100m (sense cames), sortida 2'00". Sèrie palas: 8x50m ritme fort, sortida 1'00". Sèrie oberta: 4x200m Z2, sortida 4'00". Afluixament: 200m suau. Gimnàs: mateix circuit que dimarts. |
+| Dissabte 15/8 | **Bici 60km**, majoritàriament Z2 (FC 130-145bpm) amb 2-3 blocs de 6-8min a Z3 (FC 140-150bpm, ritme més viu), resta suau |
+| Diumenge 16/8 | **Córrer 10km** suau, ritme 5:45-6:10/km, FC <140bpm — alternativa: brick (bici 12km Z2 + córrer 5km Z2, transició ràpida) |
 
 Zones de córrer (taula completa a `athlete_profile.md`): Z1 <130 (regeneratiu), Z2 130-140
 (base/FatMax), Z3 140-150 (mixt intens) — la majoria de les sessions fàcils s'han de mantenir
-per sota de 140bpm. Volum setmanal objectiu: ~8h30. Com que setmana 3 (17/8) ja entra en
-Construcció 1, aquesta és l'última setmana per consolidar el hàbit de les 3 disciplines +
-gimnàs abans de pujar la intensitat.
+per sota de 140bpm. Bici sense test de llindar/FTP encara — ritmes/velocitats orientatius,
+ajustar per sensació i desnivell. Volum setmanal objectiu: ~8h30. Com que setmana 3 (17/8) ja
+entra en Construcció 1, aquesta és l'última setmana per consolidar el hàbit de les 3
+disciplines + gimnàs abans de pujar la intensitat.

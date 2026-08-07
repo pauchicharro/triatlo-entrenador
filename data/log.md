@@ -3,6 +3,13 @@
 Registre cronològic curt d'ajustos i decisions preses en converses amb l'entrenador
 (canvis de sessió, fatiga detectada, lesions, imprevistos, etc.). Entrades més noves a dalt.
 
+## 2026-08-07 (4)
+Preferència permanent de format (afegida a CLAUDE.md): les sessions sempre amb el màxim
+detall — córrer amb ritme+distància+FC, bici amb distància+ritme, natació amb sèrie completa
+en metres (piscina de 25m, l'atleta té tot el material), gimnàs amb exercicis/sèries/reps
+concrets (es fa al mateix lloc que la piscina, sessions combinades sense desplaçament).
+Reescrita la setmana 2 amb aquest nivell de detall.
+
 ## 2026-08-07 (3)
 Muntada l'automatització diària. Es va provar primer al núvol (repositori privat a GitHub
 + rutina de Claude Code programada a les 11h), però es va descartar: no hi ha manera
