@@ -3,6 +3,15 @@
 Registre cronològic curt d'ajustos i decisions preses en converses amb l'entrenador
 (canvis de sessió, fatiga detectada, lesions, imprevistos, etc.). Entrades més noves a dalt.
 
+## 2026-08-07 (7)
+Confirmat definitivament: Garmin bloqueja per IP les peticions de login des dels runners de
+GitHub Actions (error 429 persistent, sense canviar després de 40 minuts d'espera — no és
+un límit temporal). No és arreglable des del nostre codi. Workflow `daily-checkin.yml`
+desactivat (`gh workflow disable`) per no generar avisos d'error diaris inútils; es queda
+al repositori per si mai canvia la política de Garmin. **La sincronització de Garmin només
+és fiable des d'una IP residencial (el Mac local, via launchd), que és on ha de continuar
+corrent.**
+
 ## 2026-08-07 (6)
 Garantit que la web mai es quedi desactualitzada: el check-in diari (`daily_checkin.py`)
 ara regenera i publica `docs/index.html` sol cada vegada que corre, i a `CLAUDE.md` hi ha
