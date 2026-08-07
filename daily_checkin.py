@@ -26,12 +26,13 @@ import argparse
 import csv
 import json
 import os
-import re
 import subprocess
 import sys
 import traceback
 from datetime import date, timedelta
 from pathlib import Path
+
+import plan_parser
 
 ROOT = Path(__file__).parent
 _venv_python = ROOT / ".venv" / "bin" / "python"
@@ -40,25 +41,6 @@ ACTIVITIES_CSV = ROOT / "data" / "garmin" / "activities.csv"
 WELLNESS_DIR = ROOT / "data" / "garmin" / "wellness"
 TRAINING_PLAN = ROOT / "data" / "training_plan.md"
 CHECKIN_LOG = ROOT / "data" / "garmin" / "daily_checkin.log"
-
-WEEK_HEADER_RE = re.compile(r"^##\s*Setmana\s+\d+.*$", re.IGNORECASE)
-TABLE_ROW_RE = re.compile(r"^\|\s*([^|]+?)\s*\|\s*(.+?)\s*\|\s*$")
-DAY_MONTH_RE = re.compile(r"(\d{1,2})/(\d{1,2})")
-
-DISCIPLINE_KEYWORDS = {
-    "natacio": ["natació", "natacio", "swim"],
-    "bici": ["bici", "cicl"],
-    "correr": ["córrer", "correr", "cursa", "run"],
-    "gimnas": ["gimnàs", "gimnas", "força", "forca"],
-}
-ACTIVITY_TYPE_TO_DISCIPLINE = {
-    "lap_swimming": "natacio",
-    "open_water_swimming": "natacio",
-    "cycling": "bici",
-    "running": "correr",
-    "strength_training": "gimnas",
-    "multi_sport": None,  # counts as everything, handled specially
-}
 
 
 ISSUE_TITLE = "Check-in diari"
@@ -123,59 +105,7 @@ def sync_garmin():
 
 
 def find_plan_row_for_date(target_date):
-    """Retorna el text de la sessio prevista per target_date, nomes cercant
-    dins de taules sota capcaleres '## Setmana N', o None si no es troba."""
-    if not TRAINING_PLAN.exists():
-        return None
-
-    lines = TRAINING_PLAN.read_text().splitlines()
-    in_week_section = False
-    matches = []
-
-    for line in lines:
-        if WEEK_HEADER_RE.match(line.strip()):
-            in_week_section = True
-            continue
-        if line.strip().startswith("## ") and not WEEK_HEADER_RE.match(line.strip()):
-            in_week_section = False
-            continue
-        if not in_week_section:
-            continue
-
-        m = TABLE_ROW_RE.match(line.strip())
-        if not m:
-            continue
-        day_cell, session_cell = m.group(1), m.group(2)
-        if day_cell.lower().startswith("dia") or set(day_cell) <= {"-", " "}:
-            continue
-        dm = DAY_MONTH_RE.search(day_cell)
-        if not dm:
-            continue
-        day_num, month_num = int(dm.group(1)), int(dm.group(2))
-        if day_num == target_date.day and month_num == target_date.month:
-            matches.append(session_cell)
-
-    return re.sub(r"\*\*(.+?)\*\*", r"\1", matches[-1]) if matches else None
-
-
-def disciplines_in_text(text):
-    text_low = text.lower()
-    found = set()
-    for disc, keywords in DISCIPLINE_KEYWORDS.items():
-        if any(k in text_low for k in keywords):
-            found.add(disc)
-    return found
-
-
-def actual_disciplines(activities):
-    found = set()
-    for a in activities:
-        disc = ACTIVITY_TYPE_TO_DISCIPLINE.get(a.get("activityType"))
-        if disc:
-            found.add(disc)
-        elif a.get("activityType") == "multi_sport":
-            found |= {"natacio", "bici", "correr"}
-    return found
+    return plan_parser.find_plan_row_for_date(TRAINING_PLAN, target_date)
 
 
 def activities_on(day_str):
@@ -258,8 +188,8 @@ def main():
     mismatch_note = ""
     if yest_plan:
         log(f"Ahir — previst: {yest_plan}")
-        planned_discs = disciplines_in_text(yest_plan)
-        actual_discs = actual_disciplines(yest_activities)
+        planned_discs = plan_parser.disciplines_in_text(yest_plan)
+        actual_discs = plan_parser.actual_disciplines(yest_activities)
         missing = planned_discs - actual_discs
         if missing and "descans" not in yest_plan.lower():
             mismatch_note = f"No es detecta: {', '.join(sorted(missing))} (previst ahir)"
