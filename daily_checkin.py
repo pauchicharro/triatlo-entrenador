@@ -1,7 +1,11 @@
-"""Check-in diari local: sincronitza Garmin, compara previst vs fet, i notifica.
+"""Check-in diari: sincronitza Garmin, compara previst vs fet, i notifica.
 
-Pensat per executar-se automaticament (launchd) cada mati. Nomes fa servir
-Garmin (ja configurat a .env) i fitxers locals -- cap connexio nova.
+Funciona en dos entorns amb el mateix codi:
+  - Local (launchd, Mac): notifica amb una notificacio del sistema (osascript).
+  - GitHub Actions (cloud): notifica publicant un comentari a l'issue
+    "Check-in diari" del repositori (GitHub ja avisa l'usuari amb les seves
+    notificacions habituals). Detectat automaticament via la variable
+    d'entorn GITHUB_ACTIONS, o forcat amb --mode local|github.
 
 Logica (determinista, sense IA):
   1. Sincronitza Garmin (ultims 2 dies).
@@ -12,15 +16,16 @@ Logica (determinista, sense IA):
      realment sincronitzats ahir (natacio/bici/correr/gimnas).
   4. Revisa senyals d'alarma al training status de Garmin (carrega
      desequilibrada, estat "unproductive"/"overreaching", etc.).
-  5. Escriu un resum a data/garmin/daily_checkin.log i envia una
-     notificacio del sistema (osascript) amb el resultat.
+  5. Escriu un resum a data/garmin/daily_checkin.log (local) i notifica.
 
 Si alguna cosa falla (sync, parsing), ho diu explicitament en comptes de
 notificar dades inventades o silenciar l'error.
 """
 
+import argparse
 import csv
 import json
+import os
 import re
 import subprocess
 import sys
@@ -29,7 +34,8 @@ from datetime import date, timedelta
 from pathlib import Path
 
 ROOT = Path(__file__).parent
-VENV_PYTHON = ROOT / ".venv" / "bin" / "python"
+_venv_python = ROOT / ".venv" / "bin" / "python"
+VENV_PYTHON = _venv_python if _venv_python.exists() else Path(sys.executable)
 ACTIVITIES_CSV = ROOT / "data" / "garmin" / "activities.csv"
 WELLNESS_DIR = ROOT / "data" / "garmin" / "wellness"
 TRAINING_PLAN = ROOT / "data" / "training_plan.md"
@@ -55,7 +61,10 @@ ACTIVITY_TYPE_TO_DISCIPLINE = {
 }
 
 
-def notify(title, message):
+ISSUE_TITLE = "Check-in diari"
+
+
+def notify_local(title, message):
     message = message.replace('"', "'").replace("\\", "")
     title = title.replace('"', "'")
     try:
@@ -64,7 +73,38 @@ def notify(title, message):
             check=True, capture_output=True, text=True,
         )
     except subprocess.CalledProcessError as e:
-        log(f"AVIS: la notificacio del sistema ha fallat: {e.stderr}")
+        log(f"AVIS: la notificació del sistema ha fallat: {e.stderr}")
+
+
+def notify_github(title, body):
+    try:
+        find = subprocess.run(
+            ["gh", "issue", "list", "--state", "open", "--search", f'"{ISSUE_TITLE}" in:title',
+             "--json", "number,title", "--jq", ".[0].number"],
+            cwd=ROOT, capture_output=True, text=True, check=True,
+        )
+        issue_number = find.stdout.strip()
+        if not issue_number:
+            create = subprocess.run(
+                ["gh", "issue", "create", "--title", ISSUE_TITLE,
+                 "--body", "Aquest issue rep un comentari cada dia amb el resum de l'entrenador."],
+                cwd=ROOT, capture_output=True, text=True, check=True,
+            )
+            issue_number = create.stdout.strip().rstrip("/").rsplit("/", 1)[-1]
+
+        subprocess.run(
+            ["gh", "issue", "comment", issue_number, "--body", f"**{title}**\n\n{body}"],
+            cwd=ROOT, capture_output=True, text=True, check=True,
+        )
+    except subprocess.CalledProcessError as e:
+        log(f"AVIS: no s'ha pogut notificar via GitHub issue: {e.stderr}")
+
+
+def notify(title, message, mode):
+    if mode == "github":
+        notify_github(title, message)
+    else:
+        notify_local(title, message)
 
 
 def log(text):
@@ -189,6 +229,11 @@ def training_flags(today_str):
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--mode", choices=["local", "github"], default=None)
+    args = parser.parse_args()
+    mode = args.mode or ("github" if os.environ.get("GITHUB_ACTIONS") == "true" else "local")
+
     today = date.today()
     yesterday = today - timedelta(days=1)
 
@@ -197,12 +242,12 @@ def main():
     except Exception:
         ok, sync_output = False, traceback.format_exc()
 
-    log(f"\n=== Check-in {today.isoformat()} ===")
+    log(f"\n=== Check-in {today.isoformat()} (mode={mode}) ===")
 
     if not ok:
         log("SYNC FALLIT amb Garmin. Detall:")
         log(sync_output.strip()[-800:])
-        notify("Entrenador triatló", "No he pogut sincronitzar Garmin avui — revisa .env / connexió a internet")
+        notify("Entrenador triatló", "No he pogut sincronitzar Garmin avui — revisa credencials / connexió", mode)
         sys.exit(1)
 
     yest_activities = activities_on(yesterday.isoformat())
@@ -239,7 +284,8 @@ def main():
     if flags:
         body_parts.append("Avisos: " + "; ".join(flags))
 
-    notify("Entrenador triatló", " ".join(body_parts)[:280])
+    notify_text = " ".join(body_parts) if mode == "github" else " ".join(body_parts)[:280]
+    notify("Entrenador triatló", notify_text, mode)
     log("--- notificació enviada ---")
 
 
