@@ -3,6 +3,16 @@
 Registre cronològic curt d'ajustos i decisions preses en converses amb l'entrenador
 (canvis de sessió, fatiga detectada, lesions, imprevistos, etc.). Entrades més noves a dalt.
 
+## 2026-08-07 (3)
+Muntada l'automatització diària. Es va provar primer al núvol (repositori privat a GitHub
++ rutina de Claude Code programada a les 11h), però es va descartar: no hi ha manera
+d'afegir secrets/variables d'entorn (GARMIN_EMAIL/PASSWORD) a l'entorn del núvol des de
+la interfície actual, així que la rutina mai podria sincronitzar Garmin. Rutina desactivada
+(`trig_01SjMdcf2qkTD4QpGZGs6A2F`) per si en el futur s'habilita aquesta opció.
+En comptes d'això, `daily_checkin.py` corre localment via `launchd` cada dia a les 11:00:
+sincronitza Garmin, compara la sessió prevista d'ahir amb les activitats reals, i notifica
+un resum pel Mac. Tot queda local, sense credencials fora d'aquest ordinador.
+
 ## 2026-08-07 (2)
 Revisada la setmana 1 real (sincronització Garmin): només córrer (4 sessions, ~2h20 total),
 sense natació/bici/gimnàs — setmana de viatge (Barcelona/Ares/Sant Cugat), confirmat per
