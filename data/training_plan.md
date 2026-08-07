@@ -26,11 +26,11 @@ Manteniment suau abans de començar el bloc estructurat dilluns: 2-3 sessions cu
 
 | Dia | Sessió |
 |---|---|
-| Dilluns 3/8 | Natació: 45min, tècnica + sèries suaus Z2 |
+| Dilluns 3/8 | **Natació 1700m** (piscina 25m). Escalfament: 400m suau. Tècnica: 8x50m drill catch-up amb aletes, sortida 1'10". Sèrie principal: 8x100m Z2, sortida 2'00". Afluixament: 200m suau. |
 | Dimarts 4/8 | Bici Z2 suau 1h15 + Gimnàs força general 30min (≈1h45 total) |
 | Dimecres 5/8 | **Descans complet** |
 | Dijous 6/8 | Córrer Z2 suau 50min + mobilitat 10min |
-| Divendres 7/8 | Natació sèries 40min + Gimnàs força general 40min (≈1h20 total) |
+| Divendres 7/8 | **Natació 1700m** (piscina 25m) + **Gimnàs 40min**. Escalfament: 300m suau. Tècnica: 6x50m drill amb aletes, sortida 1'10". Sèrie principal: 8x100m Z2, sortida 2'00". Afluixament: 200m suau. Gimnàs: 3 rondes de sentadilla goblet 12reps, pes mort a una cama 10reps/cama, press militar 10reps, remo amb goma 12reps, plancha 40s. |
 | Dissabte 8/8 | Bici llarga Z2, amb 2-3 blocs curts a Z3, ~2h30 |
 | Diumenge 9/8 | Córrer suau llarg 50-60min, o brick curt (bici 30min + córrer 30min) |
 

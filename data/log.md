@@ -3,6 +3,14 @@
 Registre cronològic curt d'ajustos i decisions preses en converses amb l'entrenador
 (canvis de sessió, fatiga detectada, lesions, imprevistos, etc.). Entrades més noves a dalt.
 
+## 2026-08-07 (5)
+Publicada la pàgina web del pla a pauchicharro.github.io/triatlo-entrenador (GitHub Pages,
+repositori fet públic perquè el pla gratuït no permet Pages en repos privats — sense dades
+sensibles, només el pla d'entrenament). Es genera localment amb `generate_site.py` i marca
+Fet/No detectat automàticament comparant amb Garmin, sense caselles manuals.
+Completades amb sèries concretes les sessions de natació de la setmana 1 que havien quedat
+genèriques (abans d'establir l'estàndard de detall).
+
 ## 2026-08-07 (4)
 Preferència permanent de format (afegida a CLAUDE.md): les sessions sempre amb el màxim
 detall — córrer amb ritme+distància+FC, bici amb distància+ritme, natació amb sèrie completa
