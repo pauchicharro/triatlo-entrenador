@@ -38,7 +38,10 @@ def login():
             )
         client = garminconnect.Garmin(email=email, password=password)
         client.login()
-        client.garth.dump(TOKENSTORE)
+        try:
+            client.garth.dump(TOKENSTORE)
+        except AttributeError:
+            pass  # cap sessio en cache disponible en aquesta versio/entorn; no es critic
     return client
 
 
