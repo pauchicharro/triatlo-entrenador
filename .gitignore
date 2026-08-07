@@ -1,0 +1,9 @@
+.env
+__pycache__/
+*.pyc
+.venv/
+data/garmin/
+data/strava/
+.DS_Store
+garmin-watchface-965/
+.claude/settings.local.json
