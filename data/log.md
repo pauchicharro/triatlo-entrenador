@@ -3,6 +3,12 @@
 Registre cronològic curt d'ajustos i decisions preses en converses amb l'entrenador
 (canvis de sessió, fatiga detectada, lesions, imprevistos, etc.). Entrades més noves a dalt.
 
+## 2026-08-07 (6)
+Garantit que la web mai es quedi desactualitzada: el check-in diari (`daily_checkin.py`)
+ara regenera i publica `docs/index.html` sol cada vegada que corre, i a `CLAUDE.md` hi ha
+la norma que jo (l'entrenador) també ho he de fer sempre que editi `training_plan.md` en
+una conversa.
+
 ## 2026-08-07 (5)
 Publicada la pàgina web del pla a pauchicharro.github.io/triatlo-entrenador (GitHub Pages,
 repositori fet públic perquè el pla gratuït no permet Pages en repos privats — sense dades

@@ -32,6 +32,7 @@ import traceback
 from datetime import date, timedelta
 from pathlib import Path
 
+import generate_site
 import plan_parser
 
 ROOT = Path(__file__).parent
@@ -94,6 +95,26 @@ def log(text):
     CHECKIN_LOG.parent.mkdir(parents=True, exist_ok=True)
     with open(CHECKIN_LOG, "a") as f:
         f.write(text + "\n")
+
+
+def publish_site():
+    """Regenera docs/index.html i el puja si hi ha canvis. No critic si falla."""
+    try:
+        generate_site.render()
+        subprocess.run(["git", "add", "docs/index.html"], cwd=ROOT, check=True,
+                        capture_output=True, text=True)
+        diff = subprocess.run(["git", "diff", "--cached", "--quiet"], cwd=ROOT)
+        if diff.returncode == 0:
+            log("Web: sense canvis a publicar.")
+            return
+        subprocess.run(
+            ["git", "commit", "-q", "-m", "Actualitza estat de la web (check-in automàtic)"],
+            cwd=ROOT, check=True, capture_output=True, text=True,
+        )
+        subprocess.run(["git", "push"], cwd=ROOT, check=True, capture_output=True, text=True)
+        log("Web actualitzada i publicada.")
+    except Exception as e:
+        log(f"AVIS: no s'ha pogut publicar la web: {e}")
 
 
 def sync_garmin():
@@ -217,6 +238,8 @@ def main():
     notify_text = " ".join(body_parts) if mode == "github" else " ".join(body_parts)[:280]
     notify("Entrenador triatló", notify_text, mode)
     log("--- notificació enviada ---")
+
+    publish_site()
 
 
 if __name__ == "__main__":
