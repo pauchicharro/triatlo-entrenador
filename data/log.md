@@ -3,6 +3,14 @@
 Registre cronològic curt d'ajustos i decisions preses en converses amb l'entrenador
 (canvis de sessió, fatiga detectada, lesions, imprevistos, etc.). Entrades més noves a dalt.
 
+## 2026-08-08
+Afegit un segon `launchd` (`com.pauchicharro.triatlocoach.sync`) que sincronitza Garmin i
+publica la web cada 30 minuts entre les 7:00 i les 22:30, en mode `--silent` (sense
+notificació, per no repetir el mateix avís cada mitja hora). L'avís complet de les 11:00 es
+manté igual. Objectiu: que la web reflecteixi els entrenaments poc després de sincronitzar
+el rellotge amb Garmin Connect, sense esperar al check-in diari. Garmin no ofereix webhooks
+a l'API no oficial, així que és sondeig freqüent, no un avís instantani real.
+
 ## 2026-08-07 (7)
 Confirmat definitivament: Garmin bloqueja per IP les peticions de login des dels runners de
 GitHub Actions (error 429 persistent, sense canviar després de 40 minuts d'espera — no és

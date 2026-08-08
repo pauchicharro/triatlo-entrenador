@@ -182,6 +182,9 @@ def training_flags(today_str):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--mode", choices=["local", "github"], default=None)
+    parser.add_argument("--silent", action="store_true",
+                         help="Sincronitza i publica la web, pero no envia notificacio "
+                              "(per executar sovint sense repetir avisos).")
     args = parser.parse_args()
     mode = args.mode or ("github" if os.environ.get("GITHUB_ACTIONS") == "true" else "local")
 
@@ -198,7 +201,8 @@ def main():
     if not ok:
         log("SYNC FALLIT amb Garmin. Detall:")
         log(sync_output.strip()[-800:])
-        notify("Entrenador triatló", "No he pogut sincronitzar Garmin avui — revisa credencials / connexió", mode)
+        if not args.silent:
+            notify("Entrenador triatló", "No he pogut sincronitzar Garmin avui — revisa credencials / connexió", mode)
         sys.exit(1)
 
     yest_activities = activities_on(yesterday.isoformat())
@@ -235,9 +239,12 @@ def main():
     if flags:
         body_parts.append("Avisos: " + "; ".join(flags))
 
-    notify_text = " ".join(body_parts) if mode == "github" else " ".join(body_parts)[:280]
-    notify("Entrenador triatló", notify_text, mode)
-    log("--- notificació enviada ---")
+    if args.silent:
+        log("--- mode silenciós: cap notificació ---")
+    else:
+        notify_text = " ".join(body_parts) if mode == "github" else " ".join(body_parts)[:280]
+        notify("Entrenador triatló", notify_text, mode)
+        log("--- notificació enviada ---")
 
     publish_site()
 
