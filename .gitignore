@@ -7,3 +7,8 @@ data/strava/
 .DS_Store
 garmin-watchface-965/
 .claude/settings.local.json
+app/.venv/
+app/app.db
+app/.enrich-*.lock
+app/enrich.log
+data/app_summary.md
