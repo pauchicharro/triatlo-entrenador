@@ -1,7 +1,7 @@
 """Servidor web del entrenador de triatlón (piloto).
 
 Arrancar:  cd app && .venv/bin/uvicorn main:app --host 0.0.0.0 --port 8000   (0.0.0.0 = accesible desde el móvil en la WiFi de casa)
-Abrir:     http://localhost:8000 (Mac) · http://MacBook-Neo-de-Pau.local:8000 (móvil, misma WiFi; APP_BASE_URL en .env)
+Abrir:     http://localhost:8000 (Mac) · móvil: en el Mac pulsa 📱 (/movil) y escanea el QR (misma WiFi)
 """
 
 import os
@@ -27,7 +27,9 @@ REDIRECT_URI = f"{BASE_URL}/callback"
 app = FastAPI(title="Entrenador de triatlón")
 # La sesión es una cookie firmada: el navegador guarda "soy el atleta X" y
 # no la puede falsificar sin conocer SESSION_SECRET.
-app.add_middleware(SessionMiddleware, secret_key=os.environ.get("SESSION_SECRET") or secrets.token_hex(32))
+SESSION_SECRET = os.environ.get("SESSION_SECRET") or secrets.token_hex(32)
+# max_age: la sesión dura 180 días (que el móvil no tenga que volver a vincularse cada dos semanas)
+app.add_middleware(SessionMiddleware, secret_key=SESSION_SECRET, max_age=180 * 24 * 3600)
 db.init()
 
 
@@ -107,6 +109,82 @@ async def ritmos_test(request: Request):
     src = f"{note + ': ' if note else ''}{dist/1000:g} km en {paces.fmt_time(secs)} ({day})"
     db.set_vdot(aid, vdot, src, day)
     return HTMLResponse(views.paces_page(aid, f'<p class="st-done"><b>✓ Nuevo VDOT {vdot}</b>: ritmos del plan actualizados.</p>'))
+
+
+# ------------------------------------------------- abrir la app en el móvil
+# El login de Strava solo admite un dominio de callback (localhost). Para el
+# móvil, el Mac (ya identificado) genera un enlace firmado de un solo uso que
+# caduca en 10 min; al abrirlo, el móvil queda con la misma sesión.
+
+def _pair_serializer():
+    from itsdangerous import URLSafeTimedSerializer
+    return URLSafeTimedSerializer(SESSION_SECRET, salt="pair-device")
+
+
+def _lan_hosts():
+    import socket
+    hosts = []
+    try:
+        import subprocess
+        name = subprocess.run(["scutil", "--get", "LocalHostName"], capture_output=True, text=True).stdout.strip()
+        if name:
+            hosts.append(f"{name}.local")
+    except Exception:
+        pass
+    try:
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.connect(("8.8.8.8", 80))
+        hosts.append(s.getsockname()[0])
+        s.close()
+    except OSError:
+        pass
+    return hosts
+
+
+@app.get("/movil", response_class=HTMLResponse)
+def movil(request: Request):
+    import io
+    import time
+    import qrcode
+    import qrcode.image.svg
+    aid = _athlete(request)
+    if not aid:
+        return RedirectResponse("/", status_code=303)
+    token = _pair_serializer().dumps({"aid": aid, "n": secrets.token_hex(4), "t": int(time.time())})
+    links = [f"http://{h}:8000/pair/{token}" for h in _lan_hosts()]
+    if not links:
+        return page('<p class="err">No encuentro la red local del Mac.</p>')
+    buf = io.BytesIO()
+    qrcode.make(links[-1], image_factory=qrcode.image.svg.SvgPathImage, box_size=8, border=2).save(buf)
+    svg = buf.getvalue().decode().replace("<svg ", '<svg style="width:260px;height:260px;background:#fff;border-radius:8px" ', 1)
+    alts = "".join(f'<li><a href="{escape(u)}">{escape(u.split("/pair/")[0])}</a></li>' for u in links)
+    return HTMLResponse(views.page(f"""{views.nav('')}<h1>Abrir en el móvil</h1>
+<p class="ink2">Con el móvil conectado a la <b>misma WiFi</b>, escanea el código con la cámara. Entrarás con tu sesión,
+sin volver a conectar Strava. El código caduca en 10 minutos y solo sirve una vez.</p>
+<div style="margin:1rem 0">{svg}</div>
+<p class="explain">Si el código no abre, envíate uno de estos enlaces y ábrelo en el móvil (mismo código, distinto
+nombre del Mac):</p><ul class="explain">{alts}</ul>
+<p class="explain">Consejo: una vez dentro, en Safari pulsa Compartir → «Añadir a pantalla de inicio».</p>""",
+        title="Abrir en el móvil", head=f"<style>{views.PLAN_CSS}</style>"))
+
+
+_used_pair_tokens = set()
+
+
+@app.get("/pair/{token}")
+def pair(request: Request, token: str):
+    from itsdangerous import BadSignature, SignatureExpired
+    try:
+        data = _pair_serializer().loads(token, max_age=600)
+    except SignatureExpired:
+        return page('<p class="err">El código ha caducado. Genera otro en el Mac (Abrir en el móvil).</p>')
+    except BadSignature:
+        return page('<p class="err">Código no válido.</p>')
+    if token in _used_pair_tokens or not db.get_athlete(data["aid"]):
+        return page('<p class="err">Este código ya se ha usado. Genera otro en el Mac.</p>')
+    _used_pair_tokens.add(token)
+    request.session["athlete_id"] = data["aid"]
+    return RedirectResponse("/", status_code=303)
 
 
 @app.get("/login")

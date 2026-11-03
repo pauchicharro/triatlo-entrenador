@@ -681,8 +681,9 @@ DAYS_ES = ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"]
 
 def nav(on):
     items = [("/", "Inicio"), ("/plan", "Plan"), ("/prevision", "Previsión"), ("/ritmos", "Ritmos")]
-    return '<div class="nav">' + "".join(
-        f'<a href="{h}" class="{"on" if h == on else ""}">{t}</a>' for h, t in items) + "</div>"
+    return ('<div class="nav">' + "".join(
+        f'<a href="{h}" class="{"on" if h == on else ""}">{t}</a>' for h, t in items)
+        + '<a href="/movil" class="movil" title="Abrir en el móvil" style="margin-left:auto">📱</a></div>')
 
 
 def _disc(sport_type):
