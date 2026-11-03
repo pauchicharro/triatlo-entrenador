@@ -7,6 +7,11 @@ Registre cronològic curt d'ajustos i decisions preses en converses amb l'entren
 
 
 
+
+## 2026-11-03 (5)
+Rodatge de 7,7 km fet (5:49/km, FC 121). L'atleta podrà entrenar algun dia del cap de setmana fora:
+afegit rodatge de recuperació de 6 km el dissabte 7/11 (o diumenge), després del test de divendres.
+Dimecres segueix sent descans complet.
 ## 2026-11-03 (4)
 Gimnàs sempre el mateix dia que natació (mateix lloc): dilluns natació + tren inferior, divendres
 natació + tren superior; dijous només rodatge. Cap de setmana 7-8/11 fora → test de 5 km avançat a

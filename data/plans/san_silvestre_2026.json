@@ -252,6 +252,10 @@
   {
    "date": "2026-11-03",
    "summary": "Gimnasio siempre con natación (lun. inferior, vie. superior). Finde 7-8/11 libre: test 5K adelantado al viernes 6. Subida de km de las semanas 2-4 más suave."
+  },
+  {
+   "date": "2026-11-03",
+   "summary": "Rodaje de recuperación de 6 km el sábado 7/11 (o domingo) tras el test, estando fuera."
   }
  ],
  "sessions": [
@@ -353,11 +357,28 @@
   },
   {
    "date": "2026-11-07",
-   "sport": "rest",
-   "title": "Descanso",
-   "intensity": null,
-   "blocks": [],
-   "notes": "Libre (fin de semana fuera)."
+   "sport": "run",
+   "title": "Rodaje de recuperación",
+   "distance_km": 6,
+   "duration_min": 35,
+   "intensity": "E",
+   "key": false,
+   "blocks": [
+    {
+     "name": "Rodaje",
+     "text": "6 km muy suaves a {E}, mejor en la parte lenta del rango; FC <135. Terreno llano si puedes"
+    }
+   ],
+   "steps": [
+    {
+     "type": "interval",
+     "dist_m": 6000,
+     "intensity": "E",
+     "note": "Recuperación del test: muy suave, FC <135"
+    }
+   ],
+   "why": "Soltar piernas el día después del test: acelera la recuperación sin añadir fatiga.",
+   "notes": "Sábado o domingo, el día que te vaya mejor estando fuera. Si el test te dejó muy cargado, 30' andando también vale."
   },
   {
    "date": "2026-11-08",
