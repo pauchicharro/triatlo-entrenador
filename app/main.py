@@ -1,7 +1,7 @@
 """Servidor web del entrenador de triatlón (piloto).
 
-Arrancar:  cd app && .venv/bin/uvicorn main:app --reload --port 8000
-Abrir:     http://localhost:8000
+Arrancar:  cd app && .venv/bin/uvicorn main:app --host 0.0.0.0 --port 8000   (0.0.0.0 = accesible desde el móvil en la WiFi de casa)
+Abrir:     http://localhost:8000 (Mac) · http://MacBook-Neo-de-Pau.local:8000 (móvil, misma WiFi; APP_BASE_URL en .env)
 """
 
 import os
