@@ -3,6 +3,16 @@
 Registre cronològic curt d'ajustos i decisions preses en converses amb l'entrenador
 (canvis de sessió, fatiga detectada, lesions, imprevistos, etc.). Entrades més noves a dalt.
 
+
+## 2026-11-03
+Nou objectiu: San Silvestre 10K (31/12), temps desitjat sub-40. Les dades (millors esforços i
+curses de 2026, VDOT 44-46,5) indiquen ~44:00 ara mateix; sub-40 requereix VDOT ~52 → objectiu
+mantingut però els ritmes d'entrenament surten de la forma actual (VDOT inicial 46,5), no de
+l'objectiu. Test de 5 km el 8/11 i re-test el 5/12 per recalcular. Pla de 8 setmanes creat a
+`data/plans/san_silvestre_2026.json` (primer pla fet amb el nou format de l'app): córrer 4
+dies/setmana amb progressió 24→46 km (venia de 12-23 km/setmana), natació 1-2/setmana, bici suau
+cada 2 setmanes, gimnàs A (força) + B (core/pliometria), descans dimecres. Pla de la Challenge
+Barcelona arxivat.
 ## 2026-08-08
 Afegit un segon `launchd` (`com.pauchicharro.triatlocoach.sync`) que sincronitza Garmin i
 publica la web cada 30 minuts entre les 7:00 i les 22:30, en mode `--silent` (sense

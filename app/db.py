@@ -86,6 +86,51 @@ CREATE TABLE IF NOT EXISTS activity_metrics (
     metrics             TEXT        -- JSON con todo lo calculado
 );
 
+-- Objetivo (carrera) del atleta. Solo uno activo a la vez.
+CREATE TABLE IF NOT EXISTS goals (
+    id              INTEGER PRIMARY KEY AUTOINCREMENT,
+    athlete_id      INTEGER NOT NULL REFERENCES athletes(id),
+    name            TEXT NOT NULL,
+    race_date       TEXT NOT NULL,
+    distance_m      REAL NOT NULL,
+    target_time_s   INTEGER,
+    active          INTEGER DEFAULT 1,
+    created_at      TEXT DEFAULT (datetime('now'))
+);
+
+-- Historial de VDOT (forma en carrera): de él salen todos los ritmos del plan.
+CREATE TABLE IF NOT EXISTS fitness (
+    id          INTEGER PRIMARY KEY AUTOINCREMENT,
+    athlete_id  INTEGER NOT NULL REFERENCES athletes(id),
+    vdot        REAL NOT NULL,
+    source      TEXT,           -- "estimación inicial", "test 5K 08/11"...
+    set_on      TEXT DEFAULT (date('now'))
+);
+
+-- Plan generado (por Claude Code ahora; por la API más adelante). El JSON
+-- completo es la fuente; plan_sessions es la versión "aplanada" para consultar.
+CREATE TABLE IF NOT EXISTS plans (
+    id          INTEGER PRIMARY KEY AUTOINCREMENT,
+    athlete_id  INTEGER NOT NULL REFERENCES athletes(id),
+    goal_id     INTEGER REFERENCES goals(id),
+    generator   TEXT,
+    plan_json   TEXT NOT NULL,
+    active      INTEGER DEFAULT 1,
+    created_at  TEXT DEFAULT (datetime('now'))
+);
+
+CREATE TABLE IF NOT EXISTS plan_sessions (
+    id          INTEGER PRIMARY KEY AUTOINCREMENT,
+    plan_id     INTEGER NOT NULL REFERENCES plans(id),
+    date        TEXT NOT NULL,
+    seq         INTEGER NOT NULL,       -- orden dentro del día
+    sport       TEXT NOT NULL,          -- run | swim | bike | gym | rest | race
+    title       TEXT,
+    key_session INTEGER DEFAULT 0,
+    session     TEXT NOT NULL           -- JSON de la sesión
+);
+CREATE INDEX IF NOT EXISTS idx_plan_sessions_date ON plan_sessions (plan_id, date);
+
 CREATE TABLE IF NOT EXISTS athlete_zones (
     athlete_id  INTEGER PRIMARY KEY REFERENCES athletes(id),
     zones       BLOB,
@@ -359,3 +404,60 @@ def weekly_volume(athlete_id, weeks=26):
                GROUP BY week, disc ORDER BY week""",
             (athlete_id, f"-{weeks * 7 + 6} days"),
         ).fetchall()
+
+
+# ----------------------------------------------------------- objetivo y plan
+
+def active_goal(athlete_id):
+    with connect() as conn:
+        return conn.execute("SELECT * FROM goals WHERE athlete_id=? AND active=1 ORDER BY id DESC LIMIT 1",
+                            (athlete_id,)).fetchone()
+
+
+def current_vdot(athlete_id):
+    with connect() as conn:
+        return conn.execute("SELECT * FROM fitness WHERE athlete_id=? ORDER BY set_on DESC, id DESC LIMIT 1",
+                            (athlete_id,)).fetchone()
+
+
+def vdot_history(athlete_id):
+    with connect() as conn:
+        return conn.execute("SELECT * FROM fitness WHERE athlete_id=? ORDER BY set_on, id", (athlete_id,)).fetchall()
+
+
+def set_vdot(athlete_id, vdot, source, set_on=None):
+    with connect() as conn:
+        conn.execute("INSERT INTO fitness (athlete_id, vdot, source, set_on) VALUES (?,?,?,COALESCE(?, date('now')))",
+                     (athlete_id, vdot, source, set_on))
+
+
+def active_plan(athlete_id):
+    with connect() as conn:
+        return conn.execute("SELECT * FROM plans WHERE athlete_id=? AND active=1 ORDER BY id DESC LIMIT 1",
+                            (athlete_id,)).fetchone()
+
+
+def plan_sessions(plan_id, date_from=None, date_to=None):
+    q, args = "SELECT * FROM plan_sessions WHERE plan_id=?", [plan_id]
+    if date_from:
+        q += " AND date>=?"; args.append(date_from)
+    if date_to:
+        q += " AND date<=?"; args.append(date_to)
+    with connect() as conn:
+        return conn.execute(q + " ORDER BY date, seq", args).fetchall()
+
+
+def plan_session(session_id):
+    with connect() as conn:
+        return conn.execute("SELECT * FROM plan_sessions WHERE id=?", (session_id,)).fetchone()
+
+
+def activities_between(athlete_id, d_from, d_to):
+    with connect() as conn:
+        return conn.execute(
+            """SELECT a.*, m.metrics, m.trimp_edwards, d.laps FROM activities a
+               LEFT JOIN activity_metrics m ON m.activity_id=a.id
+               LEFT JOIN activity_details d ON d.activity_id=a.id
+               WHERE a.athlete_id=? AND substr(a.start_date_local,1,10) BETWEEN ? AND ?
+               ORDER BY a.start_date_local""",
+            (athlete_id, d_from, d_to)).fetchall()

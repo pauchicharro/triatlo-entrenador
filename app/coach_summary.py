@@ -369,6 +369,57 @@ def section_recent(acts, zones, today, days=21):
     return "\n".join(lines)
 
 
+def section_plan(athlete_id, today):
+    """Objetivo, forma (VDOT) y cumplimiento del plan: la base del reajuste semanal."""
+    import paces
+    import plan_tool
+    import views
+    g = db.active_goal(athlete_id)
+    plan = db.active_plan(athlete_id)
+    if not g or not plan:
+        return "## 0. Objetivo y plan\nNo hay plan activo en la app."
+    v = db.current_vdot(athlete_id)
+    pz = plan_tool.current_paces(athlete_id)
+    days = (date.fromisoformat(g["race_date"]) - today).days
+    pred = paces.predict_time(v["vdot"], g["distance_m"])
+    need = paces.vdot_from_race(g["distance_m"], g["target_time_s"]) if g["target_time_s"] else None
+    lines = ["## 0. Objetivo y plan (app)",
+             f"- **{g['name']}** ({g['distance_m']/1000:g} km) el {g['race_date']} → faltan {days} días.",
+             f"- Objetivo: {paces.fmt_time(g['target_time_s']) if g['target_time_s'] else '–'}"
+             + (f" (VDOT necesario {need:.1f})" if need else "") + ".",
+             f"- Forma actual: VDOT **{v['vdot']:.1f}** ({v['source']}) → predicción {paces.fmt_time(pred)}.",
+             "- Historial VDOT: " + "; ".join(f"{r['set_on']} {r['vdot']:.1f}" for r in db.vdot_history(athlete_id)) + ".",
+             "- Ritmos actuales: " + " · ".join(f"{c} {pz[c]['text']}" for c in ("E", "M", "T", "I", "R", "CUR", "RP") if c in pz) + ".",
+             "- Plan: `data/plans/*.json` (fuente), importado con `app/plan_tool.py import`.", ""]
+    rows = db.plan_sessions(plan["id"], (today - timedelta(days=14)).isoformat(), (today + timedelta(days=7)).isoformat())
+    acts = db.activities_between(athlete_id, (today - timedelta(days=15)).isoformat(), (today + timedelta(days=8)).isoformat())
+    st = views.match_sessions(rows, acts, today)
+    past = [r for r in rows if r["date"] < today.isoformat()]
+    if past:
+        counted = [r for r in past if r["sport"] != "rest"]
+        done = sum(1 for r in counted if st[r["id"]][0] == "done")
+        key_done = sum(1 for r in counted if r["key_session"] and st[r["id"]][0] in ("done", "partial"))
+        key_all = sum(1 for r in counted if r["key_session"])
+        lines += [f"**Cumplimiento últimos 14 días:** {done}/{len(counted)} sesiones hechas completas; "
+                  f"sesiones clave hechas {key_done}/{key_all}.", ""]
+        for r in past:
+            s = json.loads(r["session"])
+            stt, lab, a, det = st[r["id"]]
+            real = ""
+            if a:
+                real = (f" → real: {a['name']} {((a['distance_m'] or 0)/1000):.1f}km {fmt_dur(a['moving_time_s'])}"
+                        f" {fmt_pace(a['average_speed'], a['sport_type']) if a['distance_m'] else ''}"
+                        f" FC {a['average_heartrate'] or 0:.0f}")
+            lines.append(f"- {r['date']} {r['sport']}{' (CLAVE)' if r['key_session'] else ''} «{s.get('title','')}» "
+                         f"[{s.get('intensity') or '-'}]: {lab}{real}{(' — ' + det) if det else ''}")
+        lines.append("")
+    nxt = [r for r in rows if r["date"] >= today.isoformat()]
+    if nxt:
+        lines.append("**Próximos 7 días (plan):** " + " · ".join(
+            f"{r['date'][5:]} {r['sport']} {json.loads(r['session']).get('title','')}" for r in nxt))
+    return "\n".join(lines)
+
+
 def build(athlete_id, today=None):
     today = today or date.today()
     acts = load_activities(athlete_id)
@@ -378,6 +429,7 @@ def build(athlete_id, today=None):
             f"_Generado automáticamente por `app/coach_summary.py` el {datetime.now():%Y-%m-%d %H:%M} a partir de "
             f"`app/app.db` (Strava: detalle, streams y métricas calculadas). No editar a mano._")
     parts = [head,
+             section_plan(athlete_id, today),
              section_coverage(acts, zones, zsrc, today),
              section_load(acts, zones, today),
              section_weeks(acts, zones, today),

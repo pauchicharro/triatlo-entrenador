@@ -1,70 +1,132 @@
-# Pla d'entrenament — Challenge Barcelona Triatló 2026 (Olímpica)
+# Pla d'entrenament — San Silvestre 10K (10km, 2026-12-31)
 
-Objectiu: 24-25 d'octubre de 2026. Avui: 29 de juliol de 2026 (~12 setmanes fins a la cursa).
+_Generat automàticament des del pla de l'app (`data/plans/*.json` → `app/plan_tool.py markdown`). No editar a mà: edita el JSON i torna'l a importar._
 
-## Macrocicle (12 setmanes, a partir del dilluns 3 d'agost)
+Objectiu: **40:00**. Bloque de 8 semanas centrado en correr (4 días/semana) manteniendo natación (1-2/semana), bici suave (cada 2 semanas) y gimnasio (fuerza + pliometría). Volumen de carrera progresivo (24→46 km/semana) porque venías corriendo poco. Dos tests de 5 km (8/11 y 5/12) fijan los ritmos.
 
-| Fase | Setmanes | Dates | Focus |
-|---|---|---|---|
-| Base / consolidació | 1-2 | 3 - 16 ago | Consolidar volum aeròbic (l'atleta ja entrena de forma normal i equilibrada des del Walchsee, no cal recuperació especial), reintroduir gimnàs (força general) |
-| Construcció 1 | 3-6 | 17 ago - 13 set | Introduir llindar (natació/bici/córrer), series moderades, gimnàs orientat a força específica |
-| Construcció 2 | 7-9 | 14 set - 4 oct | Ritme de cursa olímpica, brick sessions (bici-córrer), reduir volum de gimnàs |
-| Pic | 10-11 | 5 - 18 oct | Màxima intensitat específica, volum total una mica més baix que construcció |
-| Tapering + cursa | 12 | 19 - 24 oct | Reducció progressiva de volum, mantenir toc d'intensitat, arribar frescos. Cursa: 24 oct |
+**Ritmes actuals** (VDOT 46.5, estimación inicial: mejores esfuerzos y carreras 2026 (VDOT 44-46,5); se ajusta con el test del 8/11; es recalculen quan canvia el VDOT):
 
-Restriccions a respectar sempre: màxim 2h/dia entre setmana, dimecres de descans complet, sessions de gimnàs incloses (freqüència variable segons fase).
+| Intensitat | Ritme | FC |
+|---|---|---|
+| E — Suave | 5:25-5:58/km | <140 |
+| M — Maratón | 4:47-4:52/km | 140-150 |
+| T — Umbral | 4:28-4:33/km | 160-173 |
+| I — Intervalos | 4:04-4:10/km | >175 |
+| R — Repeticiones | 3:49-3:55/km | no mirar FC |
+| CUR — Ritmo 10K actual | 4:24/km | 170-180 |
+| RP — Ritmo objetivo | 4:00/km | 170-180 |
 
-Estat de forma en arrencar el bloc (30/07, via Garmin): VO2max 56,8, training status "Productiu",
-càrrega "BALANCED" — bon punt de partida, sense senyals de fatiga acumulada. Detall a `athlete_profile.md`.
+## Fases
 
-## Dies de transició (30 jul - 2 ago)
+| Fase | Dates | Focus |
+|---|---|---|
+| Vuelta + test | 2026-11-03 → 2026-11-08 | Retomar tras el triatlón y medir la forma (test 5K) |
+| Base | 2026-11-09 → 2026-11-22 | Volumen aeróbico, umbral y primeros intervalos |
+| Construcción | 2026-11-23 → 2026-11-29 | Más volumen de calidad (umbral e intervalos largos) |
+| Descarga + re-test | 2026-11-30 → 2026-12-06 | Asimilar y volver a medir (test 5K) |
+| Específico | 2026-12-07 → 2026-12-20 | Ritmo de carrera y VO2máx; pico de carga |
+| Afinar + carrera | 2026-12-21 → 2026-12-31 | Bajar volumen, mantener intensidad, llegar fresco |
 
-Manteniment suau abans de començar el bloc estructurat dilluns: 2-3 sessions curtes i fàcils
-(natació o córrer suau, ~40min), sense buscar intensitat. No cal gimnàs aquests dies.
-
-## Setmana 1 (3-9 agost) — Base / consolidació
-
-| Dia | Sessió |
-|---|---|
-| Dilluns 3/8 | **Natació 1700m** (piscina 25m). Escalfament: 400m suau. Tècnica: 8x50m drill catch-up amb aletes, sortida 1'10". Sèrie principal: 8x100m Z2, sortida 2'00". Afluixament: 200m suau. |
-| Dimarts 4/8 | Bici Z2 suau 1h15 + Gimnàs força general 30min (≈1h45 total) |
-| Dimecres 5/8 | **Descans complet** |
-| Dijous 6/8 | Córrer Z2 suau 50min + mobilitat 10min |
-| Divendres 7/8 | **Natació 1700m** (piscina 25m) + **Gimnàs 40min**. Escalfament: 300m suau. Tècnica: 6x50m drill amb aletes, sortida 1'10". Sèrie principal: 8x100m Z2, sortida 2'00". Afluixament: 200m suau. Gimnàs: 3 rondes de sentadilla goblet 12reps, pes mort a una cama 10reps/cama, press militar 10reps, remo amb goma 12reps, plancha 40s. |
-| Dissabte 8/8 | Bici llarga Z2, amb 2-3 blocs curts a Z3, ~2h30 |
-| Diumenge 9/8 | Córrer suau llarg 50-60min, o brick curt (bici 30min + córrer 30min) |
-
-Zones de referència (FC, córrer, estimació aproximada quan es va escriure aquesta setmana):
-Z2 125-144, Z3 144-163. **Actualitzat el 07/08**: ara tenim zones de córrer precises d'una
-prova de laboratori (VT1/VT2) — Z2 130-140, Z3 140-150, Z4/llindar 150-175. Veure taula
-completa a `athlete_profile.md`. A partir de la setmana 2 cal fer servir aquestes zones
-noves, més fiables.
-Volum setmanal aproximat: ~8h30, coherent amb un inici de bloc de base sense sobrecarregar
-una càrrega que Garmin ja marca com equilibrada.
-
-**Com ha anat realment**: setmana viatjant (Barcelona → Ares → Sant Cugat), només 4 sortides
-de córrer registrades (30/7, 2/8, 3/8, 5/8), sense natació, bici ni gimnàs. Volum baix
-(~2h20 en total) però sense senyal d'alarma — simplement no es va poder seguir el pla per
-motius logístics. No cal compensar-ho, es continua amb normalitat.
-
-## Setmana 2 (10-16 agost) — Base / consolidació (última setmana abans de Construcció 1)
-
-Objectiu principal: recuperar la presència de natació, bici i gimnàs (la setmana 1 només va
-tenir córrer), ja amb les zones de córrer noves del test de laboratori.
+## Setmana 1 (2/11 - 8/11) — Vuelta + test
 
 | Dia | Sessió |
 |---|---|
-| Dilluns 10/8 | **Natació 1800m** (piscina 25m). Escalfament: 400m suau (200 crol + 200 combinat). Tècnica: 8x50m drill catch-up amb aletes, sortida 1'10". Sèrie principal: 10x100m Z2 (RPE 5-6), sortida 2'00". Afluixament: 200m suau. |
-| Dimarts 11/8 | **Bici 32km**, Z2 (FC 130-140bpm), ritme suau/conversacional. + **Gimnàs 35min** (mateix lloc, després de dutxa): 3 rondes de: sentadilla goblet 12reps, pes mort a una cama 10reps/cama, press militar mancuernes 10reps, remo amb goma 12reps, plancha 40s. Descans 45-60s entre exercicis. |
-| Dimecres 12/8 | **Descans complet** |
-| Dijous 13/8 | **Córrer 8km** continu, ritme 5:45-6:00/km, FC 130-140bpm (Z2 aeròbic base) |
-| Divendres 14/8 | **Natació 2000m** (piscina 25m) + **Gimnàs 35min**. Escalfament: 300m suau. Sèrie pull buoy: 6x100m (sense cames), sortida 2'00". Sèrie palas: 8x50m ritme fort, sortida 1'00". Sèrie oberta: 4x200m Z2, sortida 4'00". Afluixament: 200m suau. Gimnàs: mateix circuit que dimarts. |
-| Dissabte 15/8 | **Bici 60km**, majoritàriament Z2 (FC 130-145bpm) amb 2-3 blocs de 6-8min a Z3 (FC 140-150bpm, ritme més viu), resta suau |
-| Diumenge 16/8 | **Córrer 10km** suau, ritme 5:45-6:10/km, FC <140bpm — alternativa: brick (bici 12km Z2 + córrer 5km Z2, transició ràpida) |
+| Dimarts 3/11 | **Córrer 8km** — Rodaje suave + rectas. Rodaje: 7 km continuos a 5:25-5:58/km (FC <140, debes poder hablar). Rectas: 6 rectas de 20 s, progresivas hasta ritmo 3:49-3:55/km, recuperando 40 s andando (técnica: zancada suelta, cadencia alta). |
+| Dimecres 4/11 | **Descans** — Descanso |
+| Dijous 5/11 | **Natació 2000m** — Natación aeróbica 2000 m. Calentamiento (400 m): 200 m crol suave + 100 m espalda + 100 m crol con pull buoy. Técnica (300 m): 6x50 m con aletas: 25 m catch-up + 25 m crol normal, salida 1'10". Principal (1000 m): 8x125 m a ritmo aeróbico (RPE 5/10, ~1:40/100m), salida 2'25". Vuelta a la calma (300 m): 200 m crol muy suave + 100 m espalda. + **Gimnàs 40min** — Gimnasio: fuerza para correr. Activación (5'): 2x10 puente de glúteo + 2x10 pasos laterales con goma (monster walk). Sentadilla búlgara: 3x8 por pierna con mancuernas, RPE 7 (te quedan 3 reps), descanso 90". Peso muerto rumano: 3x8 con barra o mancuernas pesadas, espalda neutra, descanso 90". Hip thrust: 3x10, pausa 1 s arriba, descanso 60". Gemelo excéntrico: 3x12 por pierna en escalón: subes con dos, bajas con una en 3 s (protege el Aquiles). Core: 3x30 s plancha lateral por lado + 2x20 s Copenhague por lado. |
+| Divendres 6/11 | **Córrer 7km** — Rodaje suave. Rodaje: 7 km continuos a 5:25-5:58/km (FC <140, debes poder hablar). |
+| Dissabte 7/11 | **Bici 75min** — Bici suave 1h15. Rodaje: 1h15 en Z2 (FC 125-140), ~35 km en llano (≈28 km/h), cadencia 85-95 rpm. Últimos 10' muy suave. Si llueve: 60' de rodillo con la misma FC. |
+| Diumenge 8/11 | **Córrer 9km** — TEST 5 km. Calentamiento: 2,5 km a 5:25-5:58/km + 4 rectas de 20 s + 3' andando/trotando. Test: 5 km a tope, lo más regular posible, en un sitio llano (pista o paseo sin cruces). El 1er km NO más rápido de 4:24/km; del 4 al 5, todo lo que quede. Vuelta a la calma: 1,5 km muy suave. |
 
-Zones de córrer (taula completa a `athlete_profile.md`): Z1 <130 (regeneratiu), Z2 130-140
-(base/FatMax), Z3 140-150 (mixt intens) — la majoria de les sessions fàcils s'han de mantenir
-per sota de 140bpm. Bici sense test de llindar/FTP encara — ritmes/velocitats orientatius,
-ajustar per sensació i desnivell. Volum setmanal objectiu: ~8h30. Com que setmana 3 (17/8) ja
-entra en Construcció 1, aquesta és l'última setmana per consolidar el hàbit de les 3
-disciplines + gimnàs abans de pujar la intensitat.
+## Setmana 2 (9/11 - 15/11) — Base
+
+| Dia | Sessió |
+|---|---|
+| Dilluns 9/11 | **Natació 2000m** — Natación aeróbica 2000 m. Calentamiento (400 m): 200 m crol suave + 100 m espalda + 100 m crol con pull buoy. Técnica (300 m): 6x50 m con aletas: 25 m catch-up + 25 m crol normal, salida 1'10". Principal (1000 m): 8x125 m a ritmo aeróbico (RPE 5/10, ~1:40/100m), salida 2'25". Vuelta a la calma (300 m): 200 m crol muy suave + 100 m espalda. + **Gimnàs 40min** — Gimnasio: fuerza para correr. Activación (5'): 2x10 puente de glúteo + 2x10 pasos laterales con goma (monster walk). Sentadilla búlgara: 3x8 por pierna con mancuernas, RPE 7 (te quedan 3 reps), descanso 90". Peso muerto rumano: 3x8 con barra o mancuernas pesadas, espalda neutra, descanso 90". Hip thrust: 3x10, pausa 1 s arriba, descanso 60". Gemelo excéntrico: 3x12 por pierna en escalón: subes con dos, bajas con una en 3 s (protege el Aquiles). Core: 3x30 s plancha lateral por lado + 2x20 s Copenhague por lado. |
+| Dimarts 10/11 | **Córrer 8.5km** — Umbral: 3x1600 m. Calentamiento: 2 km a 5:25-5:58/km + 4 rectas. Principal: 3x1600 m a 4:28-4:33/km, recuperando 1' trotando suave. Vuelta a la calma: 1,5 km a 5:25-5:58/km. |
+| Dimecres 11/11 | **Descans** — Descanso |
+| Dijous 12/11 | **Córrer 6km** — Rodaje suave + rectas. Rodaje: 5 km continuos a 5:25-5:58/km (FC <140, debes poder hablar). Rectas: 6 rectas de 20 s, progresivas hasta ritmo 3:49-3:55/km, recuperando 40 s andando (técnica: zancada suelta, cadencia alta). + **Gimnàs 25min** — Core + pliometría. Pliometría (antes de cansarte): 3x15 pogo jumps (saltitos de tobillo rígido) · 3x6 saltos a cajón (bajar andando) · 2x8 saltos laterales a una pierna por lado. Descanso 60". Core (2 rondas): dead bug 10/lado · bird dog 10/lado · plancha frontal 40 s · puente de glúteo a una pierna 10/lado. |
+| Divendres 13/11 | **Natació 1800m** — Natación técnica 1800 m. Calentamiento (300 m): 300 m crol suave respirando cada 3. Técnica (400 m): 8x50 m con aletas alternando sculling delante (25 m) y 6-3-6 (25 m), salida 1'15". Pull (600 m): 4x150 m con pull buoy + palas, ritmo cómodo y brazada larga, salida 2'50". Progresivos (200 m): 4x50 m crol del 1 al 4 cada vez más rápido, salida 1'00". Vuelta a la calma (300 m): 300 m suave combinando estilos. |
+| Dissabte 14/11 | **Córrer 6.5km** — Rodaje + 6x200 m rápidos. Calentamiento: 3 km a 5:25-5:58/km. Principal: 6x200 m a 3:49-3:55/km, recuperando 200 m trotando muy suave. Vuelta a la calma: 1 km a 5:25-5:58/km. |
+| Diumenge 15/11 | **Córrer 11km** — Tirada larga. Tirada: 11 km continuos a 5:25-5:58/km, FC <145 incluso al final. |
+
+## Setmana 3 (16/11 - 22/11) — Base
+
+| Dia | Sessió |
+|---|---|
+| Dilluns 16/11 | **Natació 2000m** — Natación aeróbica 2000 m. Calentamiento (400 m): 200 m crol suave + 100 m espalda + 100 m crol con pull buoy. Técnica (300 m): 6x50 m con aletas: 25 m catch-up + 25 m crol normal, salida 1'10". Principal (1000 m): 8x125 m a ritmo aeróbico (RPE 5/10, ~1:40/100m), salida 2'25". Vuelta a la calma (300 m): 200 m crol muy suave + 100 m espalda. + **Gimnàs 40min** — Gimnasio: fuerza para correr. Activación (5'): 2x10 puente de glúteo + 2x10 pasos laterales con goma (monster walk). Sentadilla búlgara: 3x8 por pierna con mancuernas, RPE 7 (te quedan 3 reps), descanso 90". Peso muerto rumano: 3x8 con barra o mancuernas pesadas, espalda neutra, descanso 90". Hip thrust: 3x10, pausa 1 s arriba, descanso 60". Gemelo excéntrico: 3x12 por pierna en escalón: subes con dos, bajas con una en 3 s (protege el Aquiles). Core: 3x30 s plancha lateral por lado + 2x20 s Copenhague por lado. |
+| Dimarts 17/11 | **Córrer 8.5km** — Intervalos: 5x800 m. Calentamiento: 2,5 km a 5:25-5:58/km + 4 rectas. Principal: 5x800 m a 4:04-4:10/km, recuperando 2' trotando. Vuelta a la calma: 1,5 km a 5:25-5:58/km. |
+| Dimecres 18/11 | **Descans** — Descanso |
+| Dijous 19/11 | **Córrer 7km** — Rodaje suave + rectas. Rodaje: 6 km continuos a 5:25-5:58/km (FC <140, debes poder hablar). Rectas: 6 rectas de 20 s, progresivas hasta ritmo 3:49-3:55/km, recuperando 40 s andando (técnica: zancada suelta, cadencia alta). + **Gimnàs 25min** — Core + pliometría. Pliometría (antes de cansarte): 3x15 pogo jumps (saltitos de tobillo rígido) · 3x6 saltos a cajón (bajar andando) · 2x8 saltos laterales a una pierna por lado. Descanso 60". Core (2 rondas): dead bug 10/lado · bird dog 10/lado · plancha frontal 40 s · puente de glúteo a una pierna 10/lado. |
+| Divendres 20/11 | **Bici 75min** — Bici suave 1h15. Rodaje: 1h15 en Z2 (FC 125-140), ~35 km en llano (≈28 km/h), cadencia 85-95 rpm. Últimos 10' muy suave. Si llueve: 60' de rodillo con la misma FC. |
+| Dissabte 21/11 | **Córrer 8.5km** — Umbral continuo: 2x10'. Calentamiento: 2 km a 5:25-5:58/km. Principal: 2x10' a 4:28-4:33/km, recuperando 2' trotando. Vuelta a la calma: 1,5 km a 5:25-5:58/km. |
+| Diumenge 22/11 | **Córrer 13km** — Tirada larga. Tirada: 13 km a 5:25-5:58/km, FC <145. |
+
+## Setmana 4 (23/11 - 29/11) — Construcción
+
+| Dia | Sessió |
+|---|---|
+| Dilluns 23/11 | **Natació 2000m** — Natación aeróbica 2000 m. Calentamiento (400 m): 200 m crol suave + 100 m espalda + 100 m crol con pull buoy. Técnica (300 m): 6x50 m con aletas: 25 m catch-up + 25 m crol normal, salida 1'10". Principal (1000 m): 8x125 m a ritmo aeróbico (RPE 5/10, ~1:40/100m), salida 2'25". Vuelta a la calma (300 m): 200 m crol muy suave + 100 m espalda. + **Gimnàs 40min** — Gimnasio: fuerza para correr. Activación (5'): 2x10 puente de glúteo + 2x10 pasos laterales con goma (monster walk). Sentadilla búlgara: 3x8 por pierna con mancuernas, RPE 7 (te quedan 3 reps), descanso 90". Peso muerto rumano: 3x8 con barra o mancuernas pesadas, espalda neutra, descanso 90". Hip thrust: 3x10, pausa 1 s arriba, descanso 60". Gemelo excéntrico: 3x12 por pierna en escalón: subes con dos, bajas con una en 3 s (protege el Aquiles). Core: 3x30 s plancha lateral por lado + 2x20 s Copenhague por lado. |
+| Dimarts 24/11 | **Córrer 10km** — Intervalos: 5x1000 m. Calentamiento: 2,5 km a 5:25-5:58/km + 4 rectas. Principal: 5x1000 m a 4:04-4:10/km, recuperando 2'30" trotando. Vuelta a la calma: 1,5 km a 5:25-5:58/km. |
+| Dimecres 25/11 | **Descans** — Descanso |
+| Dijous 26/11 | **Córrer 8km** — Rodaje suave + rectas. Rodaje: 7 km continuos a 5:25-5:58/km (FC <140, debes poder hablar). Rectas: 6 rectas de 20 s, progresivas hasta ritmo 3:49-3:55/km, recuperando 40 s andando (técnica: zancada suelta, cadencia alta). + **Gimnàs 25min** — Core + pliometría. Pliometría (antes de cansarte): 3x15 pogo jumps (saltitos de tobillo rígido) · 3x6 saltos a cajón (bajar andando) · 2x8 saltos laterales a una pierna por lado. Descanso 60". Core (2 rondas): dead bug 10/lado · bird dog 10/lado · plancha frontal 40 s · puente de glúteo a una pierna 10/lado. |
+| Divendres 27/11 | **Natació 1800m** — Natación técnica 1800 m. Calentamiento (300 m): 300 m crol suave respirando cada 3. Técnica (400 m): 8x50 m con aletas alternando sculling delante (25 m) y 6-3-6 (25 m), salida 1'15". Pull (600 m): 4x150 m con pull buoy + palas, ritmo cómodo y brazada larga, salida 2'50". Progresivos (200 m): 4x50 m crol del 1 al 4 cada vez más rápido, salida 1'00". Vuelta a la calma (300 m): 300 m suave combinando estilos. |
+| Dissabte 28/11 | **Córrer 10km** — Umbral: 3x2 km. Calentamiento: 2 km a 5:25-5:58/km. Principal: 3x2 km a 4:28-4:33/km, recuperando 1'30" trotando. Vuelta a la calma: 2 km a 5:25-5:58/km. |
+| Diumenge 29/11 | **Córrer 14km** — Tirada larga con final a ritmo M. Tirada: 12 km a 5:25-5:58/km. Final: 2 km a 4:47-4:52/km. |
+
+## Setmana 5 (30/11 - 6/12) — Descarga + re-test
+
+| Dia | Sessió |
+|---|---|
+| Dilluns 30/11 | **Natació 2000m** — Natación aeróbica 2000 m. Calentamiento (400 m): 200 m crol suave + 100 m espalda + 100 m crol con pull buoy. Técnica (300 m): 6x50 m con aletas: 25 m catch-up + 25 m crol normal, salida 1'10". Principal (1000 m): 8x125 m a ritmo aeróbico (RPE 5/10, ~1:40/100m), salida 2'25". Vuelta a la calma (300 m): 200 m crol muy suave + 100 m espalda. + **Gimnàs 30min** — Gimnasio: fuerza (mantenimiento). Activación (5'): 2x10 puente de glúteo + 2x10 monster walk. Circuito (2 rondas, sin llegar al fallo): sentadilla búlgara 6/pierna · peso muerto rumano 6 · gemelo excéntrico 10/pierna · plancha lateral 30 s/lado. |
+| Dimarts 1/12 | **Córrer 7km** — Rodaje suave + rectas. Rodaje: 6 km continuos a 5:25-5:58/km (FC <140, debes poder hablar). Rectas: 6 rectas de 20 s, progresivas hasta ritmo 3:49-3:55/km, recuperando 40 s andando (técnica: zancada suelta, cadencia alta). |
+| Dimecres 2/12 | **Descans** — Descanso |
+| Dijous 3/12 | **Córrer 6km** — Rodaje con 4x400 m vivos. Calentamiento: 3 km a 5:25-5:58/km. Principal: 4x400 m a 4:24/km, recuperando 1' andando. Vuelta a la calma: 1 km a 5:25-5:58/km. |
+| Divendres 4/12 | **Bici 75min** — Bici suave 1h15. Rodaje: 1h15 en Z2 (FC 125-140), ~35 km en llano (≈28 km/h), cadencia 85-95 rpm. Últimos 10' muy suave. Si llueve: 60' de rodillo con la misma FC. |
+| Dissabte 5/12 | **Córrer 9km** — RE-TEST 5 km. Calentamiento: 2,5 km a 5:25-5:58/km + 4 rectas + 3' trote. Test: 5 km a tope, mismo recorrido que el 8/11 para poder comparar. Sal a 4:24/km. Vuelta a la calma: 1,5 km muy suave. |
+| Diumenge 6/12 | **Córrer 10km** — Rodaje largo suave. Rodaje: 10 km a 5:25-5:58/km. |
+
+## Setmana 6 (7/12 - 13/12) — Específico
+
+| Dia | Sessió |
+|---|---|
+| Dilluns 7/12 | **Natació 2000m** — Natación aeróbica 2000 m. Calentamiento (400 m): 200 m crol suave + 100 m espalda + 100 m crol con pull buoy. Técnica (300 m): 6x50 m con aletas: 25 m catch-up + 25 m crol normal, salida 1'10". Principal (1000 m): 8x125 m a ritmo aeróbico (RPE 5/10, ~1:40/100m), salida 2'25". Vuelta a la calma (300 m): 200 m crol muy suave + 100 m espalda. + **Gimnàs 40min** — Gimnasio: fuerza para correr. Activación (5'): 2x10 puente de glúteo + 2x10 pasos laterales con goma (monster walk). Sentadilla búlgara: 3x8 por pierna con mancuernas, RPE 7 (te quedan 3 reps), descanso 90". Peso muerto rumano: 3x8 con barra o mancuernas pesadas, espalda neutra, descanso 90". Hip thrust: 3x10, pausa 1 s arriba, descanso 60". Gemelo excéntrico: 3x12 por pierna en escalón: subes con dos, bajas con una en 3 s (protege el Aquiles). Core: 3x30 s plancha lateral por lado + 2x20 s Copenhague por lado. |
+| Dimarts 8/12 | **Córrer 10km** — Intervalos: 4x1200 m. Calentamiento: 2,5 km a 5:25-5:58/km + 4 rectas. Principal: 4x1200 m a 4:04-4:10/km, recuperando 2'30" trotando. Vuelta a la calma: 1,5 km a 5:25-5:58/km. |
+| Dimecres 9/12 | **Descans** — Descanso |
+| Dijous 10/12 | **Córrer 8km** — Rodaje suave + rectas. Rodaje: 7 km continuos a 5:25-5:58/km (FC <140, debes poder hablar). Rectas: 6 rectas de 20 s, progresivas hasta ritmo 3:49-3:55/km, recuperando 40 s andando (técnica: zancada suelta, cadencia alta). + **Gimnàs 25min** — Core + pliometría. Pliometría (antes de cansarte): 3x15 pogo jumps (saltitos de tobillo rígido) · 3x6 saltos a cajón (bajar andando) · 2x8 saltos laterales a una pierna por lado. Descanso 60". Core (2 rondas): dead bug 10/lado · bird dog 10/lado · plancha frontal 40 s · puente de glúteo a una pierna 10/lado. |
+| Divendres 11/12 | **Natació 1800m** — Natación técnica 1800 m. Calentamiento (300 m): 300 m crol suave respirando cada 3. Técnica (400 m): 8x50 m con aletas alternando sculling delante (25 m) y 6-3-6 (25 m), salida 1'15". Pull (600 m): 4x150 m con pull buoy + palas, ritmo cómodo y brazada larga, salida 2'50". Progresivos (200 m): 4x50 m crol del 1 al 4 cada vez más rápido, salida 1'00". Vuelta a la calma (300 m): 300 m suave combinando estilos. |
+| Dissabte 12/12 | **Córrer 10km** — Específico 10K: 3x2 km a ritmo de carrera. Calentamiento: 2 km a 5:25-5:58/km + 4 rectas. Principal: 3x2 km a 4:24/km, recuperando 2' trotando. Vuelta a la calma: 2 km a 5:25-5:58/km. |
+| Diumenge 13/12 | **Córrer 15km** — Tirada larga con final a ritmo M. Tirada: 12 km a 5:25-5:58/km. Final: 3 km a 4:47-4:52/km. |
+
+## Setmana 7 (14/12 - 20/12) — Específico
+
+| Dia | Sessió |
+|---|---|
+| Dilluns 14/12 | **Natació 2000m** — Natación aeróbica 2000 m. Calentamiento (400 m): 200 m crol suave + 100 m espalda + 100 m crol con pull buoy. Técnica (300 m): 6x50 m con aletas: 25 m catch-up + 25 m crol normal, salida 1'10". Principal (1000 m): 8x125 m a ritmo aeróbico (RPE 5/10, ~1:40/100m), salida 2'25". Vuelta a la calma (300 m): 200 m crol muy suave + 100 m espalda. + **Gimnàs 40min** — Gimnasio: fuerza para correr. Activación (5'): 2x10 puente de glúteo + 2x10 pasos laterales con goma (monster walk). Sentadilla búlgara: 3x8 por pierna con mancuernas, RPE 7 (te quedan 3 reps), descanso 90". Peso muerto rumano: 3x8 con barra o mancuernas pesadas, espalda neutra, descanso 90". Hip thrust: 3x10, pausa 1 s arriba, descanso 60". Gemelo excéntrico: 3x12 por pierna en escalón: subes con dos, bajas con una en 3 s (protege el Aquiles). Core: 3x30 s plancha lateral por lado + 2x20 s Copenhague por lado. |
+| Dimarts 15/12 | **Córrer 11km** — Intervalos: 6x1000 m. Calentamiento: 2,5 km a 5:25-5:58/km + 4 rectas. Principal: 6x1000 m a 4:04-4:10/km, recuperando 2' trotando. Vuelta a la calma: 1,5 km a 5:25-5:58/km. |
+| Dimecres 16/12 | **Descans** — Descanso |
+| Dijous 17/12 | **Córrer 8km** — Rodaje suave + rectas. Rodaje: 7 km continuos a 5:25-5:58/km (FC <140, debes poder hablar). Rectas: 6 rectas de 20 s, progresivas hasta ritmo 3:49-3:55/km, recuperando 40 s andando (técnica: zancada suelta, cadencia alta). + **Gimnàs 25min** — Core + pliometría. Pliometría (antes de cansarte): 3x15 pogo jumps (saltitos de tobillo rígido) · 3x6 saltos a cajón (bajar andando) · 2x8 saltos laterales a una pierna por lado. Descanso 60". Core (2 rondas): dead bug 10/lado · bird dog 10/lado · plancha frontal 40 s · puente de glúteo a una pierna 10/lado. |
+| Divendres 18/12 | **Bici 75min** — Bici suave 1h15. Rodaje: 1h15 en Z2 (FC 125-140), ~35 km en llano (≈28 km/h), cadencia 85-95 rpm. Últimos 10' muy suave. Si llueve: 60' de rodillo con la misma FC. |
+| Dissabte 19/12 | **Córrer 11km** — Específico 10K: 2x3 km + rápidos. Calentamiento: 2 km a 5:25-5:58/km + 4 rectas. Principal: 2x3 km a 4:24/km, recuperando 3' trotando. Rápidos: 4x200 m a 3:49-3:55/km, recuperando 200 m trote. Vuelta a la calma: 1,5 km a 5:25-5:58/km. |
+| Diumenge 20/12 | **Córrer 16km** — Tirada larga. Tirada: 16 km a 5:25-5:58/km, FC <145. |
+
+## Setmana 8 (21/12 - 27/12) — Afinar + carrera
+
+| Dia | Sessió |
+|---|---|
+| Dilluns 21/12 | **Natació 2000m** — Natación aeróbica 2000 m. Calentamiento (400 m): 200 m crol suave + 100 m espalda + 100 m crol con pull buoy. Técnica (300 m): 6x50 m con aletas: 25 m catch-up + 25 m crol normal, salida 1'10". Principal (1000 m): 8x125 m a ritmo aeróbico (RPE 5/10, ~1:40/100m), salida 2'25". Vuelta a la calma (300 m): 200 m crol muy suave + 100 m espalda. + **Gimnàs 30min** — Gimnasio: fuerza (mantenimiento). Activación (5'): 2x10 puente de glúteo + 2x10 monster walk. Circuito (2 rondas, sin llegar al fallo): sentadilla búlgara 6/pierna · peso muerto rumano 6 · gemelo excéntrico 10/pierna · plancha lateral 30 s/lado. |
+| Dimarts 22/12 | **Córrer 8.5km** — Intervalos: 5x800 m. Calentamiento: 2,5 km a 5:25-5:58/km + 4 rectas. Principal: 5x800 m a 4:04-4:10/km, recuperando 2' trotando. Vuelta a la calma: 1,5 km a 5:25-5:58/km. |
+| Dimecres 23/12 | **Descans** — Descanso |
+| Dijous 24/12 | **Córrer 6km** — Rodaje suave + rectas. Rodaje: 5 km continuos a 5:25-5:58/km (FC <140, debes poder hablar). Rectas: 6 rectas de 20 s, progresivas hasta ritmo 3:49-3:55/km, recuperando 40 s andando (técnica: zancada suelta, cadencia alta). |
+| Divendres 25/12 | **Descans** — Descanso |
+| Dissabte 26/12 | **Córrer 10km** — Umbral + ritmo de carrera. Calentamiento: 2 km a 5:25-5:58/km. Principal: 3 km a 4:28-4:33/km, 2' trote, y 3x1 km a 4:24/km recuperando 1'30". Vuelta a la calma: 1,5 km a 5:25-5:58/km. |
+| Diumenge 27/12 | **Córrer 12km** — Rodaje largo suave. Rodaje: 12 km a 5:25-5:58/km. |
+
+## Setmana 9 (28/12 - 3/1) — Afinar + carrera
+
+| Dia | Sessió |
+|---|---|
+| Dilluns 28/12 | **Natació 1500m** — Natación suave 1500 m (afinar). Calentamiento (300 m): 300 m crol suave. Técnica (300 m): 6x50 m catch-up con aletas, salida 1'10". Principal (600 m): 6x100 m aeróbico cómodo, salida 1'55". Vuelta a la calma (300 m): 300 m muy suave. |
+| Dimarts 29/12 | **Córrer 6km** — Activación pre-carrera. Calentamiento: 3 km a 5:25-5:58/km. Principal: 4x400 m a 4:24/km, recuperando 1' andando. Vuelta a la calma: 1 km a 5:25-5:58/km. |
+| Dimecres 30/12 | **Descans** — Descanso |
+| Dijous 31/12 | **Cursa (córrer) 10km** — SAN SILVESTRE 10K. Antes: Última comida 3 h antes (hidratos, poca fibra). Llega con 45' de margen. Calentamiento (15'): 2 km a 5:25-5:58/km + 4 rectas + 2x200 m a 4:24/km. Termínalo 10' antes de la salida. Km 1-3: A 4:24/km, ni un segundo más rápido aunque te adelanten: en una San Silvestre todo el mundo sale demasiado rápido. Km 4-7: Mantén 4:24/km. Concéntrate en la cadencia y en relajar hombros. Km 8-10: Si vas bien, aprieta progresivamente; el último km a todo lo que quede. |

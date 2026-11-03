@@ -1,9 +1,11 @@
 # Perfil de l'atleta
 
 ## Objectiu principal
-- **Cursa**: Challenge Barcelona Triatló 2026, distància olímpica (1.500m natació / 40km bici / 10km córrer)
-- **Data**: 24-25 d'octubre de 2026
-- **Sortida del pla**: 29 de juliol de 2026 (~12 setmanes)
+- **Cursa**: San Silvestre 10K, **31 de desembre de 2026** (córrer, 10 km).
+- **Temps objectiu de l'atleta**: sub-40:00 (4:00/km, VDOT 51,9). Molt ambiciós: les dades de 2026 el situen a VDOT ~46,5 (≈44:00). Es revisa amb els tests de 5 km del 8/11 i del 5/12.
+- **Bloc**: 3/11 - 31/12 (8 setmanes), centrat en córrer (4 dies/setmana) mantenint natació (1-2/setmana), bici suau (cada 2 setmanes) i gimnàs (força + pliometria). Pla: `data/plans/san_silvestre_2026.json`.
+- Objectiu anterior (completat 25/10/2026): Challenge Barcelona Triatló, olímpica. Pla arxivat a `data/plans/2026_challenge_barcelona.md`.
+- Volum de córrer recent baix (12-23 km/setmana a set-oct), per això la progressió de km és gradual.
 
 ## Experiència
 - 10 anys fent triatló.

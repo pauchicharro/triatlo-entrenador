@@ -606,11 +606,11 @@ Son lo que el entrenador usa para decidir.</li></ol>
                  f'<td>{round(a["trimp_edwards"]) if a["trimp_edwards"] is not None else "–"}</td>'
                  f'<td>{mini}</td><td>{st}</td></tr>')
     q = f"sport={e(sport_filter)}&" if sport_filter else ""
-    nav = ""
+    pager = ""
     if offset:
-        nav += f'<a href="/?{q}offset={max(0, offset-50)}">← más recientes</a> '
+        pager += f'<a href="/?{q}offset={max(0, offset-50)}">← más recientes</a> '
     if len(acts) == 50:
-        nav += f' <a href="/?{q}offset={offset+50}">más antiguas →</a>'
+        pager += f' <a href="/?{q}offset={offset+50}">más antiguas →</a>'
 
     summary = "".join(
         f"<tr><td>{e(sport_es(r['sport_type']))}</td><td>{r['n']}</td>"
@@ -618,7 +618,9 @@ Son lo que el entrenador usa para decidir.</li></ol>
         f"<td>{(r['first'] or '')[:10]}</td></tr>"
         for r in db.activity_summary(aid))
 
-    body = f"""{refresh}<h1>Hola, {e(athlete['firstname'] or '')} 👋</h1>
+    from datetime import date as _d
+    body = f"""{refresh}{nav('/')}<h1>Hola, {e(athlete['firstname'] or '')} 👋</h1>
+{today_card(aid, _d.today())}
 {sync_card}
 {explainer}
 {weekly_chart(db.weekly_volume(aid)) if not offset and not sport_filter else ''}
@@ -629,7 +631,358 @@ La barrita es el tiempo en cada zona de FC (de <span class="sw" style="backgroun
 {filt}
 <div class="scroll"><table><tr><th>Fecha</th><th>Tipo</th><th>Nombre</th><th>Dist.</th><th>Tiempo</th><th>Ritmo</th>
 <th>FC</th><th>Carga</th><th>Zonas</th><th></th></tr>{rows}</table></div>
-<p>{nav}</p>
+<p>{pager}</p>
 <h2>Todo tu histórico por deporte</h2>
 <div class="scroll"><table><tr><th>Deporte</th><th>Nº</th><th>Distancia</th><th>Tiempo</th><th>Desde</th></tr>{summary}</table></div>"""
-    return page(body, head=f"<style>{HOME_CSS}</style>")
+    return page(body, head=f"<style>{HOME_CSS}</style><style>{PLAN_CSS}</style>")
+
+
+# ------------------------------------------------------------------- plan
+
+import plan_tool  # noqa: E402
+import paces as P  # noqa: E402
+from datetime import date as _date, timedelta as _td  # noqa: E402
+
+PLAN_CSS = """
+.nav{display:flex;gap:1rem;margin-bottom:1rem;font-size:.95rem}
+.nav a{text-decoration:none;color:var(--ink2)} .nav a.on{color:var(--ink);font-weight:600}
+.chip{display:inline-block;font-size:.75rem;font-weight:600;padding:.1rem .45rem;border-radius:999px;border:1px solid var(--border);white-space:nowrap}
+.st-done{color:var(--good)} .st-partial{color:#b07a00} .st-miss{color:var(--bad)} .st-todo{color:var(--muted)} .st-today{color:var(--line)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .st-partial{color:#fab219}}
+:root[data-theme="dark"] .st-partial{color:#fab219}
+.week{margin:1.2rem 0}
+.week h3{font-size:1rem;margin:.2rem 0}
+.day{display:grid;grid-template-columns:5.5rem 1fr;gap:.6rem;padding:.45rem 0;border-bottom:1px solid var(--grid);align-items:start}
+.day.today{background:var(--surface);border-radius:8px;padding:.45rem .5rem}
+.day .d{color:var(--ink2);font-size:.85rem;font-variant-numeric:tabular-nums}
+.sess{display:flex;gap:.5rem;align-items:baseline;flex-wrap:wrap;padding:.1rem 0}
+.sess a{text-decoration:none;color:var(--ink)} .sess a:hover{text-decoration:underline}
+.sess .k{font-size:.72rem;color:var(--accent);font-weight:700}
+.sport{font-size:.8rem;color:var(--ink2);min-width:4.5rem}
+.block{padding:.55rem 0;border-bottom:1px solid var(--grid)} .block:last-child{border-bottom:0}
+.block .n{font-weight:600}
+.hero{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:.6rem}
+.pz td:first-child{font-weight:600}
+"""
+
+SPORT_LABEL = {"run": "🏃 Carrera", "swim": "🏊 Natación", "bike": "🚴 Bici", "gym": "🏋️ Gimnasio",
+               "rest": "😴 Descanso", "race": "🏁 CARRERA"}
+DAYS_ES = ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"]
+
+
+def nav(on):
+    items = [("/", "Inicio"), ("/plan", "Plan"), ("/ritmos", "Ritmos")]
+    return '<div class="nav">' + "".join(
+        f'<a href="{h}" class="{"on" if h == on else ""}">{t}</a>' for h, t in items) + "</div>"
+
+
+def _disc(sport_type):
+    if sport_type in SWIM:
+        return "swim"
+    if sport_type in RIDE:
+        return "bike"
+    if sport_type in RUN:
+        return "run"
+    if sport_type in ("WeightTraining", "Workout", "Crossfit", "HighIntensityIntervalTraining", "Yoga"):
+        return "gym"
+    return "other"
+
+
+def match_sessions(sessions, acts, today):
+    """Empareja sesiones planificadas con actividades reales y decide su estado.
+
+    Dos pasadas: primero cada sesión con una actividad del MISMO día; después,
+    las que quedan sin pareja con actividades sobrantes del día anterior o
+    siguiente (sesión movida). Así una sesión saltada no "roba" la actividad
+    que pertenece a la sesión del día de al lado.
+
+    Devuelve {session_id: (estado, etiqueta, actividad|None, detalle)}.
+    estado ∈ done | partial | miss | todo | today | rest_ok | rest_broken
+    """
+    by = {}
+    for a in acts:
+        by.setdefault(((a["start_date_local"] or "")[:10], _disc(a["sport_type"])), []).append(a)
+    used, pairs, out = set(), {}, {}
+    parsed = {row["id"]: json.loads(row["session"]) for row in sessions}
+    want = {row["id"]: ("run" if row["sport"] in ("run", "race") else row["sport"]) for row in sessions}
+
+    def take(row, day):
+        c = [a for a in by.get((day, want[row["id"]]), []) if a["id"] not in used]
+        if not c:
+            return None
+        a = max(c, key=lambda x: x["moving_time_s"] or 0)
+        used.add(a["id"])
+        return a
+
+    active = [r for r in sessions if r["sport"] != "rest"]
+    for row in active:                                   # 1ª pasada: mismo día
+        a = take(row, row["date"])
+        if a:
+            pairs[row["id"]] = (a, "")
+    for row in active:                                   # 2ª pasada: movidas ±1 día
+        if row["id"] in pairs or row["date"] > today.isoformat():
+            continue
+        for delta in (-1, 1):
+            dd = (_date.fromisoformat(row["date"]) + _td(days=delta)).isoformat()
+            a = take(row, dd)
+            if a:
+                pairs[row["id"]] = (a, f" (hecha el {dd[8:10]}/{dd[5:7]})")
+                break
+
+    for row in sessions:
+        s, d, sport = parsed[row["id"]], row["date"], row["sport"]
+        if sport == "rest":
+            trained = [a for (k, disc), v in by.items() if k == d and disc in ("run", "bike", "swim") for a in v]
+            if d > today.isoformat():
+                out[row["id"]] = ("todo", "Descanso", None, "")
+            elif trained:
+                out[row["id"]] = ("rest_broken", "⚠ Entrenaste", None, "Era día de descanso.")
+            else:
+                out[row["id"]] = ("rest_ok", "✓ Descansado", None, "")
+            continue
+        if row["id"] not in pairs:
+            if d > today.isoformat():
+                out[row["id"]] = ("todo", "Pendiente", None, "")
+            elif d == today.isoformat():
+                out[row["id"]] = ("today", "Hoy", None, "")
+            else:
+                out[row["id"]] = ("miss", "✗ No hecha", None, "")
+            continue
+        a, moved = pairs[row["id"]]
+        # ¿Se cumplió? Distancia (correr/nadar) o duración (bici/gimnasio)
+        if sport in ("run", "race") and s.get("distance_km"):
+            ratio = (a["distance_m"] or 0) / 1000 / s["distance_km"]
+        elif sport == "swim" and s.get("distance_m"):
+            ratio = (a["distance_m"] or 0) / s["distance_m"]
+        elif s.get("duration_min"):
+            ratio = (a["moving_time_s"] or 0) / 60 / s["duration_min"]
+        else:
+            ratio = 1
+        detail = ""
+        if s.get("intensity") == "E" and sport in ("run", "bike") and (a["average_heartrate"] or 0) > 145:
+            detail = f"FC media {a['average_heartrate']:.0f}: más intenso de lo previsto (debía ser suave, <140)."
+        if ratio >= 0.85:
+            st, lab = ("partial", "◐ Hecha, más intensa" + moved) if detail else ("done", "✓ Hecha" + moved)
+        else:
+            st, lab = "partial", f"◐ {'Parcial' if ratio >= 0.5 else 'Corta'} ({ratio*100:.0f}%)" + moved
+        out[row["id"]] = (st, lab, a, detail)
+    return out
+
+
+def _chip(st, lab):
+    cls = {"done": "st-done", "rest_ok": "st-done", "partial": "st-partial", "rest_broken": "st-partial",
+           "miss": "st-miss", "today": "st-today"}.get(st, "st-todo")
+    return f'<span class="chip {cls}">{escape(lab)}</span>'
+
+
+def _size(s):
+    if s.get("distance_km"):
+        return f"{s['distance_km']:g} km"
+    if s.get("distance_m"):
+        return f"{s['distance_m']:g} m"
+    if s.get("duration_min"):
+        return f"{s['duration_min']} min"
+    return ""
+
+
+def goal_card(athlete_id, today):
+    g = db.active_goal(athlete_id)
+    v = db.current_vdot(athlete_id)
+    if not g:
+        return ""
+    days = (_date.fromisoformat(g["race_date"]) - today).days
+    pred = P.predict_time(v["vdot"], g["distance_m"]) if v else None
+    need = P.vdot_from_race(g["distance_m"], g["target_time_s"]) if g["target_time_s"] else None
+    gap = ""
+    if pred and g["target_time_s"]:
+        diff = pred - g["target_time_s"]
+        gap = (f"Te faltan <b>{P.fmt_time(diff)}</b> para el objetivo (VDOT {v['vdot']:.1f} → necesitas {need:.1f})."
+               if diff > 0 else "¡Tu forma actual ya da para el objetivo!")
+    return f"""<div class="hero">
+<div class="tile"><div class="l">Objetivo</div><div class="v">{escape(g['name'])}</div><div class="h">{g['race_date'][8:10]}/{g['race_date'][5:7]} · {g['distance_m']/1000:g} km</div></div>
+<div class="tile"><div class="l">Faltan</div><div class="v">{days} días</div><div class="h">{days//7} semanas</div></div>
+<div class="tile"><div class="l">Tiempo objetivo</div><div class="v">{P.fmt_time(g['target_time_s']) if g['target_time_s'] else '–'}</div><div class="h">{P.fmt(g['target_time_s']/(g['distance_m']/1000)) + '/km' if g['target_time_s'] else ''}</div></div>
+<div class="tile"><div class="l">Predicción con tu forma de hoy</div><div class="v">{P.fmt_time(pred) if pred else '–'}</div><div class="h">VDOT {v['vdot']:.1f} · <a href="/ritmos">ver ritmos</a></div></div>
+</div><p class="explain">{gap} La predicción se actualiza con cada test.</p>"""
+
+
+def today_card(athlete_id, today):
+    plan = db.active_plan(athlete_id)
+    if not plan:
+        return ""
+    pz = plan_tool.current_paces(athlete_id)
+    rows = db.plan_sessions(plan["id"], today.isoformat(), (today + _td(days=1)).isoformat())
+    acts = db.activities_between(athlete_id, (today - _td(days=1)).isoformat(), (today + _td(days=1)).isoformat())
+    status = match_sessions(rows, acts, today)
+    html = ""
+    for label, d in (("Hoy", today), ("Mañana", today + _td(days=1))):
+        ss = [r for r in rows if r["date"] == d.isoformat()]
+        if not ss:
+            continue
+        items = ""
+        for r in ss:
+            s = json.loads(r["session"])
+            st, lab, _, _ = status[r["id"]]
+            items += (f'<div class="sess"><span class="sport">{SPORT_LABEL[r["sport"]]}</span>'
+                      f'<a href="/plan/sesion/{r["id"]}"><b>{escape(paces_text(s.get("title") or "", pz))}</b></a>'
+                      f'<span class="muted">{_size(s)}</span>{_chip(st, lab) if label == "Hoy" else ""}</div>')
+        html += f'<div style="margin:.3rem 0"><div class="muted" style="font-size:.85rem">{label}</div>{items}</div>'
+    return f'<div class="card">{html}<div style="margin-top:.4rem"><a href="/plan">Ver el plan completo →</a></div></div>' if html else ""
+
+
+def paces_text(t, pz):
+    return P.render_text(t, pz) if pz else t
+
+
+def plan_page(athlete_id, today=None):
+    today = today or _date.today()
+    plan = db.active_plan(athlete_id)
+    if not plan:
+        return page(nav("/plan") + "<h1>Plan</h1><p>No hay ningún plan activo todavía.</p>")
+    pj = json.loads(plan["plan_json"])
+    pz = plan_tool.current_paces(athlete_id)
+    rows = db.plan_sessions(plan["id"])
+    first = _date.fromisoformat(rows[0]["date"])
+    last = _date.fromisoformat(rows[-1]["date"])
+    acts = db.activities_between(athlete_id, (first - _td(days=1)).isoformat(), (last + _td(days=1)).isoformat())
+    status = match_sessions(rows, acts, today)
+
+    weeks_html = ""
+    monday = first - _td(days=first.weekday())
+    n = 1
+    while monday <= last:
+        sunday = monday + _td(days=6)
+        wk = [r for r in rows if monday.isoformat() <= r["date"] <= sunday.isoformat()]
+        if wk:
+            plan_km = sum((json.loads(r["session"]).get("distance_km") or 0) for r in wk if r["sport"] in ("run", "race"))
+            done_km = sum((a["distance_m"] or 0) / 1000 for a in acts
+                          if monday.isoformat() <= (a["start_date_local"] or "")[:10] <= sunday.isoformat()
+                          and _disc(a["sport_type"]) == "run")
+            phase = next((p["name"] for p in pj.get("phases", []) if p["from"] <= sunday.isoformat() and p["to"] >= monday.isoformat()), "")
+            days_html = ""
+            for i in range(7):
+                d = monday + _td(days=i)
+                ds = [r for r in wk if r["date"] == d.isoformat()]
+                if not ds:
+                    continue
+                items = ""
+                for r in ds:
+                    s = json.loads(r["session"])
+                    st, lab, _, _ = status[r["id"]]
+                    items += (f'<div class="sess"><span class="sport">{SPORT_LABEL[r["sport"]]}</span>'
+                              + (f'<a href="/plan/sesion/{r["id"]}">{escape(s.get("title") or "")}</a>' if r["sport"] != "rest" else '<span class="muted">Descanso</span>')
+                              + f'<span class="muted">{_size(s)}</span>'
+                              + ('<span class="k">CLAVE</span>' if r["key_session"] else "")
+                              + (_chip(st, lab) if st != "todo" else "") + "</div>")
+                days_html += (f'<div class="day{" today" if d == today else ""}"><div class="d">{DAYS_ES[i]} {d.day}/{d.month}'
+                              f'{"<br><b>HOY</b>" if d == today else ""}</div><div>{items}</div></div>')
+            prog = f" · hechos {done_km:.0f} km" if monday <= today else ""
+            weeks_html += (f'<div class="week" id="s{n}"><h3>Semana {n} · {monday.day}/{monday.month} – {sunday.day}/{sunday.month} '
+                           f'<span class="muted" style="font-weight:400">· {escape(phase)} · {plan_km:g} km de carrera{prog}</span></h3>{days_html}</div>')
+            n += 1
+        monday += _td(days=7)
+
+    phases = "".join(f"<tr><td>{escape(p['name'])}</td><td>{p['from'][8:10]}/{p['from'][5:7]} – {p['to'][8:10]}/{p['to'][5:7]}</td>"
+                     f"<td>{escape(p.get('focus',''))}</td></tr>" for p in pj.get("phases", []))
+    body = f"""{nav('/plan')}<h1>Plan: {escape(pj['goal']['name'])}</h1>
+{goal_card(athlete_id, today)}
+<p class="ink2">{escape(pj.get('summary',''))}</p>
+<details class="card"><summary><b>Fases del plan</b></summary><div class="scroll"><table><tr><th>Fase</th><th>Fechas</th><th>Para qué</th></tr>{phases}</table></div></details>
+<p class="explain">Pulsa una sesión para ver el detalle (series, ritmos, por qué se hace) y compararla con lo que hiciste.
+Los ritmos salen de tu VDOT actual: <a href="/ritmos">ver tus ritmos</a>. Estado: ✓ hecha · ◐ parcial o distinta · ✗ no hecha.</p>
+{weeks_html}"""
+    return page(body, title="Plan", head=f"<style>{PLAN_CSS}</style>")
+
+
+def session_page(athlete_id, session_id, today=None):
+    today = today or _date.today()
+    row = db.plan_session(session_id)
+    plan = db.active_plan(athlete_id)
+    if not row or not plan or row["plan_id"] != plan["id"]:
+        return None
+    s = json.loads(row["session"])
+    pz = plan_tool.current_paces(athlete_id)
+    d = _date.fromisoformat(row["date"])
+    acts = db.activities_between(athlete_id, (d - _td(days=1)).isoformat(), (d + _td(days=1)).isoformat())
+    same_day = db.plan_sessions(plan["id"], (d - _td(days=1)).isoformat(), (d + _td(days=1)).isoformat())
+    st, lab, act, detail = match_sessions(same_day, acts, today)[row["id"]]
+
+    blocks = "".join(f'<div class="block"><div class="n">{escape(b.get("name",""))}</div>'
+                     f'<div>{escape(paces_text(b.get("text",""), pz))}</div></div>' for b in s.get("blocks") or [])
+    codes = sorted({c for b in s.get("blocks") or [] for c in (pz or {}) if "{" + c + "}" in b.get("text", "")},
+                   key=lambda c: ["E", "M", "T", "I", "R", "CUR", "RP"].index(c))
+    legend = "".join(f"<tr><td>{c} · {pz[c]['name']}</td><td>{pz[c]['text']}</td><td>FC {pz[c]['hr']}</td><td class='ink2'>{pz[c]['desc']}</td></tr>"
+                     for c in codes) if pz else ""
+
+    did = ""
+    if act:
+        sp = act["sport_type"]
+        m = json.loads(act["metrics"]) if act["metrics"] else {}
+        laps = json.loads(act["laps"]) if act["laps"] else []
+        lap_rows = ""
+        if 1 < len(laps) <= 40 and row["sport"] in ("run", "race", "swim"):
+            for i, l in enumerate(laps, 1):
+                if not l.get("distance"):
+                    continue
+                lap_rows += (f"<tr><td>{i}</td><td>{fmt_dist(l.get('distance'), sp)}</td><td>{fmt_dur(l.get('moving_time'))}</td>"
+                             f"<td>{fmt_pace(l.get('average_speed'), sp)}</td>"
+                             f"<td>{round(l['average_heartrate']) if l.get('average_heartrate') else '–'}</td></tr>")
+        z = m.get("hr_zone_s")
+        zl = ""
+        if z and sum(z):
+            zl = " · zonas " + " / ".join(f"Z{i+1} {v/sum(z)*100:.0f}%" for i, v in enumerate(z) if v)
+        did = f"""<h2>Lo que hiciste</h2><div class="card">
+<div>{_chip(st, lab)} <a href="/activity/{act['id']}"><b>{escape(act['name'] or '')}</b></a></div>
+<p class="ink2" style="margin:.4rem 0">{fmt_dist(act['distance_m'], sp)} · {fmt_dur(act['moving_time_s'])} ·
+{fmt_pace(act['average_speed'], sp) if act['distance_m'] else ''} · FC {round(act['average_heartrate']) if act['average_heartrate'] else '–'}{zl}</p>
+{f'<p class="st-partial" style="margin:.2rem 0">{escape(detail)}</p>' if detail else ''}
+{('<p class="explain">Compara cada vuelta con los ritmos que pedía la sesión (arriba).</p><div class="scroll"><table><tr><th>#</th><th>Dist.</th><th>Tiempo</th><th>Ritmo</th><th>FC</th></tr>' + lap_rows + '</table></div>') if lap_rows else ''}
+</div>"""
+    elif row["date"] <= today.isoformat():
+        did = f'<h2>Lo que hiciste</h2><div class="card">{_chip(st, lab)} <span class="ink2">No encuentro ninguna actividad que encaje en Strava (ese día ni el anterior/siguiente). Si la hiciste, sincroniza desde la portada.</span></div>'
+
+    body = f"""{nav('/plan')}<p><a href="/plan">← Plan</a></p>
+<div class="muted">{SPORT_LABEL[row['sport']]} · {DAYS_ES[d.weekday()]} {d.day}/{d.month}/{d.year}{' · <b style="color:var(--accent)">SESIÓN CLAVE</b>' if row['key_session'] else ''}</div>
+<h1>{escape(s.get('title') or '')}</h1>
+<div class="tiles">{''.join(f'<div class="tile"><div class="l">{k}</div><div class="v">{v}</div></div>' for k, v in (("Volumen", _size(s)), ("Duración aprox.", f"{s['duration_min']} min" if s.get('duration_min') else ''), ("Intensidad principal", f"{s['intensity']} · {pz[s['intensity']]['name']}" if pz and s.get('intensity') in (pz or {}) else '')) if v)}</div>
+{f'<p class="ink2"><b>Para qué:</b> {escape(paces_text(s["why"], pz))}</p>' if s.get('why') else ''}
+<h2>La sesión</h2><div class="card">{blocks or '<span class="muted">Descanso.</span>'}</div>
+{f'<p class="ink2"><b>Consejo:</b> {escape(paces_text(s["notes"], pz))}</p>' if s.get('notes') else ''}
+{('<h2>Ritmos de esta sesión</h2><p class="explain">Calculados con tu VDOT actual. Si cambia (tras un test), se actualizan solos.</p><div class="scroll"><table class="pz"><tr><th>Intensidad</th><th>Ritmo</th><th>FC</th><th>Qué es</th></tr>' + legend + '</table></div>') if legend else ''}
+{did}"""
+    return page(body, title=s.get("title") or "Sesión", head=f"<style>{PLAN_CSS}</style>")
+
+
+def paces_page(athlete_id, msg=""):
+    pz = plan_tool.current_paces(athlete_id)
+    hist = db.vdot_history(athlete_id)
+    g = db.active_goal(athlete_id)
+    if not pz:
+        return page(nav("/ritmos") + "<p>Aún no hay VDOT.</p>")
+    rows = "".join(f"<tr><td>{c}</td><td>{pz[c]['name']}</td><td><b>{pz[c]['text']}</b></td><td>{pz[c]['hr']}</td><td class='ink2'>{pz[c]['desc']}</td></tr>"
+                   for c in ("E", "M", "T", "I", "R", "CUR", "RP") if c in pz)
+    v = hist[-1]["vdot"]
+    preds = "".join(f"<tr><td>{n}</td><td>{P.fmt_time(P.predict_time(v, dm))}</td><td>{P.fmt(P.predict_time(v, dm)/(dm/1000))}/km</td></tr>"
+                    for n, dm in (("5K", 5000), ("10K", 10000), ("Media maratón", 21097.5)))
+    h = "".join(f"<tr><td>{r['set_on']}</td><td>{r['vdot']:.1f}</td><td class='ink2'>{escape(r['source'] or '')}</td></tr>" for r in reversed(hist))
+    body = f"""{nav('/ritmos')}<h1>Tus ritmos</h1>
+<p class="explain">Todo el plan está escrito con intensidades (E, T, I…), no con ritmos fijos. Aquí se convierten en
+min/km a partir de tu <b>VDOT</b>: un número que resume tu forma en carrera (método de Jack Daniels). Cuando haces un
+test y el VDOT cambia, cambian todos los ritmos del plan.</p>
+<div class="scroll"><table class="pz"><tr><th></th><th>Intensidad</th><th>Ritmo</th><th>FC</th><th>Qué es</th></tr>{rows}</table></div>
+<h2>Qué predice tu VDOT ({v:.1f})</h2>
+<div class="scroll"><table><tr><th>Distancia</th><th>Tiempo</th><th>Ritmo</th></tr>{preds}</table></div>
+{f'<p class="explain">Para tu objetivo ({P.fmt_time(g["target_time_s"])} en {g["distance_m"]/1000:g} km) necesitas VDOT {P.vdot_from_race(g["distance_m"], g["target_time_s"]):.1f}.</p>' if g and g["target_time_s"] else ''}
+<h2>Registrar un test o una carrera</h2>
+<p class="explain">Cuando hagas un test (o una carrera a tope), apunta la distancia y el tiempo: la app calcula tu nuevo
+VDOT y todos los ritmos del plan se actualizan. Usa el tiempo de la parte a tope, sin calentamiento.</p>
+<form method="post" action="/ritmos/test" class="card" style="display:flex;flex-wrap:wrap;gap:.6rem;align-items:end">
+<label>Distancia<br><select name="distance_m" style="padding:.4rem">
+<option value="3000">3 km</option><option value="5000" selected>5 km</option><option value="10000">10 km</option><option value="21097.5">Media maratón</option></select></label>
+<label>Tiempo (mm:ss o h:mm:ss)<br><input name="time" required placeholder="21:30" style="padding:.4rem;width:8rem"></label>
+<label>Fecha<br><input type="date" name="day" style="padding:.4rem"></label>
+<label>Nota<br><input name="note" placeholder="Test 5K pista" style="padding:.4rem;width:12rem"></label>
+<button class="btn" style="border:0;padding:.55rem 1rem;cursor:pointer">Guardar</button></form>
+{msg}
+<h2>Historial</h2><div class="scroll"><table><tr><th>Fecha</th><th>VDOT</th><th>Origen</th></tr>{h}</table></div>"""
+    return page(body, title="Ritmos", head=f"<style>{PLAN_CSS}</style>")

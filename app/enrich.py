@@ -58,8 +58,19 @@ def _api_get(path, token, params=None):
         if wait > 0:
             time.sleep(wait)
         _last_call[0] = time.time()
-        resp = requests.get(strava.API + path, headers={"Authorization": f"Bearer {token}"},
-                            params=params or {}, timeout=60)
+        try:
+            resp = requests.get(strava.API + path, headers={"Authorization": f"Bearer {token}"},
+                                params=params or {}, timeout=60)
+        except requests.RequestException as e:
+            # cortes de red puntuales: esperamos un poco y reintentamos
+            # (sin esto, un solo timeout paraba toda la descarga)
+            print(f"  error de red ({e.__class__.__name__}); reintento en 60 s…", flush=True)
+            time.sleep(60)
+            continue
+        if resp.status_code >= 500:
+            print(f"  Strava {resp.status_code}; reintento en 60 s…", flush=True)
+            time.sleep(60)
+            continue
         if resp.status_code == 429:
             # Las ventanas de Strava reinician en los cuartos de hora (y el
             # diario a medianoche UTC). Esperamos al siguiente cuarto.
