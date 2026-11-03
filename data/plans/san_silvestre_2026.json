@@ -274,7 +274,31 @@
     }
    ],
    "why": "Construye base aeróbica y economía sin acumular fatiga. Las rectas activan la velocidad sin coste.",
-   "notes": ""
+   "notes": "",
+   "steps": [
+    {
+     "type": "interval",
+     "dist_m": 7000,
+     "intensity": "E",
+     "note": "Rodaje suave, FC <140"
+    },
+    {
+     "type": "repeat",
+     "reps": 6,
+     "steps": [
+      {
+       "type": "interval",
+       "time_s": 20,
+       "note": "Recta progresiva hasta ritmo R, relajado"
+      },
+      {
+       "type": "recovery",
+       "time_s": 40,
+       "note": "Andando"
+      }
+     ]
+    }
+   ]
   },
   {
    "date": "2026-11-04",
