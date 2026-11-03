@@ -7,15 +7,15 @@
  },
  "fitness": {
   "vdot": 46.5,
-  "source": "estimación inicial: mejores esfuerzos y carreras 2026 (VDOT 44-46,5); se ajusta con el test del 8/11"
+  "source": "estimación inicial: mejores esfuerzos y carreras 2026 (VDOT 44-46,5); se ajusta con el test del 6/11"
  },
- "summary": "Bloque de 8 semanas centrado en correr (4 días/semana) manteniendo natación (1-2/semana), bici suave (cada 2 semanas) y gimnasio (fuerza + pliometría). Volumen de carrera progresivo (24→46 km/semana) porque venías corriendo poco. Dos tests de 5 km (8/11 y 5/12) fijan los ritmos.",
+ "summary": "Bloque de 8 semanas centrado en correr (4 días/semana). Natación 2 días/semana, siempre combinada con el gimnasio en el mismo sitio (lunes tren inferior, viernes tren superior); bici solo en la semana de descarga. Volumen de carrera progresivo porque venías corriendo poco. Tests de 5 km el 6/11 y el 5/12 fijan los ritmos.",
  "phases": [
   {
    "name": "Vuelta + test",
    "from": "2026-11-03",
    "to": "2026-11-08",
-   "focus": "Retomar tras el triatlón y medir la forma (test 5K)"
+   "focus": "Retomar tras el triatlón y medir la forma (test 5K el viernes 6)"
   },
   {
    "name": "Base",
@@ -248,6 +248,10 @@
   {
    "date": "2026-11-03",
    "summary": "Dos días de gimnasio todas las semanas (excepto la de carrera): tren superior añadido el 6/11, 3/12 y 24/12."
+  },
+  {
+   "date": "2026-11-03",
+   "summary": "Gimnasio siempre con natación (lun. inferior, vie. superior). Finde 7-8/11 libre: test 5K adelantado al viernes 6. Subida de km de las semanas 2-4 más suave."
   }
  ],
  "sessions": [
@@ -292,48 +296,14 @@
   {
    "date": "2026-11-05",
    "sport": "gym",
-   "template": "gymLower",
-   "focus": "Tren inferior",
-   "intensity": null,
-   "notes": "Primera sesión de fuerza tras el triatlón: usa un peso con el que te sobren 3-4 reps.",
-   "why": "Fuerza y pliometría: mejor economía de carrera y tendones más fuertes (Aquiles, rodilla)."
-  },
-  {
-   "date": "2026-11-06",
-   "sport": "run",
-   "title": "Rodaje suave",
-   "distance_km": 7,
-   "intensity": "E",
-   "duration_min": null,
-   "key": false,
-   "blocks": [
-    {
-     "name": "Rodaje",
-     "text": "7 km continuos a {E} (FC <140, debes poder hablar)"
-    }
-   ],
-   "why": "Construye base aeróbica y economía sin acumular fatiga. Las rectas activan la velocidad sin coste.",
-   "notes": ""
-  },
-  {
-   "date": "2026-11-06",
-   "sport": "gym",
    "template": "gymUpper",
    "focus": "Tren superior",
    "intensity": null,
-   "notes": "Después del rodaje suave. Tren superior: no afecta al test del domingo.",
+   "notes": "Solo tren superior: mañana es el test, piernas frescas. Hoy (3/11) ya hiciste gimnasio: si fue de piernas, cuenta como el de tren inferior de esta semana.",
    "why": "Tren superior y core: postura y braceo eficientes al final de carrera, y base para nadar."
   },
   {
-   "date": "2026-11-07",
-   "sport": "bike",
-   "template": "bikeE",
-   "intensity": "E",
-   "notes": "Muy suave: el domingo es el test.",
-   "why": "Volumen aeróbico sin impacto y mantener la bici para la temporada de triatlón."
-  },
-  {
-   "date": "2026-11-08",
+   "date": "2026-11-06",
    "sport": "run",
    "title": "TEST 5 km",
    "distance_km": 9,
@@ -355,7 +325,23 @@
     }
    ],
    "why": "Fija tu forma real (VDOT). Con este tiempo la app recalcula TODOS los ritmos del plan.",
-   "notes": "Apunta el tiempo exacto del 5K (el del reloj en la vuelta o Strava). Ve descansado: sábado solo bici suave."
+   "notes": "Apunta el tiempo exacto del 5K. Miércoles descanso y jueves solo piscina + tren superior: llegas fresco. El fin de semana libre te sirve de recuperación."
+  },
+  {
+   "date": "2026-11-07",
+   "sport": "rest",
+   "title": "Descanso",
+   "intensity": null,
+   "blocks": [],
+   "notes": "Libre (fin de semana fuera)."
+  },
+  {
+   "date": "2026-11-08",
+   "sport": "rest",
+   "title": "Descanso",
+   "intensity": null,
+   "blocks": [],
+   "notes": "Libre (fin de semana fuera). Si te apetece, paseo largo."
   },
   {
    "date": "2026-11-09",
@@ -378,8 +364,8 @@
   {
    "date": "2026-11-10",
    "sport": "run",
-   "title": "Umbral: 3x1600 m",
-   "distance_km": 8.5,
+   "title": "Umbral: 3x1200 m",
+   "distance_km": 7.5,
    "intensity": "T",
    "duration_min": null,
    "key": true,
@@ -390,7 +376,7 @@
     },
     {
      "name": "Principal",
-     "text": "3x1600 m a {T}, recuperando 1' trotando suave"
+     "text": "3x1200 m a {T}, recuperando 1' trotando"
     },
     {
      "name": "Vuelta a la calma",
@@ -430,15 +416,6 @@
    "notes": ""
   },
   {
-   "date": "2026-11-12",
-   "sport": "gym",
-   "template": "gymUpper",
-   "focus": "Tren superior",
-   "intensity": null,
-   "notes": "",
-   "why": "Tren superior y core: postura y braceo eficientes al final de carrera, y base para nadar."
-  },
-  {
    "date": "2026-11-13",
    "sport": "swim",
    "template": "swimB",
@@ -446,6 +423,15 @@
    "distance_m": 1800,
    "notes": "",
    "why": "Mantener la natación para 2027 y sumar volumen aeróbico sin impacto."
+  },
+  {
+   "date": "2026-11-13",
+   "sport": "gym",
+   "template": "gymUpper",
+   "focus": "Tren superior",
+   "intensity": null,
+   "notes": "Justo después de nadar.",
+   "why": "Tren superior y core: postura y braceo eficientes al final de carrera, y base para nadar."
   },
   {
    "date": "2026-11-14",
@@ -476,14 +462,14 @@
    "date": "2026-11-15",
    "sport": "run",
    "title": "Tirada larga",
-   "distance_km": 11,
+   "distance_km": 9,
    "intensity": "E",
    "duration_min": null,
    "key": true,
    "blocks": [
     {
      "name": "Tirada",
-     "text": "11 km continuos a {E}, FC <145 incluso al final"
+     "text": "9 km continuos a {E}, FC <145 incluso al final"
     }
    ],
    "why": "Resistencia aeróbica y adaptación de tendones al volumen.",
@@ -562,21 +548,22 @@
    "notes": ""
   },
   {
-   "date": "2026-11-19",
+   "date": "2026-11-20",
+   "sport": "swim",
+   "template": "swimB",
+   "intensity": "E",
+   "distance_m": 1800,
+   "notes": "",
+   "why": "Mantener la natación y sumar volumen aeróbico sin impacto. Mismo sitio que el gimnasio."
+  },
+  {
+   "date": "2026-11-20",
    "sport": "gym",
    "template": "gymUpper",
    "focus": "Tren superior",
    "intensity": null,
-   "notes": "",
+   "notes": "Justo después de nadar.",
    "why": "Tren superior y core: postura y braceo eficientes al final de carrera, y base para nadar."
-  },
-  {
-   "date": "2026-11-20",
-   "sport": "bike",
-   "template": "bikeE",
-   "intensity": "E",
-   "notes": "",
-   "why": "Volumen aeróbico sin impacto y mantener la bici para la temporada de triatlón."
   },
   {
    "date": "2026-11-21",
@@ -607,14 +594,14 @@
    "date": "2026-11-22",
    "sport": "run",
    "title": "Tirada larga",
-   "distance_km": 13,
+   "distance_km": 11,
    "intensity": "E",
    "duration_min": null,
    "key": false,
    "blocks": [
     {
      "name": "Tirada",
-     "text": "13 km a {E}, FC <145"
+     "text": "11 km a {E}, FC <145"
     }
    ],
    "why": "Resistencia aeróbica.",
@@ -693,15 +680,6 @@
    "notes": ""
   },
   {
-   "date": "2026-11-26",
-   "sport": "gym",
-   "template": "gymUpper",
-   "focus": "Tren superior",
-   "intensity": null,
-   "notes": "",
-   "why": "Tren superior y core: postura y braceo eficientes al final de carrera, y base para nadar."
-  },
-  {
    "date": "2026-11-27",
    "sport": "swim",
    "template": "swimB",
@@ -709,6 +687,15 @@
    "distance_m": 1800,
    "notes": "",
    "why": "Mantener la natación para 2027 y sumar volumen aeróbico sin impacto."
+  },
+  {
+   "date": "2026-11-27",
+   "sport": "gym",
+   "template": "gymUpper",
+   "focus": "Tren superior",
+   "intensity": null,
+   "notes": "Justo después de nadar.",
+   "why": "Tren superior y core: postura y braceo eficientes al final de carrera, y base para nadar."
   },
   {
    "date": "2026-11-28",
@@ -739,14 +726,14 @@
    "date": "2026-11-29",
    "sport": "run",
    "title": "Tirada larga con final a ritmo M",
-   "distance_km": 14,
+   "distance_km": 13,
    "intensity": "E",
    "duration_min": null,
    "key": false,
    "blocks": [
     {
      "name": "Tirada",
-     "text": "12 km a {E}"
+     "text": "11 km a {E}"
     },
     {
      "name": "Final",
@@ -777,22 +764,26 @@
   {
    "date": "2026-12-01",
    "sport": "run",
-   "title": "Rodaje suave + rectas",
+   "title": "Rodaje con 4x400 m vivos",
    "distance_km": 7,
-   "intensity": "E",
+   "intensity": "CUR",
    "duration_min": null,
    "key": false,
    "blocks": [
     {
-     "name": "Rodaje",
-     "text": "6 km continuos a {E} (FC <140, debes poder hablar)"
+     "name": "Calentamiento",
+     "text": "4 km a {E}"
     },
     {
-     "name": "Rectas",
-     "text": "6 rectas de 20 s, progresivas hasta ritmo {R}, recuperando 40 s andando (técnica: zancada suelta, cadencia alta)"
+     "name": "Principal",
+     "text": "4x400 m a {CUR}, recuperando 1' andando"
+    },
+    {
+     "name": "Vuelta a la calma",
+     "text": "1,4 km a {E}"
     }
    ],
-   "why": "Construye base aeróbica y economía sin acumular fatiga. Las rectas activan la velocidad sin coste.",
+   "why": "Mantener la chispa en la semana de descarga sin cansar.",
    "notes": ""
   },
   {
@@ -805,45 +796,29 @@
   },
   {
    "date": "2026-12-03",
-   "sport": "run",
-   "title": "Rodaje con 4x400 m vivos",
-   "distance_km": 6,
-   "intensity": "CUR",
-   "duration_min": null,
-   "key": false,
-   "blocks": [
-    {
-     "name": "Calentamiento",
-     "text": "3 km a {E}"
-    },
-    {
-     "name": "Principal",
-     "text": "4x400 m a {CUR}, recuperando 1' andando"
-    },
-    {
-     "name": "Vuelta a la calma",
-     "text": "1 km a {E}"
-    }
-   ],
-   "why": "Mantener la chispa en la semana de descarga sin cansar.",
-   "notes": ""
+   "sport": "bike",
+   "template": "bikeE",
+   "intensity": "E",
+   "notes": "Muy suave: el sábado es el re-test.",
+   "why": "Volumen aeróbico sin impacto en la semana de descarga (y mantener la bici para el triatlón)."
   },
   {
-   "date": "2026-12-03",
+   "date": "2026-12-04",
+   "sport": "swim",
+   "template": "swimB",
+   "intensity": "E",
+   "distance_m": 1800,
+   "notes": "",
+   "why": "Mantener la natación y sumar volumen aeróbico sin impacto. Mismo sitio que el gimnasio."
+  },
+  {
+   "date": "2026-12-04",
    "sport": "gym",
    "template": "gymUpper",
    "focus": "Tren superior",
    "intensity": null,
-   "notes": "Semana de descarga: usa ~80 % del peso habitual. Tren superior: no afecta al re-test del sábado.",
+   "notes": "Justo después de nadar. Semana de descarga: usa ~80 % del peso habitual. Tren superior: no afecta al re-test del sábado.",
    "why": "Tren superior y core: postura y braceo eficientes al final de carrera, y base para nadar."
-  },
-  {
-   "date": "2026-12-04",
-   "sport": "bike",
-   "template": "bikeE",
-   "intensity": "E",
-   "notes": "Suave: mañana re-test.",
-   "why": "Volumen aeróbico sin impacto y mantener la bici para la temporada de triatlón."
   },
   {
    "date": "2026-12-05",
@@ -860,7 +835,7 @@
     },
     {
      "name": "Test",
-     "text": "5 km a tope, mismo recorrido que el 8/11 para poder comparar. Sal a {CUR}"
+     "text": "5 km a tope, mismo recorrido que el 6/11 para poder comparar. Sal a {CUR}"
     },
     {
      "name": "Vuelta a la calma",
@@ -960,15 +935,6 @@
    "notes": ""
   },
   {
-   "date": "2026-12-10",
-   "sport": "gym",
-   "template": "gymUpper",
-   "focus": "Tren superior",
-   "intensity": null,
-   "notes": "",
-   "why": "Tren superior y core: postura y braceo eficientes al final de carrera, y base para nadar."
-  },
-  {
    "date": "2026-12-11",
    "sport": "swim",
    "template": "swimB",
@@ -976,6 +942,15 @@
    "distance_m": 1800,
    "notes": "",
    "why": "Mantener la natación para 2027 y sumar volumen aeróbico sin impacto."
+  },
+  {
+   "date": "2026-12-11",
+   "sport": "gym",
+   "template": "gymUpper",
+   "focus": "Tren superior",
+   "intensity": null,
+   "notes": "Justo después de nadar.",
+   "why": "Tren superior y core: postura y braceo eficientes al final de carrera, y base para nadar."
   },
   {
    "date": "2026-12-12",
@@ -1096,21 +1071,22 @@
    "notes": ""
   },
   {
-   "date": "2026-12-17",
+   "date": "2026-12-18",
+   "sport": "swim",
+   "template": "swimB",
+   "intensity": "E",
+   "distance_m": 1800,
+   "notes": "",
+   "why": "Mantener la natación y sumar volumen aeróbico sin impacto. Mismo sitio que el gimnasio."
+  },
+  {
+   "date": "2026-12-18",
    "sport": "gym",
    "template": "gymUpper",
    "focus": "Tren superior",
    "intensity": null,
-   "notes": "",
+   "notes": "Justo después de nadar.",
    "why": "Tren superior y core: postura y braceo eficientes al final de carrera, y base para nadar."
-  },
-  {
-   "date": "2026-12-18",
-   "sport": "bike",
-   "template": "bikeE",
-   "intensity": "E",
-   "notes": "",
-   "why": "Volumen aeróbico sin impacto y mantener la bici para la temporada de triatlón."
   },
   {
    "date": "2026-12-19",
@@ -1211,24 +1187,12 @@
   },
   {
    "date": "2026-12-24",
-   "sport": "run",
-   "title": "Rodaje suave + rectas",
-   "distance_km": 6,
+   "sport": "swim",
+   "template": "swimC",
    "intensity": "E",
-   "duration_min": null,
-   "key": false,
-   "blocks": [
-    {
-     "name": "Rodaje",
-     "text": "5 km continuos a {E} (FC <140, debes poder hablar)"
-    },
-    {
-     "name": "Rectas",
-     "text": "6 rectas de 20 s, progresivas hasta ritmo {R}, recuperando 40 s andando (técnica: zancada suelta, cadencia alta)"
-    }
-   ],
-   "why": "Construye base aeróbica y economía sin acumular fatiga. Las rectas activan la velocidad sin coste.",
-   "notes": "Nochebuena: mejor por la mañana."
+   "distance_m": 1500,
+   "notes": "Nochebuena, por la mañana. El 25 la piscina estará cerrada.",
+   "why": "Mantener la natación y sumar volumen aeróbico sin impacto. Mismo sitio que el gimnasio."
   },
   {
    "date": "2026-12-24",
@@ -1236,7 +1200,7 @@
    "template": "gymUpper",
    "focus": "Tren superior",
    "intensity": null,
-   "notes": "Nochebuena: después del rodaje, por la mañana. Peso moderado, sin llegar al fallo.",
+   "notes": "Peso moderado, sin llegar al fallo (semana de afinar).",
    "why": "Tren superior y core: postura y braceo eficientes al final de carrera, y base para nadar."
   },
   {

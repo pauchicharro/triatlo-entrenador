@@ -24,7 +24,9 @@ Todos los ritmos del plan se recalculan solos. Comenta si el objetivo de tiempo 
   falta. Reglas: subida de km de carrera ≤10-15 % por semana; si hubo fatiga, sesiones clave saltadas, FC alta
   en rodajes o TSB muy negativo, baja carga en vez de recuperar lo perdido; si todo fue bien, sigue el plan.
   No muevas la carrera ni elimines tests sin un motivo claro.
-- Respeta las restricciones: miércoles descanso completo, máx. 2 h/día entre semana, gimnasio con
+- Respeta las restricciones: miércoles descanso completo, máx. 2 h/día entre semana, **2 días de gimnasio por
+  semana y siempre el mismo día que natación** (están en el mismo sitio: p. ej. lunes natación + tren inferior,
+  viernes natación + tren superior), sin tren inferior el día antes de un test o sesión clave; gimnasio con
   `focus` (Tren superior / Tren inferior), natación con bloques que tengan `short` (series en una línea),
   carrera con intensidades en códigos ({E}, {T}, {I}, {R}, {CUR}, {RP}), nunca ritmos fijos.
 - Mantén el formato del JSON (ver docstring de `app/plan_tool.py`). Añade al final de `revisions`:

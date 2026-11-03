@@ -6,6 +6,13 @@ Registre cronològic curt d'ajustos i decisions preses en converses amb l'entren
 
 
 
+
+## 2026-11-03 (4)
+Gimnàs sempre el mateix dia que natació (mateix lloc): dilluns natació + tren inferior, divendres
+natació + tren superior; dijous només rodatge. Cap de setmana 7-8/11 fora → test de 5 km avançat a
+divendres 6/11 (dijous 5: natació + tren superior, sense cames). Bici només a la setmana de descàrrega
+(dijous 3/12). Progressió de km més suau a les setmanes 2-4 (29/35/41 km). Avui (3/11) ha fet gimnàs
+33' a migdia; el rodatge de 8 km segueix pendent.
 ## 2026-11-03 (3)
 A petició de l'atleta, dos dies de gimnàs cada setmana: afegit tren superior el 6/11, 3/12 i 24/12
 (setmanes 1, 5 i 8, que només en tenien un). Setmana de cursa (28-31/12) sense gimnàs per arribar fresc.
