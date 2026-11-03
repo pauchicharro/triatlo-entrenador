@@ -240,8 +240,14 @@ def recompute_metrics(athlete_id):
 
 # ---------------------------------------------------------------------- trabajo
 
-def enrich_athlete(athlete_id, max_activities=None, log=print):
-    """Descarga detalle + streams de las actividades pendientes (más recientes primero)."""
+def enrich_athlete(athlete_id, max_activities=None, log=print, since=None):
+    """Descarga detalle + streams de las actividades pendientes (más recientes primero).
+
+    La cola se vuelve a consultar en cada vuelta: si mientras tanto entra una
+    actividad nueva (sincronización), se procesa antes que el histórico.
+    `since` (YYYY-MM-DD) limita a actividades desde esa fecha. Devuelve False
+    si otro proceso ya estaba trabajando (cerrojo ocupado).
+    """
     # Cerrojo en fichero: si el servidor y el script de terminal coinciden,
     # solo uno trabaja (así no gastamos el doble de llamadas a Strava).
     lock = open(Path(__file__).parent / f".enrich-{athlete_id}.lock", "w")
@@ -249,7 +255,7 @@ def enrich_athlete(athlete_id, max_activities=None, log=print):
         fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
     except BlockingIOError:
         lock.close()
-        return
+        return False
     try:
         token = strava.valid_access_token(athlete_id)
         z = db.get_athlete_zones(athlete_id)
@@ -257,16 +263,27 @@ def enrich_athlete(athlete_id, max_activities=None, log=print):
                 and fetch_zones(athlete_id, token):
             recompute_metrics(athlete_id)  # recalcula lo ya guardado con las zonas reales
 
-        pending = db.activities_pending_enrichment(athlete_id)
-        total = len(pending)
-        log(f"Atleta {athlete_id}: {total} actividades por enriquecer")
-        for i, row in enumerate(pending[:max_activities] if max_activities else pending, 1):
+        def queue():
+            return [r for r in db.activities_pending_enrichment(athlete_id)
+                    if not since or (r["start_date_local"] or "") >= since]
+
+        total = len(queue())
+        log(f"Atleta {athlete_id}: {total} actividades por enriquecer" + (f" (desde {since})" if since else ""))
+        i = 0
+        while True:
+            pending = queue()
+            if not pending or (max_activities and i >= max_activities):
+                break
+            row, i = pending[0], i + 1
             token = strava.valid_access_token(athlete_id)  # se refresca si caduca
             aid = row["id"]
 
             r = _api_get(f"/activities/{aid}", token, {"include_all_efforts": "true"})
             if r.status_code == 404:
                 db.mark_enriched(aid, "no encontrada")
+                continue
+            if r.status_code in (401, 403):
+                db.mark_enriched(aid, f"sin acceso ({r.status_code})")  # actividad privada de otro, etc.
                 continue
             if r.status_code >= 400:
                 raise RuntimeError(f"Strava {r.status_code}: {r.text[:200]}")
@@ -286,10 +303,11 @@ def enrich_athlete(athlete_id, max_activities=None, log=print):
             db.save_metrics(aid, compute_metrics(streams, zones, row["sport_type"],
                                                  bool(detail.get("device_watts"))), src)
             db.mark_enriched(aid, "ok" if streams else "sin streams")
-            if i % 10 == 0 or i == total:
-                log(f"  {i}/{total} · {row['start_date_local'][:10]} {row['sport_type']}")
+            if i % 10 == 0 or len(pending) == 1:
+                log(f"  {i} hechas, quedan {len(pending) - 1} · {row['start_date_local'][:10]} {row['sport_type']}")
         recompute_metrics(athlete_id)  # zonas ya con todos los datos → recalcular (local, rápido)
         db.set_enrich_status(athlete_id, None)
+        return True
     except Exception as e:
         db.set_enrich_status(athlete_id, str(e))
         log(f"  error: {e}")
@@ -305,6 +323,10 @@ def main():
     p.add_argument("--recompute", action="store_true", help="recalcula métricas con los streams guardados")
     p.add_argument("--max", type=int, help="máximo de actividades por atleta en esta pasada")
     p.add_argument("--zones", help="fija zonas de FC a mano: ATLETA_ID:130,140,150,175 (inicio de Z2..Z5)")
+    p.add_argument("--sync", action="store_true", help="antes, sincroniza la lista de actividades de Strava")
+    p.add_argument("--since-days", type=int, help="solo actividades de los últimos N días")
+    p.add_argument("--wait", type=int, default=0,
+                   help="si otro proceso está descargando, espera hasta N min a que termine lo de --since-days")
     args = p.parse_args()
     db.init()
     if args.zones:
@@ -312,11 +334,31 @@ def main():
         db.save_athlete_zones(int(aid), [0] + [int(c) for c in cuts.split(",")] + [999], "manual")
         print(f"Atleta {aid}: {recompute_metrics(int(aid))} actividades recalculadas con zonas manuales")
         return
+    since = None
+    if args.since_days:
+        from datetime import date, timedelta
+        since = (date.today() - timedelta(days=args.since_days)).isoformat()
     for a in db.all_athletes():
         if args.recompute:
             print(f"Atleta {a['id']}: {recompute_metrics(a['id'])} actividades recalculadas")
-        else:
-            enrich_athlete(a["id"], args.max, log=lambda s: print(s, flush=True))
+            continue
+        if args.sync:
+            strava.sync_athlete(a["id"])
+            print(f"Atleta {a['id']}: {db.get_athlete(a['id'])['sync_message']}", flush=True)
+        ok = enrich_athlete(a["id"], args.max, log=lambda s: print(s, flush=True), since=since)
+        if ok is False and args.wait:
+            # El proceso de fondo tiene el cerrojo; como coge primero lo más
+            # reciente, basta con esperar a que la cola de estos días se vacíe.
+            deadline = time.time() + args.wait * 60
+            while time.time() < deadline:
+                left = [r for r in db.activities_pending_enrichment(a["id"])
+                        if not since or (r["start_date_local"] or "") >= since]
+                if not left:
+                    break
+                time.sleep(30)
+            print(f"Atleta {a['id']}: pendientes recientes tras esperar: "
+                  f"{len([r for r in db.activities_pending_enrichment(a['id']) if not since or (r['start_date_local'] or '') >= since])}",
+                  flush=True)
 
 
 if __name__ == "__main__":

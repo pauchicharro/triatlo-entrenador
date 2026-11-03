@@ -4,6 +4,12 @@ Registre cronològic curt d'ajustos i decisions preses en converses amb l'entren
 (canvis de sessió, fatiga detectada, lesions, imprevistos, etc.). Entrades més noves a dalt.
 
 
+
+## 2026-11-03 (2)
+Gimnàs reestructurat: dilluns **tren inferior** (força + pliometria), dijous **tren superior + core**
+(abans: força i core/pliometria, sense tren superior). Natació amb sèries en una línia a l'app. Activada
+l'adaptació automàtica del pla cada diumenge (`app/weekly_replan.sh`). En l'assaig, el reajust ja va
+detectar que la setmana 2 puja +33% de km de córrer (24→32): es corregirà diumenge 8/11 amb el test.
 ## 2026-11-03
 Nou objectiu: San Silvestre 10K (31/12), temps desitjat sub-40. Les dades (millors esforços i
 curses de 2026, VDOT 44-46,5) indiquen ~44:00 ara mateix; sub-40 requereix VDOT ~52 → objectiu

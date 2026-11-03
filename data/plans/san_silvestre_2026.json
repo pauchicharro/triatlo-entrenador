@@ -50,130 +50,181 @@
  ],
  "templates": {
   "swimA": {
-   "title": "Natación aeróbica 2000 m",
+   "title": "Natación aeróbica",
    "duration_min": 40,
    "blocks": [
     {
-     "name": "Calentamiento (400 m)",
-     "text": "200 m crol suave + 100 m espalda + 100 m crol con pull buoy"
+     "name": "Calentamiento",
+     "short": "400 suave",
+     "text": "400 m: 200 m crol suave + 100 m espalda + 100 m crol con pull buoy"
     },
     {
-     "name": "Técnica (300 m)",
+     "name": "Técnica",
+     "short": "6×50 técnica (aletas), sal. 1'10\"",
      "text": "6x50 m con aletas: 25 m catch-up + 25 m crol normal, salida 1'10\""
     },
     {
-     "name": "Principal (1000 m)",
+     "name": "Principal",
+     "short": "8×125 aeróbico (~1:40/100), sal. 2'25\"",
      "text": "8x125 m a ritmo aeróbico (RPE 5/10, ~1:40/100m), salida 2'25\""
     },
     {
-     "name": "Vuelta a la calma (300 m)",
-     "text": "200 m crol muy suave + 100 m espalda"
+     "name": "Vuelta a la calma",
+     "short": "300 suave",
+     "text": "300 m: 200 m crol muy suave + 100 m espalda"
     }
    ]
   },
   "swimB": {
-   "title": "Natación técnica 1800 m",
+   "title": "Natación técnica",
    "duration_min": 38,
    "blocks": [
     {
-     "name": "Calentamiento (300 m)",
+     "name": "Calentamiento",
+     "short": "300 suave",
      "text": "300 m crol suave respirando cada 3"
     },
     {
-     "name": "Técnica (400 m)",
+     "name": "Técnica",
+     "short": "8×50 técnica (aletas), sal. 1'15\"",
      "text": "8x50 m con aletas alternando sculling delante (25 m) y 6-3-6 (25 m), salida 1'15\""
     },
     {
-     "name": "Pull (600 m)",
+     "name": "Pull",
+     "short": "4×150 pull + palas, sal. 2'50\"",
      "text": "4x150 m con pull buoy + palas, ritmo cómodo y brazada larga, salida 2'50\""
     },
     {
-     "name": "Progresivos (200 m)",
+     "name": "Progresivos",
+     "short": "4×50 progresivos, sal. 1'00\"",
      "text": "4x50 m crol del 1 al 4 cada vez más rápido, salida 1'00\""
     },
     {
-     "name": "Vuelta a la calma (300 m)",
+     "name": "Vuelta a la calma",
+     "short": "300 suave",
      "text": "300 m suave combinando estilos"
     }
    ]
   },
   "swimC": {
-   "title": "Natación suave 1500 m (afinar)",
+   "title": "Natación suave (afinar)",
    "duration_min": 30,
    "blocks": [
     {
-     "name": "Calentamiento (300 m)",
+     "name": "Calentamiento",
+     "short": "300 suave",
      "text": "300 m crol suave"
     },
     {
-     "name": "Técnica (300 m)",
+     "name": "Técnica",
+     "short": "6×50 catch-up (aletas), sal. 1'10\"",
      "text": "6x50 m catch-up con aletas, salida 1'10\""
     },
     {
-     "name": "Principal (600 m)",
+     "name": "Principal",
+     "short": "6×100 cómodo, sal. 1'55\"",
      "text": "6x100 m aeróbico cómodo, salida 1'55\""
     },
     {
-     "name": "Vuelta a la calma (300 m)",
+     "name": "Vuelta a la calma",
+     "short": "300 suave",
      "text": "300 m muy suave"
     }
    ]
   },
-  "gymA": {
-   "title": "Gimnasio: fuerza para correr",
-   "duration_min": 40,
+  "gymLower": {
+   "title": "Tren inferior: fuerza + pliometría",
+   "focus": "Tren inferior",
+   "duration_min": 45,
    "blocks": [
     {
-     "name": "Activación (5')",
+     "name": "Activación",
+     "short": "puente glúteo + monster walk",
      "text": "2x10 puente de glúteo + 2x10 pasos laterales con goma (monster walk)"
     },
     {
+     "name": "Pliometría",
+     "short": "pogo 3×15 · cajón 3×6",
+     "text": "3x15 pogo jumps (tobillo rígido) + 3x6 saltos a cajón bajando andando, descanso 60\". Siempre antes de la fuerza, con piernas frescas"
+    },
+    {
      "name": "Sentadilla búlgara",
+     "short": "3×8/pierna",
      "text": "3x8 por pierna con mancuernas, RPE 7 (te quedan 3 reps), descanso 90\""
     },
     {
      "name": "Peso muerto rumano",
+     "short": "3×8",
      "text": "3x8 con barra o mancuernas pesadas, espalda neutra, descanso 90\""
     },
     {
      "name": "Hip thrust",
+     "short": "3×10",
      "text": "3x10, pausa 1 s arriba, descanso 60\""
     },
     {
      "name": "Gemelo excéntrico",
+     "short": "3×12/pierna",
      "text": "3x12 por pierna en escalón: subes con dos, bajas con una en 3 s (protege el Aquiles)"
     },
     {
-     "name": "Core",
+     "name": "Core lateral",
+     "short": "plancha lateral 3×30 s · Copenhague 2×20 s",
      "text": "3x30 s plancha lateral por lado + 2x20 s Copenhague por lado"
     }
    ]
   },
-  "gymA_light": {
-   "title": "Gimnasio: fuerza (mantenimiento)",
+  "gymLower_light": {
+   "title": "Tren inferior: mantenimiento",
+   "focus": "Tren inferior",
    "duration_min": 30,
    "blocks": [
     {
-     "name": "Activación (5')",
+     "name": "Activación",
+     "short": "puente glúteo + monster walk",
      "text": "2x10 puente de glúteo + 2x10 monster walk"
     },
     {
      "name": "Circuito (2 rondas, sin llegar al fallo)",
+     "short": "2 rondas: búlgara 6 · PM rumano 6 · gemelo 10 · plancha lat. 30 s",
      "text": "sentadilla búlgara 6/pierna · peso muerto rumano 6 · gemelo excéntrico 10/pierna · plancha lateral 30 s/lado"
     }
    ]
   },
-  "gymB": {
-   "title": "Core + pliometría",
-   "duration_min": 25,
+  "gymUpper": {
+   "title": "Tren superior + core",
+   "focus": "Tren superior",
+   "duration_min": 35,
    "blocks": [
     {
-     "name": "Pliometría (antes de cansarte)",
-     "text": "3x15 pogo jumps (saltitos de tobillo rígido) · 3x6 saltos a cajón (bajar andando) · 2x8 saltos laterales a una pierna por lado. Descanso 60\""
+     "name": "Activación",
+     "short": "rotaciones + face pull goma 2×15",
+     "text": "rotaciones de hombro con goma + 2x15 face pull con goma"
     },
     {
-     "name": "Core (2 rondas)",
-     "text": "dead bug 10/lado · bird dog 10/lado · plancha frontal 40 s · puente de glúteo a una pierna 10/lado"
+     "name": "Dominadas o jalón al pecho",
+     "short": "3×8",
+     "text": "3x6-8 dominadas (asistidas si hace falta) o jalón al pecho, descanso 90\""
+    },
+    {
+     "name": "Press de banca con mancuernas",
+     "short": "3×10",
+     "text": "3x10, RPE 7, descanso 90\""
+    },
+    {
+     "name": "Remo con mancuerna",
+     "short": "3×10/brazo",
+     "text": "3x10 por brazo apoyado en banco, descanso 60\""
+    },
+    {
+     "name": "Press militar con mancuernas",
+     "short": "3×10",
+     "text": "3x10 de pie, sin arquear la espalda, descanso 60\""
+    },
+    {
+     "name": "Core",
+     "short": "2 rondas: dead bug · Pallof · plancha 40 s",
+     "text": "2 rondas: dead bug 10/lado · Pallof press con goma 10/lado · plancha frontal 40 s"
     }
    ]
   },
@@ -183,11 +234,18 @@
    "blocks": [
     {
      "name": "Rodaje",
+     "short": "1h15 Z2 (FC 125-140), ~35 km, 85-95 rpm",
      "text": "1h15 en Z2 (FC 125-140), ~35 km en llano (≈28 km/h), cadencia 85-95 rpm. Últimos 10' muy suave. Si llueve: 60' de rodillo con la misma FC"
     }
    ]
   }
  },
+ "revisions": [
+  {
+   "date": "2026-11-03",
+   "summary": "Plan inicial (VDOT 46,5 estimado). Gimnasio: lunes tren inferior, jueves tren superior."
+  }
+ ],
  "sessions": [
   {
    "date": "2026-11-03",
@@ -230,10 +288,11 @@
   {
    "date": "2026-11-05",
    "sport": "gym",
-   "template": "gymA",
+   "template": "gymLower",
+   "focus": "Tren inferior",
    "intensity": null,
    "notes": "Primera sesión de fuerza tras el triatlón: usa un peso con el que te sobren 3-4 reps.",
-   "why": "La fuerza mejora la economía de carrera y protege tendones (Aquiles, rodilla)."
+   "why": "Fuerza y pliometría: mejor economía de carrera y tendones más fuertes (Aquiles, rodilla)."
   },
   {
    "date": "2026-11-06",
@@ -297,10 +356,11 @@
   {
    "date": "2026-11-09",
    "sport": "gym",
-   "template": "gymA",
+   "template": "gymLower",
+   "focus": "Tren inferior",
    "intensity": null,
    "notes": "",
-   "why": "La fuerza mejora la economía de carrera y protege tendones (Aquiles, rodilla)."
+   "why": "Fuerza y pliometría: mejor economía de carrera y tendones más fuertes (Aquiles, rodilla)."
   },
   {
    "date": "2026-11-10",
@@ -359,10 +419,11 @@
   {
    "date": "2026-11-12",
    "sport": "gym",
-   "template": "gymB",
+   "template": "gymUpper",
+   "focus": "Tren superior",
    "intensity": null,
    "notes": "",
-   "why": "Pliometría y core: más rigidez elástica en el tobillo = menos gasto por zancada."
+   "why": "Tren superior y core: postura y braceo eficientes al final de carrera, y base para nadar."
   },
   {
    "date": "2026-11-13",
@@ -427,10 +488,11 @@
   {
    "date": "2026-11-16",
    "sport": "gym",
-   "template": "gymA",
+   "template": "gymLower",
+   "focus": "Tren inferior",
    "intensity": null,
    "notes": "",
-   "why": "La fuerza mejora la economía de carrera y protege tendones (Aquiles, rodilla)."
+   "why": "Fuerza y pliometría: mejor economía de carrera y tendones más fuertes (Aquiles, rodilla)."
   },
   {
    "date": "2026-11-17",
@@ -489,10 +551,11 @@
   {
    "date": "2026-11-19",
    "sport": "gym",
-   "template": "gymB",
+   "template": "gymUpper",
+   "focus": "Tren superior",
    "intensity": null,
    "notes": "",
-   "why": "Pliometría y core: más rigidez elástica en el tobillo = menos gasto por zancada."
+   "why": "Tren superior y core: postura y braceo eficientes al final de carrera, y base para nadar."
   },
   {
    "date": "2026-11-20",
@@ -556,10 +619,11 @@
   {
    "date": "2026-11-23",
    "sport": "gym",
-   "template": "gymA",
+   "template": "gymLower",
+   "focus": "Tren inferior",
    "intensity": null,
    "notes": "",
-   "why": "La fuerza mejora la economía de carrera y protege tendones (Aquiles, rodilla)."
+   "why": "Fuerza y pliometría: mejor economía de carrera y tendones más fuertes (Aquiles, rodilla)."
   },
   {
    "date": "2026-11-24",
@@ -618,10 +682,11 @@
   {
    "date": "2026-11-26",
    "sport": "gym",
-   "template": "gymB",
+   "template": "gymUpper",
+   "focus": "Tren superior",
    "intensity": null,
    "notes": "",
-   "why": "Pliometría y core: más rigidez elástica en el tobillo = menos gasto por zancada."
+   "why": "Tren superior y core: postura y braceo eficientes al final de carrera, y base para nadar."
   },
   {
    "date": "2026-11-27",
@@ -690,7 +755,8 @@
   {
    "date": "2026-11-30",
    "sport": "gym",
-   "template": "gymA_light",
+   "template": "gymLower_light",
+   "focus": "Tren inferior",
    "intensity": null,
    "notes": "",
    "why": "Mantener la fuerza sin fatigar: semana de afinar."
@@ -811,10 +877,11 @@
   {
    "date": "2026-12-07",
    "sport": "gym",
-   "template": "gymA",
+   "template": "gymLower",
+   "focus": "Tren inferior",
    "intensity": null,
    "notes": "",
-   "why": "La fuerza mejora la economía de carrera y protege tendones (Aquiles, rodilla)."
+   "why": "Fuerza y pliometría: mejor economía de carrera y tendones más fuertes (Aquiles, rodilla)."
   },
   {
    "date": "2026-12-08",
@@ -873,10 +940,11 @@
   {
    "date": "2026-12-10",
    "sport": "gym",
-   "template": "gymB",
+   "template": "gymUpper",
+   "focus": "Tren superior",
    "intensity": null,
    "notes": "",
-   "why": "Pliometría y core: más rigidez elástica en el tobillo = menos gasto por zancada."
+   "why": "Tren superior y core: postura y braceo eficientes al final de carrera, y base para nadar."
   },
   {
    "date": "2026-12-11",
@@ -945,10 +1013,11 @@
   {
    "date": "2026-12-14",
    "sport": "gym",
-   "template": "gymA",
+   "template": "gymLower",
+   "focus": "Tren inferior",
    "intensity": null,
    "notes": "",
-   "why": "La fuerza mejora la economía de carrera y protege tendones (Aquiles, rodilla)."
+   "why": "Fuerza y pliometría: mejor economía de carrera y tendones más fuertes (Aquiles, rodilla)."
   },
   {
    "date": "2026-12-15",
@@ -1007,10 +1076,11 @@
   {
    "date": "2026-12-17",
    "sport": "gym",
-   "template": "gymB",
+   "template": "gymUpper",
+   "focus": "Tren superior",
    "intensity": null,
    "notes": "",
-   "why": "Pliometría y core: más rigidez elástica en el tobillo = menos gasto por zancada."
+   "why": "Tren superior y core: postura y braceo eficientes al final de carrera, y base para nadar."
   },
   {
    "date": "2026-12-18",
@@ -1078,7 +1148,8 @@
   {
    "date": "2026-12-21",
    "sport": "gym",
-   "template": "gymA_light",
+   "template": "gymLower_light",
+   "focus": "Tren inferior",
    "intensity": null,
    "notes": "",
    "why": "Mantener la fuerza sin fatigar: semana de afinar."

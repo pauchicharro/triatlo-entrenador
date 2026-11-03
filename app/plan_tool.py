@@ -12,14 +12,18 @@ Formato:
   "summary": "Texto corto con la idea del plan",
   "phases": [{"name": "Base", "from": "2026-11-03", "to": "2026-11-29", "focus": "…"}],
   "templates": {"gymA": {"title": "…", "duration_min": 40, "blocks": [...]}},   # opcional
+  "revisions": [{"date": "2026-11-08", "summary": "Qué cambió y por qué (1-2 líneas)"}],
   "sessions": [
     {"date": "2026-11-03", "sport": "run",            # run|swim|bike|gym|rest|race
      "title": "Rodaje suave + rectas",
      "key": false,                                    # sesión clave de la semana
      "intensity": "E",                                # intensidad principal (E/M/T/I/R/CUR/RP)
      "distance_km": 8, "distance_m": null, "duration_min": 45,
-     "blocks": [{"name": "Calentamiento", "text": "2 km a {E}"}, …],
-     "template": "gymA",                              # opcional: hereda bloques de la plantilla
+     "blocks": [{"name": "Calentamiento", "short": "2 km E", "text": "2 km a {E}"}, …],
+                                                      # short = versión de una línea (la vista compacta
+                                                      # de natación/gimnasio muestra las series con él)
+     "template": "gymLower",                          # opcional: hereda bloques de la plantilla
+     "focus": "Tren inferior",                        # gimnasio: Tren superior | Tren inferior | Cuerpo completo
      "why": "Para qué sirve esta sesión",
      "notes": "Consejos"}
   ]
@@ -31,6 +35,7 @@ por los ritmos que salen del VDOT actual (ver paces.py).
 Uso:
   app/.venv/bin/python app/plan_tool.py import data/plans/san_silvestre_2026.json
   app/.venv/bin/python app/plan_tool.py vdot 48.5 "Test 5K 08/11: 20:51"
+  app/.venv/bin/python app/plan_tool.py vdot-from-race 5000 20:51 "Test 5K" --date 2026-11-08
   app/.venv/bin/python app/plan_tool.py markdown        # reescribe data/training_plan.md
 """
 
@@ -69,6 +74,9 @@ def validate(plan):
             errors.append(f"{where}: intensity '{s.get('intensity')}' no válida")
         if s.get("template") and s["template"] not in templates:
             errors.append(f"{where}: plantilla '{s['template']}' no existe")
+        tf = (templates.get(s.get("template") or "") or {}).get("focus")
+        if s.get("sport") == "gym" and (s.get("focus") or tf) not in ("Tren superior", "Tren inferior", "Cuerpo completo"):
+            errors.append(f"{where}: el gimnasio necesita focus = Tren superior | Tren inferior | Cuerpo completo")
         if not s.get("blocks") and not s.get("template") and s.get("sport") not in ("rest",):
             errors.append(f"{where}: sin bloques (hay que detallar la sesión)")
         seen.add(s.get("date"))
@@ -85,6 +93,7 @@ def expand(plan, s):
         s["blocks"] = (s.get("blocks_before") or []) + t.get("blocks", []) + (s.get("blocks") or [])
         s.setdefault("duration_min", t.get("duration_min"))
         s.setdefault("title", t.get("title"))
+        s.setdefault("focus", t.get("focus"))
     return s
 
 
@@ -140,7 +149,7 @@ def session_line(s, pz):
         head += f" {s['distance_m']:g}m"
     elif s.get("duration_min"):
         head += f" {s['duration_min']}min"
-    head += f"** — {s.get('title', '')}"
+    head += f"** — {s.get('title', '')}" + (f" ({s['focus']})" if s.get("focus") else "")
     blocks = " ".join(f"{b.get('name')}: {paces.render_text(b.get('text', ''), pz) if pz else b.get('text', '')}."
                       for b in s.get("blocks") or [])
     return (head + (". " + blocks if blocks else "")).replace("|", "/").replace("..", ".")
@@ -205,6 +214,9 @@ def main():
     sub = p.add_subparsers(dest="cmd", required=True)
     pi = sub.add_parser("import"); pi.add_argument("path")
     pv = sub.add_parser("vdot"); pv.add_argument("value", type=float); pv.add_argument("source")
+    pr = sub.add_parser("vdot-from-race", help="calcula el VDOT de un test/carrera y lo guarda")
+    pr.add_argument("distance_m", type=float); pr.add_argument("time", help="mm:ss o h:mm:ss")
+    pr.add_argument("source"); pr.add_argument("--date")
     sub.add_parser("markdown")
     sub.add_parser("validate").add_argument("path")
     p.add_argument("--athlete", type=int)
@@ -225,6 +237,13 @@ def main():
     elif args.cmd == "vdot":
         db.set_vdot(aid, args.value, args.source)
         print(f"VDOT {args.value} guardado; ritmos recalculados")
+        print(f"Escrito {write_markdown(aid)}")
+    elif args.cmd == "vdot-from-race":
+        parts = [int(x) for x in args.time.split(":")]
+        secs = parts[0] * 3600 + parts[1] * 60 + parts[2] if len(parts) == 3 else parts[0] * 60 + parts[1]
+        v = round(paces.vdot_from_race(args.distance_m, secs), 1)
+        db.set_vdot(aid, v, f"{args.source}: {args.distance_m/1000:g} km en {paces.fmt_time(secs)}", args.date)
+        print(f"VDOT {v} guardado (predicción 10K {paces.fmt_time(paces.predict_time(v, 10000))})")
         print(f"Escrito {write_markdown(aid)}")
     elif args.cmd == "markdown":
         print(f"Escrito {write_markdown(aid)}")

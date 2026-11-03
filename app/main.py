@@ -61,9 +61,15 @@ def _athlete(request):
 
 
 @app.get("/plan", response_class=HTMLResponse)
-def plan(request: Request):
+def plan(request: Request, w: int = None):
     aid = _athlete(request)
-    return HTMLResponse(views.plan_page(aid)) if aid else RedirectResponse("/", status_code=303)
+    return HTMLResponse(views.plan_page(aid, week=w)) if aid else RedirectResponse("/", status_code=303)
+
+
+@app.get("/prevision", response_class=HTMLResponse)
+def prevision(request: Request):
+    aid = _athlete(request)
+    return HTMLResponse(views.forecast_page(aid)) if aid else RedirectResponse("/", status_code=303)
 
 
 @app.get("/plan/sesion/{session_id}", response_class=HTMLResponse)

@@ -12,3 +12,4 @@ app/app.db
 app/.enrich-*.lock
 app/enrich.log
 data/app_summary.md
+app/replan.log

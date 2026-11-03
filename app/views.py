@@ -663,6 +663,15 @@ PLAN_CSS = """
 .block .n{font-weight:600}
 .hero{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:.6rem}
 .pz td:first-child{font-weight:600}
+.series{font-size:.8rem;color:var(--ink2);margin:0 0 .2rem 5rem}
+@media (max-width:560px){.series{margin-left:0}}
+.weeknav{display:flex;align-items:center;gap:.8rem;margin:.6rem 0 .4rem}
+.weeknav>a,.weeknav>span{font-size:1.4rem;text-decoration:none;padding:0 .3rem}
+.kmbar{position:relative;height:6px;background:var(--grid);border-radius:3px;margin-top:.2rem;width:120px}
+.kmbar div{position:absolute;left:0;top:0;height:6px;border-radius:3px;background:var(--line);opacity:.35}
+.kmbar div.done{background:var(--good);opacity:1;height:6px}
+table.fc td{vertical-align:top;white-space:normal} table.fc td.keys{font-size:.85rem;min-width:14rem}
+table.fc tr.now td{background:var(--surface)}
 """
 
 SPORT_LABEL = {"run": "🏃 Carrera", "swim": "🏊 Natación", "bike": "🚴 Bici", "gym": "🏋️ Gimnasio",
@@ -671,7 +680,7 @@ DAYS_ES = ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"]
 
 
 def nav(on):
-    items = [("/", "Inicio"), ("/plan", "Plan"), ("/ritmos", "Ritmos")]
+    items = [("/", "Inicio"), ("/plan", "Plan"), ("/prevision", "Previsión"), ("/ritmos", "Ritmos")]
     return '<div class="nav">' + "".join(
         f'<a href="{h}" class="{"on" if h == on else ""}">{t}</a>' for h, t in items) + "</div>"
 
@@ -834,7 +843,50 @@ def paces_text(t, pz):
     return P.render_text(t, pz) if pz else t
 
 
-def plan_page(athlete_id, today=None):
+def _plan_weeks(rows):
+    """[(lunes, domingo, [filas])] de las semanas que tienen sesiones."""
+    first = _date.fromisoformat(rows[0]["date"])
+    last = _date.fromisoformat(rows[-1]["date"])
+    out, monday = [], first - _td(days=first.weekday())
+    while monday <= last:
+        sunday = monday + _td(days=6)
+        wk = [r for r in rows if monday.isoformat() <= r["date"] <= sunday.isoformat()]
+        if wk:
+            out.append((monday, sunday, wk))
+        monday += _td(days=7)
+    return out
+
+
+def _phase(pj, monday, sunday):
+    return next((p["name"] for p in pj.get("phases", []) if p["from"] <= sunday.isoformat() and p["to"] >= monday.isoformat()), "")
+
+
+def _run_km(acts, monday, sunday):
+    return sum((a["distance_m"] or 0) / 1000 for a in acts
+               if monday.isoformat() <= (a["start_date_local"] or "")[:10] <= sunday.isoformat() and _disc(a["sport_type"]) == "run")
+
+
+def compact_session(r, s, pz, st):
+    """Una sesión en una línea (+ series de natación en una segunda línea corta)."""
+    sport = r["sport"]
+    if sport == "rest":
+        return f'<div class="sess"><span class="sport">{SPORT_LABEL["rest"]}</span>{_chip(*st[:2]) if st[0] != "todo" else ""}</div>'
+    extra = ""
+    if sport in ("run", "race") and pz and s.get("intensity") in pz:
+        extra = f'<span class="muted">{s["intensity"]} {pz[s["intensity"]]["text"]}</span>'
+    tag = f'<span class="chip">{escape(s["focus"])}</span>' if s.get("focus") else ""
+    line = (f'<div class="sess"><span class="sport">{SPORT_LABEL[sport]}</span>'
+            f'<a href="/plan/sesion/{r["id"]}">{escape(s.get("title") or "")}</a>{tag}'
+            f'<span class="muted">{_size(s)}</span>{extra}'
+            + ('<span class="k">CLAVE</span>' if r["key_session"] else "")
+            + (_chip(*st[:2]) if st[0] != "todo" else "") + "</div>")
+    if sport == "swim":
+        series = " · ".join(b.get("short") or b.get("name", "") for b in s.get("blocks") or [])
+        line += f'<div class="series">{escape(series)}</div>'
+    return line
+
+
+def plan_page(athlete_id, today=None, week=None):
     today = today or _date.today()
     plan = db.active_plan(athlete_id)
     if not plan:
@@ -842,56 +894,94 @@ def plan_page(athlete_id, today=None):
     pj = json.loads(plan["plan_json"])
     pz = plan_tool.current_paces(athlete_id)
     rows = db.plan_sessions(plan["id"])
-    first = _date.fromisoformat(rows[0]["date"])
-    last = _date.fromisoformat(rows[-1]["date"])
-    acts = db.activities_between(athlete_id, (first - _td(days=1)).isoformat(), (last + _td(days=1)).isoformat())
-    status = match_sessions(rows, acts, today)
+    weeks = _plan_weeks(rows)
+    cur = next((i for i, (m, su, _) in enumerate(weeks) if m <= today <= su),
+               0 if today < weeks[0][0] else len(weeks) - 1)
+    i = cur if week is None else max(0, min(len(weeks) - 1, week - 1))
+    monday, sunday, wk = weeks[i]
+    acts = db.activities_between(athlete_id, (monday - _td(days=1)).isoformat(), (sunday + _td(days=1)).isoformat())
+    status = match_sessions(wk, acts, today)
 
-    weeks_html = ""
-    monday = first - _td(days=first.weekday())
-    n = 1
-    while monday <= last:
-        sunday = monday + _td(days=6)
-        wk = [r for r in rows if monday.isoformat() <= r["date"] <= sunday.isoformat()]
-        if wk:
-            plan_km = sum((json.loads(r["session"]).get("distance_km") or 0) for r in wk if r["sport"] in ("run", "race"))
-            done_km = sum((a["distance_m"] or 0) / 1000 for a in acts
-                          if monday.isoformat() <= (a["start_date_local"] or "")[:10] <= sunday.isoformat()
-                          and _disc(a["sport_type"]) == "run")
-            phase = next((p["name"] for p in pj.get("phases", []) if p["from"] <= sunday.isoformat() and p["to"] >= monday.isoformat()), "")
-            days_html = ""
-            for i in range(7):
-                d = monday + _td(days=i)
-                ds = [r for r in wk if r["date"] == d.isoformat()]
-                if not ds:
-                    continue
-                items = ""
-                for r in ds:
-                    s = json.loads(r["session"])
-                    st, lab, _, _ = status[r["id"]]
-                    items += (f'<div class="sess"><span class="sport">{SPORT_LABEL[r["sport"]]}</span>'
-                              + (f'<a href="/plan/sesion/{r["id"]}">{escape(s.get("title") or "")}</a>' if r["sport"] != "rest" else '<span class="muted">Descanso</span>')
-                              + f'<span class="muted">{_size(s)}</span>'
-                              + ('<span class="k">CLAVE</span>' if r["key_session"] else "")
-                              + (_chip(st, lab) if st != "todo" else "") + "</div>")
-                days_html += (f'<div class="day{" today" if d == today else ""}"><div class="d">{DAYS_ES[i]} {d.day}/{d.month}'
-                              f'{"<br><b>HOY</b>" if d == today else ""}</div><div>{items}</div></div>')
-            prog = f" · hechos {done_km:.0f} km" if monday <= today else ""
-            weeks_html += (f'<div class="week" id="s{n}"><h3>Semana {n} · {monday.day}/{monday.month} – {sunday.day}/{sunday.month} '
-                           f'<span class="muted" style="font-weight:400">· {escape(phase)} · {plan_km:g} km de carrera{prog}</span></h3>{days_html}</div>')
-            n += 1
-        monday += _td(days=7)
+    days_html = ""
+    for k in range(7):
+        d = monday + _td(days=k)
+        ds = [r for r in wk if r["date"] == d.isoformat()]
+        if not ds:
+            continue
+        items = "".join(compact_session(r, json.loads(r["session"]), pz, status[r["id"]]) for r in ds)
+        days_html += (f'<div class="day{" today" if d == today else ""}"><div class="d">{DAYS_ES[k]} {d.day}/{d.month}'
+                      f'{"<br><b>HOY</b>" if d == today else ""}</div><div>{items}</div></div>')
 
-    phases = "".join(f"<tr><td>{escape(p['name'])}</td><td>{p['from'][8:10]}/{p['from'][5:7]} – {p['to'][8:10]}/{p['to'][5:7]}</td>"
-                     f"<td>{escape(p.get('focus',''))}</td></tr>" for p in pj.get("phases", []))
-    body = f"""{nav('/plan')}<h1>Plan: {escape(pj['goal']['name'])}</h1>
-{goal_card(athlete_id, today)}
-<p class="ink2">{escape(pj.get('summary',''))}</p>
-<details class="card"><summary><b>Fases del plan</b></summary><div class="scroll"><table><tr><th>Fase</th><th>Fechas</th><th>Para qué</th></tr>{phases}</table></div></details>
-<p class="explain">Pulsa una sesión para ver el detalle (series, ritmos, por qué se hace) y compararla con lo que hiciste.
-Los ritmos salen de tu VDOT actual: <a href="/ritmos">ver tus ritmos</a>. Estado: ✓ hecha · ◐ parcial o distinta · ✗ no hecha.</p>
-{weeks_html}"""
+    g = db.active_goal(athlete_id)
+    v = db.current_vdot(athlete_id)
+    head = ""
+    if g:
+        days_left = (_date.fromisoformat(g["race_date"]) - today).days
+        pred = P.fmt_time(P.predict_time(v["vdot"], g["distance_m"])) if v else "–"
+        head = (f'<p class="ink2">{escape(g["name"])} · faltan <b>{days_left} días</b> · objetivo '
+                f'<b>{P.fmt_time(g["target_time_s"]) if g["target_time_s"] else "–"}</b> · predicción hoy <b>{pred}</b></p>')
+    plan_km = sum((json.loads(r["session"]).get("distance_km") or 0) for r in wk if r["sport"] in ("run", "race"))
+    done = f" · hechos {_run_km(acts, monday, sunday):.0f}" if monday <= today else ""
+    prev = f'<a href="/plan?w={i}">‹</a>' if i > 0 else '<span class="muted">‹</span>'
+    nxt = f'<a href="/plan?w={i + 2}">›</a>' if i < len(weeks) - 1 else '<span class="muted">›</span>'
+    back = f' · <a href="/plan">volver a esta semana</a>' if i != cur else ""
+    rev = (pj.get("revisions") or [])[-1:] 
+    rev_html = (f'<p class="muted" style="font-size:.85rem">Última adaptación ({rev[0]["date"][8:10]}/{rev[0]["date"][5:7]}): '
+                f'{escape(rev[0]["summary"])}</p>') if rev else ""
+    body = f"""{nav('/plan')}{head}
+<div class="weeknav">{prev}<div><b>Semana {i + 1}</b> · {monday.day}/{monday.month} – {sunday.day}/{sunday.month}
+<span class="muted">· {escape(_phase(pj, monday, sunday))} · {plan_km:g} km carrera{done}{back}</span></div>{nxt}</div>
+{days_html}{rev_html}"""
     return page(body, title="Plan", head=f"<style>{PLAN_CSS}</style>")
+
+
+def forecast_page(athlete_id, today=None):
+    """El plan completo tal y como está hoy (tras la última adaptación)."""
+    today = today or _date.today()
+    plan = db.active_plan(athlete_id)
+    if not plan:
+        return page(nav("/prevision") + "<p>No hay plan activo.</p>")
+    pj = json.loads(plan["plan_json"])
+    pz = plan_tool.current_paces(athlete_id)
+    rows = db.plan_sessions(plan["id"])
+    weeks = _plan_weeks(rows)
+    acts = db.activities_between(athlete_id, weeks[0][0].isoformat(), weeks[-1][1].isoformat())
+    status = match_sessions(rows, acts, today)
+    maxkm = max(sum((json.loads(r["session"]).get("distance_km") or 0) for r in wk if r["sport"] in ("run", "race"))
+                for _, _, wk in weeks) or 1
+
+    trs = ""
+    for n, (monday, sunday, wk) in enumerate(weeks, 1):
+        km = sum((json.loads(r["session"]).get("distance_km") or 0) for r in wk if r["sport"] in ("run", "race"))
+        past = monday <= today
+        done_km = _run_km(acts, monday, sunday) if past else 0
+        keys = []
+        for r in wk:
+            if not r["key_session"]:
+                continue
+            s = json.loads(r["session"])
+            pace = f' <span class="muted">{pz[s["intensity"]]["text"]}</span>' if pz and s.get("intensity") in pz else ""
+            mark = {"done": " ✓", "partial": " ◐", "miss": " ✗"}.get(status[r["id"]][0], "")
+            keys.append(f'<a href="/plan/sesion/{r["id"]}">{escape(s.get("title") or "")}</a>{pace}{mark}')
+        cnt = [status[r["id"]][0] for r in wk if r["sport"] != "rest" and r["date"] < today.isoformat()]
+        comp = f'{sum(1 for c in cnt if c == "done")}/{len(cnt)}' if cnt else ""
+        bar = (f'<div class="kmbar"><div style="width:{km / maxkm * 100:.0f}%"></div>'
+               + (f'<div class="done" style="width:{min(done_km, km * 1.5) / maxkm * 100:.0f}%"></div>' if past else "") + "</div>")
+        is_now = monday <= today <= sunday
+        trs += (f'<tr class="{"now" if is_now else ""}"><td><a href="/plan?w={n}">S{n}</a></td>'
+                f'<td>{monday.day}/{monday.month}</td><td>{escape(_phase(pj, monday, sunday))}</td>'
+                f'<td>{km:g}{f" <span class=muted>({done_km:.0f})</span>" if past else ""}{bar}</td>'
+                f'<td class="keys">{"<br>".join(keys)}</td><td>{comp}</td></tr>')
+    revs = "".join(f"<li><b>{r['date'][8:10]}/{r['date'][5:7]}</b> {escape(r['summary'])}</li>"
+                   for r in reversed(pj.get("revisions") or []))
+    g = pj["goal"]
+    body = f"""{nav('/prevision')}<h1>Previsión hasta la carrera</h1>
+<p class="ink2">El plan completo tal y como está hoy. Cada domingo se adapta con lo que hiciste la semana anterior.</p>
+<div class="scroll"><table class="fc"><tr><th></th><th>Lunes</th><th>Fase</th><th>Km carrera</th><th>Sesiones clave</th><th>Hechas</th></tr>{trs}</table></div>
+<p class="muted" style="font-size:.85rem"><span class="sw" style="background:var(--line)"></span>planificado
+<span class="sw" style="background:var(--good);margin-left:.8rem"></span>hecho · ritmos con tu VDOT actual</p>
+<h2>Adaptaciones</h2><ul class="ink2" style="font-size:.9rem;padding-left:1.2rem">{revs or '<li>Ninguna todavía.</li>'}</ul>"""
+    return page(body, title="Previsión", head=f"<style>{PLAN_CSS}</style>")
 
 
 def session_page(athlete_id, session_id, today=None):
