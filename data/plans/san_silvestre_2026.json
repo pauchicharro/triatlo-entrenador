@@ -244,6 +244,10 @@
   {
    "date": "2026-11-03",
    "summary": "Plan inicial (VDOT 46,5 estimado). Gimnasio: lunes tren inferior, jueves tren superior."
+  },
+  {
+   "date": "2026-11-03",
+   "summary": "Dos días de gimnasio todas las semanas (excepto la de carrera): tren superior añadido el 6/11, 3/12 y 24/12."
   }
  ],
  "sessions": [
@@ -310,6 +314,15 @@
    ],
    "why": "Construye base aeróbica y economía sin acumular fatiga. Las rectas activan la velocidad sin coste.",
    "notes": ""
+  },
+  {
+   "date": "2026-11-06",
+   "sport": "gym",
+   "template": "gymUpper",
+   "focus": "Tren superior",
+   "intensity": null,
+   "notes": "Después del rodaje suave. Tren superior: no afecta al test del domingo.",
+   "why": "Tren superior y core: postura y braceo eficientes al final de carrera, y base para nadar."
   },
   {
    "date": "2026-11-07",
@@ -816,6 +829,15 @@
    "notes": ""
   },
   {
+   "date": "2026-12-03",
+   "sport": "gym",
+   "template": "gymUpper",
+   "focus": "Tren superior",
+   "intensity": null,
+   "notes": "Semana de descarga: usa ~80 % del peso habitual. Tren superior: no afecta al re-test del sábado.",
+   "why": "Tren superior y core: postura y braceo eficientes al final de carrera, y base para nadar."
+  },
+  {
    "date": "2026-12-04",
    "sport": "bike",
    "template": "bikeE",
@@ -1207,6 +1229,15 @@
    ],
    "why": "Construye base aeróbica y economía sin acumular fatiga. Las rectas activan la velocidad sin coste.",
    "notes": "Nochebuena: mejor por la mañana."
+  },
+  {
+   "date": "2026-12-24",
+   "sport": "gym",
+   "template": "gymUpper",
+   "focus": "Tren superior",
+   "intensity": null,
+   "notes": "Nochebuena: después del rodaje, por la mañana. Peso moderado, sin llegar al fallo.",
+   "why": "Tren superior y core: postura y braceo eficientes al final de carrera, y base para nadar."
   },
   {
    "date": "2026-12-25",

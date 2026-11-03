@@ -5,6 +5,10 @@ Registre cronològic curt d'ajustos i decisions preses en converses amb l'entren
 
 
 
+
+## 2026-11-03 (3)
+A petició de l'atleta, dos dies de gimnàs cada setmana: afegit tren superior el 6/11, 3/12 i 24/12
+(setmanes 1, 5 i 8, que només en tenien un). Setmana de cursa (28-31/12) sense gimnàs per arribar fresc.
 ## 2026-11-03 (2)
 Gimnàs reestructurat: dilluns **tren inferior** (força + pliometria), dijous **tren superior + core**
 (abans: força i core/pliometria, sense tren superior). Natació amb sèries en una línia a l'app. Activada
