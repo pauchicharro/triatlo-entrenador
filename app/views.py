@@ -553,6 +553,17 @@ r.addEventListener('pointerleave',()=>tip.style.display='none');}});}})();</scri
             f'role="img" aria-label="Horas por semana y disciplina">{"".join(svg)}</svg><div id="wtip"></div></div>{js}')
 
 
+def _local_hhmm(utc_text):
+    """'2026-11-03 20:11:32' (UTC, de SQLite) → '21:11' en hora local."""
+    from datetime import datetime, timezone
+    if not utc_text:
+        return "–"
+    try:
+        return datetime.fromisoformat(utc_text).replace(tzinfo=timezone.utc).astimezone().strftime("%H:%M")
+    except ValueError:
+        return utc_text[11:16]
+
+
 def home_page(athlete, sport_filter=None, offset=0):
     from html import escape as e
     aid = athlete["id"]
@@ -564,7 +575,8 @@ def home_page(athlete, sport_filter=None, offset=0):
     err = athlete["enrich_error"]
 
     sync_card = f"""<div class="card">
-<div class="{'err' if status=='error' else 'ink2'}">Lista de actividades de Strava: <b>{e(athlete['sync_message'] or status)}</b>
+<div class="{'err' if status=='error' else 'ink2'}">Strava: <b>{e(athlete['sync_message'] or status)}</b>
+ · última sincronización {_local_hhmm(athlete['last_synced_at'])} (automática cada 10 min)
  · <a href="/sync">sincronizar ahora</a> · <a href="/logout">salir</a></div>
 <div style="margin-top:.6rem"><b>Detalle descargado: {done} de {total} actividades</b> ({pct:.0f} %)</div>
 <div class="prog"><div style="width:{pct:.1f}%"></div></div>

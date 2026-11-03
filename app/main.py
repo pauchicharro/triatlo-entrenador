@@ -32,6 +32,39 @@ SESSION_SECRET = os.environ.get("SESSION_SECRET") or secrets.token_hex(32)
 app.add_middleware(SessionMiddleware, secret_key=SESSION_SECRET, max_age=180 * 24 * 3600)
 db.init()
 
+AUTO_SYNC_MINUTES = 10
+
+
+def _auto_sync_loop():
+    """Cada 10 min: trae las actividades nuevas de Strava de todos los atletas y
+    descarga su detalle (si el proceso de fondo ya está descargando, este coge
+    las nuevas primero). Así la web se actualiza sola tras entrenar."""
+    import threading
+    import time
+
+    def loop():
+        time.sleep(5)
+        while True:
+            for a in db.all_athletes():
+                try:
+                    strava.sync_athlete(a["id"])
+                    enrich.enrich_athlete(a["id"], log=lambda *_: None, since=_days_ago(3))
+                except Exception as e:  # nunca tumbar el servidor por un fallo de red
+                    print(f"auto-sync atleta {a['id']}: {e}", flush=True)
+            time.sleep(AUTO_SYNC_MINUTES * 60)
+
+    threading.Thread(target=loop, daemon=True, name="auto-sync").start()
+
+
+def _days_ago(n):
+    from datetime import date, timedelta
+    return (date.today() - timedelta(days=n)).isoformat()
+
+
+@app.on_event("startup")
+def _start_auto_sync():
+    _auto_sync_loop()
+
 
 def page(body):
     return HTMLResponse(views.page(body))
