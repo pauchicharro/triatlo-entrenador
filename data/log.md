@@ -8,6 +8,10 @@ Registre cronològic curt d'ajustos i decisions preses en converses amb l'entren
 
 
 
+
+## 2026-11-04
+A petició de l'atleta, natació 2000 m + gimnàs tren superior passa de dijous 5/11 a avui dimecres 4/11;
+el dijous queda com a descans complet (just abans del test de 5 km de divendres).
 ## 2026-11-03 (5)
 Rodatge de 7,7 km fet (5:49/km, FC 121). L'atleta podrà entrenar algun dia del cap de setmana fora:
 afegit rodatge de recuperació de 6 km el dissabte 7/11 (o diumenge), després del test de divendres.

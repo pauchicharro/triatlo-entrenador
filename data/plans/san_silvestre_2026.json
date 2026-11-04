@@ -256,6 +256,10 @@
   {
    "date": "2026-11-03",
    "summary": "Rodaje de recuperación de 6 km el sábado 7/11 (o domingo) tras el test, estando fuera."
+  },
+  {
+   "date": "2026-11-04",
+   "summary": "Natación + tren superior del jueves 5/11 pasa al miércoles 4/11; el jueves queda de descanso antes del test."
   }
  ],
  "sessions": [
@@ -306,14 +310,6 @@
   },
   {
    "date": "2026-11-04",
-   "sport": "rest",
-   "title": "Descanso",
-   "intensity": null,
-   "blocks": [],
-   "notes": "Descanso completo. Si te apetece, 20' de movilidad o paseo."
-  },
-  {
-   "date": "2026-11-05",
    "sport": "swim",
    "template": "swimA",
    "intensity": "E",
@@ -322,13 +318,21 @@
    "why": "Mantener la natación para 2027 y sumar volumen aeróbico sin impacto."
   },
   {
-   "date": "2026-11-05",
+   "date": "2026-11-04",
    "sport": "gym",
    "template": "gymUpper",
    "focus": "Tren superior",
    "intensity": null,
-   "notes": "Solo tren superior: mañana es el test, piernas frescas. Hoy (3/11) ya hiciste gimnasio: si fue de piernas, cuenta como el de tren inferior de esta semana.",
+   "notes": "Solo tren superior: piernas frescas para el test del viernes. Ayer (3/11) ya hiciste gimnasio a mediodía.",
    "why": "Tren superior y core: postura y braceo eficientes al final de carrera, y base para nadar."
+  },
+  {
+   "date": "2026-11-05",
+   "sport": "rest",
+   "title": "Descanso",
+   "intensity": null,
+   "blocks": [],
+   "notes": "Descanso completo (movido del miércoles): llegas fresco al test de mañana."
   },
   {
    "date": "2026-11-06",
