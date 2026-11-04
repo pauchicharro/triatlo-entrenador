@@ -14,3 +14,4 @@ app/enrich.log
 data/app_summary.md
 app/replan.log
 app/uvicorn.log
+app/bin/

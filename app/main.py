@@ -220,6 +220,37 @@ def pair(request: Request, token: str):
     return RedirectResponse("/", status_code=303)
 
 
+# ------------------------------------------- plan público (solo lectura)
+
+def _shared(token):
+    return db.athlete_by_share_token(token)
+
+
+@app.get("/c/{token}", response_class=HTMLResponse)
+def shared_plan(token: str, w: int = None):
+    aid = _shared(token)
+    if not aid:
+        return HTMLResponse(views.page("<p>Enlace no válido.</p>"), status_code=404)
+    return HTMLResponse(views.publicize(views.plan_page(aid, week=w), token))
+
+
+@app.get("/c/{token}/prevision", response_class=HTMLResponse)
+def shared_forecast(token: str):
+    aid = _shared(token)
+    if not aid:
+        return HTMLResponse(views.page("<p>Enlace no válido.</p>"), status_code=404)
+    return HTMLResponse(views.publicize(views.forecast_page(aid), token))
+
+
+@app.get("/c/{token}/sesion/{session_id}", response_class=HTMLResponse)
+def shared_session(token: str, session_id: int):
+    aid = _shared(token)
+    html = views.session_page(aid, session_id) if aid else None
+    if not html:
+        return RedirectResponse(f"/c/{token}", status_code=303)
+    return HTMLResponse(views.publicize(html, token))
+
+
 @app.get("/login")
 def login(request: Request):
     state = secrets.token_urlsafe(16)

@@ -142,6 +142,7 @@ CREATE TABLE IF NOT EXISTS athlete_zones (
 MIGRATIONS = [
     "ALTER TABLE activities ADD COLUMN enrich_status TEXT",   # NULL = pendiente
     "ALTER TABLE athletes ADD COLUMN enrich_error TEXT",
+    "ALTER TABLE athletes ADD COLUMN share_token TEXT",       # enlace público de solo lectura del plan
 ]
 
 
@@ -461,3 +462,19 @@ def activities_between(athlete_id, d_from, d_to):
                WHERE a.athlete_id=? AND substr(a.start_date_local,1,10) BETWEEN ? AND ?
                ORDER BY a.start_date_local""",
             (athlete_id, d_from, d_to)).fetchall()
+
+
+def share_token(athlete_id, create=True):
+    import secrets
+    with connect() as conn:
+        tok = conn.execute("SELECT share_token FROM athletes WHERE id=?", (athlete_id,)).fetchone()[0]
+        if not tok and create:
+            tok = secrets.token_urlsafe(12)
+            conn.execute("UPDATE athletes SET share_token=? WHERE id=?", (tok, athlete_id))
+        return tok
+
+
+def athlete_by_share_token(token):
+    with connect() as conn:
+        row = conn.execute("SELECT id FROM athletes WHERE share_token=?", (token,)).fetchone()
+        return row[0] if row else None

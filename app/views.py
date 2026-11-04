@@ -1089,3 +1089,22 @@ VDOT y todos los ritmos del plan se actualizan. Usa el tiempo de la parte a tope
 {msg}
 <h2>Historial</h2><div class="scroll"><table><tr><th>Fecha</th><th>VDOT</th><th>Origen</th></tr>{h}</table></div>"""
     return page(body, title="Ritmos", head=f"<style>{PLAN_CSS}</style>")
+
+
+
+# ---------------------------------------------------------- enlace público
+
+def publicize(html, token):
+    """Convierte una página del plan en su versión pública de solo lectura:
+    los enlaces apuntan a /c/<token>/…, sin menú privado ni enlaces a actividades."""
+    import re
+    base = f"/c/{token}"
+    html = re.sub(r'<div class="nav">.*?</div>',
+                  f'<div class="nav"><a href="{base}">Plan</a><a href="{base}/prevision">Previsión</a></div>', html, count=1, flags=re.S)
+    html = html.replace('href="/plan/sesion/', f'href="{base}/sesion/')
+    html = html.replace('href="/plan?w=', f'href="{base}?w=').replace('href="/plan"', f'href="{base}"')
+    html = html.replace('href="/prevision"', f'href="{base}/prevision"')
+    html = re.sub(r'<a href="/activity/\d+">(.*?)</a>', r'\1', html)
+    html = re.sub(r'<a href="/ritmos">(.*?)</a>', r'\1', html)
+    html = re.sub(r'<a href="https://www\.strava\.com[^"]*">(.*?)</a>', r'\1', html)
+    return html
