@@ -16,6 +16,8 @@ Cada sesión necesita el campo opcional `steps` en el JSON del plan:
   type: warmup | interval | recovery | rest | cooldown | repeat
   duración: dist_m o time_s (sin ninguno = hasta pulsar vuelta)
   intensity: código de ritmo (E, M, T, I, R, CUR, RP) → objetivo de ritmo en el reloj
+  natación: stroke (free | back | breast | fly | drill | any) y equipment (fins | pull_buoy |
+  paddles | kickboard); la piscina es de 25 m. Los descansos van como {"type": "rest", "time_s": 15}.
 
 Uso (con el venv principal, que tiene garminconnect):
   .venv/bin/python app/garmin_workouts.py --date 2026-11-03            # sube y programa
@@ -36,6 +38,10 @@ import plan_tool  # noqa: E402
 STEP_TYPES = {"warmup": (1, "warmup"), "cooldown": (2, "cooldown"), "interval": (3, "interval"),
               "recovery": (4, "recovery"), "rest": (5, "rest"), "repeat": (6, "repeat")}
 SPORTS = {"run": (1, "running"), "race": (1, "running"), "bike": (2, "cycling"), "swim": (4, "swimming")}
+STROKES = {"any": (1, "any_stroke"), "back": (2, "backstroke"), "breast": (3, "breaststroke"),
+           "drill": (4, "drill"), "fly": (5, "fly"), "free": (6, "free")}
+EQUIPMENT = {"fins": (1, "fins"), "kickboard": (2, "kickboard"), "paddles": (3, "paddles"),
+             "pull_buoy": (4, "pull_buoy")}
 PREFIX = "[Plan] "  # para reconocer (y poder borrar) los entrenos que sube la app
 
 
@@ -70,6 +76,12 @@ def _step(st, order, pz):
         out["targetType"] = {"workoutTargetTypeId": 6, "workoutTargetTypeKey": "pace.zone"}
         out["targetValueOne"] = round(1000 / slow, 3)
         out["targetValueTwo"] = round(1000 / fast, 3)
+    if st.get("stroke"):
+        i, k = STROKES[st["stroke"]]
+        out["strokeType"] = {"strokeTypeId": i, "strokeTypeKey": k}
+    if st.get("equipment"):
+        i, k = EQUIPMENT[st["equipment"]]
+        out["equipmentType"] = {"equipmentTypeId": i, "equipmentTypeKey": k}
     desc = st.get("note") or (f"{code} {pz[code]['text']}" if code and pz and code in pz else "")
     if desc:
         out["description"] = desc[:120]
@@ -90,10 +102,14 @@ def build_workout(session, pz):
             order += _count(st["steps"])
     name = PREFIX + paces.render_text(session.get("title") or "", pz)
     desc = " · ".join(paces.render_text(b.get("text", ""), pz) for b in session.get("blocks") or [])
-    return {"workoutName": name[:80], "description": desc[:1000],
-            "sportType": {"sportTypeId": sid, "sportTypeKey": skey},
+    w = {"workoutName": name[:80], "description": desc[:1000],
+         "sportType": {"sportTypeId": sid, "sportTypeKey": skey},
             "workoutSegments": [{"segmentOrder": 1, "sportType": {"sportTypeId": sid, "sportTypeKey": skey},
                                  "workoutSteps": steps}]}
+    if session["sport"] == "swim":
+        w["poolLength"] = 25.0
+        w["poolLengthUnit"] = {"unitId": 1, "unitKey": "meter", "factor": 100.0}
+    return w
 
 
 def sessions_for(day):

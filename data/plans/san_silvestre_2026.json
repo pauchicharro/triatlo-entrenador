@@ -315,7 +315,83 @@
    "intensity": "E",
    "distance_m": 2000,
    "notes": "",
-   "why": "Mantener la natación para 2027 y sumar volumen aeróbico sin impacto."
+   "why": "Mantener la natación para 2027 y sumar volumen aeróbico sin impacto.",
+   "steps": [
+    {
+     "type": "warmup",
+     "dist_m": 200,
+     "stroke": "free",
+     "note": "Crol suave"
+    },
+    {
+     "type": "warmup",
+     "dist_m": 100,
+     "stroke": "back",
+     "note": "Espalda suave"
+    },
+    {
+     "type": "warmup",
+     "dist_m": 100,
+     "stroke": "free",
+     "equipment": "pull_buoy",
+     "note": "Crol con pull buoy"
+    },
+    {
+     "type": "rest",
+     "time_s": 30,
+     "note": "Ponte las aletas"
+    },
+    {
+     "type": "repeat",
+     "reps": 6,
+     "steps": [
+      {
+       "type": "interval",
+       "dist_m": 50,
+       "stroke": "drill",
+       "equipment": "fins",
+       "note": "25 catch-up + 25 crol"
+      },
+      {
+       "type": "rest",
+       "time_s": 10
+      }
+     ]
+    },
+    {
+     "type": "rest",
+     "time_s": 30,
+     "note": "Quita las aletas"
+    },
+    {
+     "type": "repeat",
+     "reps": 8,
+     "steps": [
+      {
+       "type": "interval",
+       "dist_m": 125,
+       "stroke": "free",
+       "note": "Aeróbico RPE 5, ~1:40/100 m"
+      },
+      {
+       "type": "rest",
+       "time_s": 20
+      }
+     ]
+    },
+    {
+     "type": "cooldown",
+     "dist_m": 200,
+     "stroke": "free",
+     "note": "Crol muy suave"
+    },
+    {
+     "type": "cooldown",
+     "dist_m": 100,
+     "stroke": "back",
+     "note": "Espalda suave"
+    }
+   ]
   },
   {
    "date": "2026-11-04",
