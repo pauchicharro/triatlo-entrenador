@@ -260,6 +260,10 @@
   {
    "date": "2026-11-04",
    "summary": "Natación + tren superior del jueves 5/11 pasa al miércoles 4/11; el jueves queda de descanso antes del test."
+  },
+  {
+   "date": "2026-11-05",
+   "summary": "Test 5K adelantado al jueves 5/11; el viernes queda de descanso."
   }
  ],
  "sessions": [
@@ -404,14 +408,6 @@
   },
   {
    "date": "2026-11-05",
-   "sport": "rest",
-   "title": "Descanso",
-   "intensity": null,
-   "blocks": [],
-   "notes": "Descanso completo (movido del miércoles): llegas fresco al test de mañana."
-  },
-  {
-   "date": "2026-11-06",
    "sport": "run",
    "title": "TEST 5 km",
    "distance_km": 9,
@@ -433,7 +429,60 @@
     }
    ],
    "why": "Fija tu forma real (VDOT). Con este tiempo la app recalcula TODOS los ritmos del plan.",
-   "notes": "Apunta el tiempo exacto del 5K. Miércoles descanso y jueves solo piscina + tren superior: llegas fresco. El fin de semana libre te sirve de recuperación."
+   "notes": "Apunta el tiempo exacto del 5K. El km 1 lleva aviso de ritmo para no salir demasiado rápido; del 2 al 5, todo lo que tengas, sin avisos.",
+   "steps": [
+    {
+     "type": "warmup",
+     "dist_m": 2500,
+     "intensity": "E",
+     "note": "Calentamiento suave"
+    },
+    {
+     "type": "repeat",
+     "reps": 4,
+     "steps": [
+      {
+       "type": "interval",
+       "time_s": 20,
+       "note": "Recta progresiva"
+      },
+      {
+       "type": "recovery",
+       "time_s": 40,
+       "note": "Trote o andando"
+      }
+     ]
+    },
+    {
+     "type": "recovery",
+     "time_s": 180,
+     "note": "3' trote suave y colócate en la salida"
+    },
+    {
+     "type": "interval",
+     "dist_m": 1000,
+     "intensity": "CUR",
+     "note": "TEST km 1: controla, no más rápido"
+    },
+    {
+     "type": "interval",
+     "dist_m": 4000,
+     "note": "TEST km 2-5: a tope, regular"
+    },
+    {
+     "type": "cooldown",
+     "dist_m": 1500,
+     "note": "Muy suave"
+    }
+   ]
+  },
+  {
+   "date": "2026-11-06",
+   "sport": "rest",
+   "title": "Descanso",
+   "intensity": null,
+   "blocks": [],
+   "notes": "Descanso completo tras el test (movido del jueves)."
   },
   {
    "date": "2026-11-07",

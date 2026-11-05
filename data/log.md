@@ -9,6 +9,11 @@ Registre cronològic curt d'ajustos i decisions preses en converses amb l'entren
 
 
 
+
+## 2026-11-05
+Dimecres 4/11: natació 2000 m feta (32'); el gimnàs no apareix a Strava. A petició de l'atleta, test
+de 5 km avançat a avui dijous 5/11 i divendres 6/11 passa a descans. Test pujat a Garmin (km 1 amb
+avís de ritme CUR per no sortir massa ràpid; km 2-5 a tope).
 ## 2026-11-04
 A petició de l'atleta, natació 2000 m + gimnàs tren superior passa de dijous 5/11 a avui dimecres 4/11;
 el dijous queda com a descans complet (just abans del test de 5 km de divendres).
