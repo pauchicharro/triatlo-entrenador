@@ -12,6 +12,12 @@ Registre cronològic curt d'ajustos i decisions preses en converses amb l'entren
 
 
 
+
+## 2026-11-06 (3)
+Finalment tren superior avui en lloc de cames (millor: les cames es recuperen del test). Setmana 2: dilluns
+tren superior, divendres 13 cames. Pendent per al reajust de diumenge: l'estructura original (cames dilluns
+abans de la sessió clau de dimarts) contradiu la regla de no fer cames el dia abans d'una sessió clau →
+decidir setmana a setmana (dilluns si dissabte és clau, divendres si no).
 ## 2026-11-06 (2)
 L'atleta fa cames avui (dia de descans després del test): és alt i també vol veure's bé, així que el
 gimnàs té pes propi (anotat al perfil). Sessió sense pliometria i RPE 6-7. Setmana 2: dilluns tren

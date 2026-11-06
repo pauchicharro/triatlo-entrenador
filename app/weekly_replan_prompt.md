@@ -26,7 +26,7 @@ Todos los ritmos del plan se recalculan solos. Comenta si el objetivo de tiempo 
   No muevas la carrera ni elimines tests sin un motivo claro.
 - Respeta las restricciones: miércoles descanso completo, máx. 2 h/día entre semana, **2 días de gimnasio por
   semana y siempre el mismo día que natación** (están en el mismo sitio: p. ej. lunes natación + tren inferior,
-  viernes natación + tren superior), sin tren inferior el día antes de un test o sesión clave; gimnasio con
+  viernes natación + tren superior), sin tren inferior el día antes de un test o sesión clave (cada semana, pierna el lunes o el viernes según cuál de los dos días siguientes NO sea clave; si ambos lo son, el lunes con RPE ≤7 y sin pliometría); gimnasio con
   `focus` (Tren superior / Tren inferior), natación con bloques que tengan `short` (series en una línea),
   carrera con intensidades en códigos ({E}, {T}, {I}, {R}, {CUR}, {RP}), nunca ritmos fijos.
 - Las sesiones de carrera, natación y bici deben llevar `steps` (se suben al reloj): para carrera,

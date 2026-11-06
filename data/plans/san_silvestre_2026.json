@@ -456,48 +456,6 @@
      "note": "Z2, cadencia 85-95; últimos 10' muy suave"
     }
    ]
-  },
-  "gymLower_today": {
-   "title": "Tren inferior: fuerza (sin pliometría)",
-   "focus": "Tren inferior",
-   "duration_min": 50,
-   "blocks": [
-    {
-     "name": "Activación",
-     "short": "puente glúteo + monster walk",
-     "text": "2x10 puente de glúteo + 2x10 pasos laterales con goma"
-    },
-    {
-     "name": "Prensa o sentadilla",
-     "short": "3×10",
-     "text": "3x10 prensa de piernas (o sentadilla con barra), RPE 7, descanso 2'"
-    },
-    {
-     "name": "Peso muerto rumano",
-     "short": "3×8",
-     "text": "3x8 con barra o mancuernas, espalda neutra, descanso 90\""
-    },
-    {
-     "name": "Sentadilla búlgara",
-     "short": "3×8/pierna",
-     "text": "3x8 por pierna con mancuernas, RPE 7, descanso 90\""
-    },
-    {
-     "name": "Curl femoral",
-     "short": "3×12",
-     "text": "3x12 en máquina, controlando la bajada"
-    },
-    {
-     "name": "Gemelo",
-     "short": "3×12/pierna",
-     "text": "3x12 por pierna en escalón, bajando en 3 s"
-    },
-    {
-     "name": "Core lateral",
-     "short": "plancha lateral 3×30 s",
-     "text": "3x30 s plancha lateral por lado"
-    }
-   ]
   }
  },
  "revisions": [
@@ -528,6 +486,10 @@
   {
    "date": "2026-11-06",
    "summary": "Pierna hoy 6/11 (sin pliometría). Semana 2: lunes tren superior y viernes tren inferior, para llegar fresco al umbral del martes."
+  },
+  {
+   "date": "2026-11-06",
+   "summary": "Hoy 6/11 tren superior en lugar de pierna (las piernas recuperan del test). Pierna el viernes 13."
   }
  ],
  "sessions": [
@@ -743,11 +705,11 @@
   {
    "date": "2026-11-06",
    "sport": "gym",
-   "template": "gymLower_today",
-   "focus": "Tren inferior",
+   "template": "gymUpper",
+   "focus": "Tren superior",
    "intensity": null,
-   "notes": "Día después del test: SIN pliometría y sin llegar al fallo (RPE 6-7). Mañana rodaje muy suave.",
-   "why": "Fuerza de piernas: economía de carrera, tendones y también estética (preferencia del atleta)."
+   "notes": "Día después del test: tren superior para no cargar las piernas. RPE 7, sin fallo.",
+   "why": "Tren superior y core: postura y braceo, y estética (preferencia del atleta), sin restar recuperación a las piernas."
   },
   {
    "date": "2026-11-07",
