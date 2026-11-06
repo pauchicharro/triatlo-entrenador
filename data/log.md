@@ -11,6 +11,11 @@ Registre cronològic curt d'ajustos i decisions preses en converses amb l'entren
 
 
 
+
+## 2026-11-06 (2)
+L'atleta fa cames avui (dia de descans després del test): és alt i també vol veure's bé, així que el
+gimnàs té pes propi (anotat al perfil). Sessió sense pliometria i RPE 6-7. Setmana 2: dilluns tren
+superior i divendres tren inferior (intercanviats) per arribar fresc a l'umbral de dimarts.
 ## 2026-11-06
 **Test 5 km (5/11): 19:56** (4:18-3:57-3:58-3:54-3:49, parcials negatius; FC 157→180, màx 183).
 VDOT 46,5 → **50,0**: predicció 10K 41:20 (abans 43:58). Sub-40 (VDOT 51,9) ara és ambiciós però

@@ -456,6 +456,48 @@
      "note": "Z2, cadencia 85-95; últimos 10' muy suave"
     }
    ]
+  },
+  "gymLower_today": {
+   "title": "Tren inferior: fuerza (sin pliometría)",
+   "focus": "Tren inferior",
+   "duration_min": 50,
+   "blocks": [
+    {
+     "name": "Activación",
+     "short": "puente glúteo + monster walk",
+     "text": "2x10 puente de glúteo + 2x10 pasos laterales con goma"
+    },
+    {
+     "name": "Prensa o sentadilla",
+     "short": "3×10",
+     "text": "3x10 prensa de piernas (o sentadilla con barra), RPE 7, descanso 2'"
+    },
+    {
+     "name": "Peso muerto rumano",
+     "short": "3×8",
+     "text": "3x8 con barra o mancuernas, espalda neutra, descanso 90\""
+    },
+    {
+     "name": "Sentadilla búlgara",
+     "short": "3×8/pierna",
+     "text": "3x8 por pierna con mancuernas, RPE 7, descanso 90\""
+    },
+    {
+     "name": "Curl femoral",
+     "short": "3×12",
+     "text": "3x12 en máquina, controlando la bajada"
+    },
+    {
+     "name": "Gemelo",
+     "short": "3×12/pierna",
+     "text": "3x12 por pierna en escalón, bajando en 3 s"
+    },
+    {
+     "name": "Core lateral",
+     "short": "plancha lateral 3×30 s",
+     "text": "3x30 s plancha lateral por lado"
+    }
+   ]
   }
  },
  "revisions": [
@@ -482,6 +524,10 @@
   {
    "date": "2026-11-05",
    "summary": "Test 5K adelantado al jueves 5/11; el viernes queda de descanso."
+  },
+  {
+   "date": "2026-11-06",
+   "summary": "Pierna hoy 6/11 (sin pliometría). Semana 2: lunes tren superior y viernes tren inferior, para llegar fresco al umbral del martes."
   }
  ],
  "sessions": [
@@ -696,11 +742,12 @@
   },
   {
    "date": "2026-11-06",
-   "sport": "rest",
-   "title": "Descanso",
+   "sport": "gym",
+   "template": "gymLower_today",
+   "focus": "Tren inferior",
    "intensity": null,
-   "blocks": [],
-   "notes": "Descanso completo tras el test (movido del jueves)."
+   "notes": "Día después del test: SIN pliometría y sin llegar al fallo (RPE 6-7). Mañana rodaje muy suave.",
+   "why": "Fuerza de piernas: economía de carrera, tendones y también estética (preferencia del atleta)."
   },
   {
    "date": "2026-11-07",
@@ -747,10 +794,10 @@
   {
    "date": "2026-11-09",
    "sport": "gym",
-   "template": "gymLower",
-   "focus": "Tren inferior",
+   "template": "gymUpper",
+   "focus": "Tren superior",
    "intensity": null,
-   "notes": "",
+   "notes": "Cambiado con el viernes: pierna fue el 6/11 y el martes es umbral.",
    "why": "Fuerza y pliometría: mejor economía de carrera y tendones más fuertes (Aquiles, rodilla)."
   },
   {
@@ -886,10 +933,10 @@
   {
    "date": "2026-11-13",
    "sport": "gym",
-   "template": "gymUpper",
-   "focus": "Tren superior",
+   "template": "gymLower",
+   "focus": "Tren inferior",
    "intensity": null,
-   "notes": "Justo después de nadar.",
+   "notes": "Cambiado con el lunes.",
    "why": "Tren superior y core: postura y braceo eficientes al final de carrera, y base para nadar."
   },
   {
