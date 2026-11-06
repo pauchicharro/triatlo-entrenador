@@ -8,6 +8,8 @@ casella per marcar a ma ni cap backend.
 
 import csv
 import html
+import json
+import re
 from datetime import date
 from pathlib import Path
 
@@ -19,7 +21,18 @@ ACTIVITIES_CSV = ROOT / "data" / "garmin" / "activities.csv"
 OUT_DIR = ROOT / "docs"
 OUT_FILE = OUT_DIR / "index.html"
 
-RACE_DATE = date(2026, 10, 24)
+# Días con actividad (fecha → tipos), versionado en git: sin él, una sesión de
+# Claude Code en la nube (sin data/garmin/) no sabría qué sesiones están hechas.
+ACTIVITY_DAYS = ROOT / "data" / "activity_days.json"
+
+
+def race_info():
+    """Nombre y fecha de la carrera, de la primera línea de training_plan.md."""
+    first = TRAINING_PLAN.read_text().splitlines()[0] if TRAINING_PLAN.exists() else ""
+    m = re.match(r"#\s*Pla d'entrenament — (.+?) \((.*?),\s*(\d{4}-\d{2}-\d{2})\)", first)
+    if not m:
+        return "Pla d'entrenament", None
+    return f"{m.group(1)} ({m.group(2)})", date.fromisoformat(m.group(3))
 
 DISCIPLINE_LABELS = {
     "natacio": "Natació",
@@ -31,9 +44,22 @@ DISCIPLINE_LABELS = {
 
 def load_activities():
     if not ACTIVITIES_CSV.exists():
+        if ACTIVITY_DAYS.exists():
+            days = json.loads(ACTIVITY_DAYS.read_text())
+            return [{"startTimeLocal": d, "activityType": t} for d, types in days.items() for t in types]
         return []
     with open(ACTIVITIES_CSV, newline="") as f:
-        return list(csv.DictReader(f))
+        rows = list(csv.DictReader(f))
+    # Guardamos solo fecha + tipo (nada más) para la versión de la nube
+    days = {}
+    for r in rows:
+        d = (r.get("startTimeLocal") or "")[:10]
+        if d >= "2026-01-01" and r.get("activityType"):
+            days.setdefault(d, [])
+            if r["activityType"] not in days[d]:
+                days[d].append(r["activityType"])
+    ACTIVITY_DAYS.write_text(json.dumps(dict(sorted(days.items())), indent=0) + "\n")
+    return rows
 
 
 def activities_on(all_activities, day_str):
@@ -83,7 +109,8 @@ def render():
     weeks = plan_parser.parse_all_weeks(TRAINING_PLAN)
     all_activities = load_activities()
     today = date.today()
-    days_to_race = (RACE_DATE - today).days
+    race_name, race_date = race_info()
+    days_to_race = (race_date - today).days if race_date else None
 
     week_blocks = []
     current_week_idx = None
@@ -209,9 +236,9 @@ def render():
 <div class="wrap">
   <header>
     <p class="eyebrow">Entrenador de triatló · Pau Chicharro</p>
-    <h1>Challenge Barcelona Triatló — Olímpica</h1>
+    <h1>{html.escape(race_name)}</h1>
     <p class="subline">24-25 d'octubre de 2026</p>
-    <p class="countdown">{days_to_race} dies fins a la cursa</p>
+    <p class="countdown">{f"{days_to_race} dies fins a la cursa" if days_to_race is not None and days_to_race >= 0 else ""}</p>
   </header>
   {''.join(reversed(week_blocks))}
   <footer>

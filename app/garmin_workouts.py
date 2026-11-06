@@ -76,6 +76,9 @@ def _step(st, order, pz):
         out["targetType"] = {"workoutTargetTypeId": 6, "workoutTargetTypeKey": "pace.zone"}
         out["targetValueOne"] = round(1000 / slow, 3)
         out["targetValueTwo"] = round(1000 / fast, 3)
+    if st.get("hr"):  # objetivo de FC en ppm [mín, máx]
+        out["targetType"] = {"workoutTargetTypeId": 4, "workoutTargetTypeKey": "heart.rate.zone"}
+        out["targetValueOne"], out["targetValueTwo"] = float(st["hr"][0]), float(st["hr"][1])
     if st.get("stroke"):
         i, k = STROKES[st["stroke"]]
         out["strokeType"] = {"strokeTypeId": i, "strokeTypeKey": k}
@@ -100,53 +103,109 @@ def build_workout(session, pz):
         steps.append(_step(st, order, pz))
         if st["type"] == "repeat":
             order += _count(st["steps"])
-    name = PREFIX + paces.render_text(session.get("title") or "", pz)
+    d = session["date"]
+    # La fecha va en el nombre: hay sesiones que se repiten ("Rodaje suave + rectas")
+    # y así cada entreno de Garmin corresponde a un único día del plan.
+    name = f"{PREFIX}{d[8:10]}/{d[5:7]} " + paces.render_text(session.get("title") or "", pz)
     desc = " · ".join(paces.render_text(b.get("text", ""), pz) for b in session.get("blocks") or [])
     w = {"workoutName": name[:80], "description": desc[:1000],
          "sportType": {"sportTypeId": sid, "sportTypeKey": skey},
-            "workoutSegments": [{"segmentOrder": 1, "sportType": {"sportTypeId": sid, "sportTypeKey": skey},
-                                 "workoutSteps": steps}]}
+         "workoutSegments": [{"segmentOrder": 1, "sportType": {"sportTypeId": sid, "sportTypeKey": skey},
+                              "workoutSteps": steps}]}
     if session["sport"] == "swim":
         w["poolLength"] = 25.0
         w["poolLengthUnit"] = {"unitId": 1, "unitKey": "meter", "factor": 100.0}
     return w
 
 
-def sessions_for(day):
+def workout_hash(w):
+    import hashlib
+    return hashlib.sha1(json.dumps(w, sort_keys=True, ensure_ascii=False).encode()).hexdigest()[:16]
+
+
+# ---------------------------------------------------------- Garmin Connect
+
+def login():
+    sys.path.insert(0, str(Path(__file__).parent.parent))
+    from garmin_sync import login as _login
+    return _login()
+
+
+def upload(client, w, day):
+    created = client.garth.post("connectapi", "/workout-service/workout", json=w, api=True).json()
+    wid = created["workoutId"]
+    client.garth.post("connectapi", f"/workout-service/schedule/{wid}", json={"date": day}, api=True)
+    return wid
+
+
+def delete(client, wid):
+    try:
+        client.garth.request("DELETE", "connectapi", f"/workout-service/workout/{wid}", api=True)
+    except Exception as e:  # ya borrado a mano en Garmin Connect, etc.
+        print(f"  (no se pudo borrar {wid}: {e})")
+
+
+def sync_window(days=7, today=None, log=print):
+    """Deja Garmin igual que el plan para los próximos `days` días.
+
+    Sube lo nuevo, sustituye lo que ha cambiado (sesión editada o ritmos nuevos
+    por un VDOT distinto) y borra lo que ya no está en el plan. Lo subido se
+    apunta en la tabla garmin_uploads; solo toca entrenos creados por la app.
+    """
+    from datetime import timedelta
+    today = today or date.today()
+    end = today + timedelta(days=days)
     aid = db.all_athletes()[0]["id"]
     plan = db.active_plan(aid)
-    rows = db.plan_sessions(plan["id"], day, day)
-    return aid, [json.loads(r["session"]) for r in rows]
+    pz = plan_tool.current_paces(aid)
+    want = {}
+    for r in db.plan_sessions(plan["id"], today.isoformat(), end.isoformat()):
+        s = json.loads(r["session"])
+        if s.get("steps") and s["sport"] in SPORTS:
+            w = build_workout(s, pz)
+            want[(r["date"], w["workoutName"])] = (w, workout_hash(w))
+    with db.connect() as conn:
+        have = {(r["date"], r["name"]): r for r in conn.execute(
+            "SELECT * FROM garmin_uploads WHERE date BETWEEN ? AND ?", (today.isoformat(), end.isoformat()))}
+    todo_up = [(k, v) for k, v in want.items() if k not in have or have[k]["hash"] != v[1]]
+    todo_del = [r for k, r in have.items() if k not in want or have[k]["hash"] != want[k][1]]
+    if not todo_up and not todo_del:
+        log(f"Garmin al día ({len(want)} entrenos en los próximos {days} días)")
+        return 0
+    client = login()
+    for r in todo_del:
+        delete(client, r["workout_id"])
+        with db.connect() as conn:
+            conn.execute("DELETE FROM garmin_uploads WHERE workout_id=?", (r["workout_id"],))
+        log(f"  − borrado {r['date']} {r['name']}")
+    for (day, name), (w, h) in todo_up:
+        wid = upload(client, w, day)
+        with db.connect() as conn:
+            conn.execute("INSERT INTO garmin_uploads (date, name, hash, workout_id) VALUES (?,?,?,?)", (day, name, h, wid))
+        log(f"  + subido {day} {name}")
+    return len(todo_up) + len(todo_del)
 
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument("--date", default=date.today().isoformat())
+    p.add_argument("--date", help="solo ese día (por defecto: sincroniza los próximos 7 días)")
+    p.add_argument("--days", type=int, default=7)
     p.add_argument("--dry-run", action="store_true")
     args = p.parse_args()
-    aid, sessions = sessions_for(args.date)
-    pz = plan_tool.current_paces(aid)
-    todo = [s for s in sessions if s.get("steps") and s["sport"] in SPORTS]
-    if not todo:
-        raise SystemExit(f"No hay sesiones con pasos estructurados el {args.date}")
+    db.init()
     if args.dry_run:
-        for s in todo:
-            print(json.dumps(build_workout(s, pz), ensure_ascii=False, indent=1))
+        aid = db.all_athletes()[0]["id"]
+        plan = db.active_plan(aid)
+        pz = plan_tool.current_paces(aid)
+        for r in db.plan_sessions(plan["id"], args.date or date.today().isoformat(), args.date or date.today().isoformat()):
+            s = json.loads(r["session"])
+            if s.get("steps") and s["sport"] in SPORTS:
+                print(json.dumps(build_workout(s, pz), ensure_ascii=False, indent=1))
         return
-
-    sys.path.insert(0, str(Path(__file__).parent.parent))
-    from garmin_sync import login
-    client = login()
-    for s in todo:
-        w = build_workout(s, pz)
-        # Si ya subimos uno con el mismo nombre para ese día, lo sustituimos
-        for old in client.garth.connectapi("/workout-service/workouts", params={"start": 0, "limit": 100}) or []:
-            if old.get("workoutName") == w["workoutName"]:
-                client.garth.request("DELETE", "connectapi", f"/workout-service/workout/{old['workoutId']}", api=True)
-        created = client.garth.post("connectapi", "/workout-service/workout", json=w, api=True).json()
-        wid = created["workoutId"]
-        client.garth.post("connectapi", f"/workout-service/schedule/{wid}", json={"date": args.date}, api=True)
-        print(f"✓ Subido y programado el {args.date}: {w['workoutName']} (id {wid})")
+    if args.date:
+        sync_window(0, date.fromisoformat(args.date))
+    else:
+        sync_window(args.days)
 
 
 if __name__ == "__main__":

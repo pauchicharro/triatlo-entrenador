@@ -131,6 +131,15 @@ CREATE TABLE IF NOT EXISTS plan_sessions (
 );
 CREATE INDEX IF NOT EXISTS idx_plan_sessions_date ON plan_sessions (plan_id, date);
 
+-- Entrenos subidos a Garmin Connect por la app (para actualizarlos o borrarlos)
+CREATE TABLE IF NOT EXISTS garmin_uploads (
+    date        TEXT NOT NULL,
+    name        TEXT NOT NULL,
+    hash        TEXT NOT NULL,     -- huella del entreno (sesión + ritmos): si cambia, se resube
+    workout_id  INTEGER NOT NULL,
+    uploaded_at TEXT DEFAULT (datetime('now'))
+);
+
 CREATE TABLE IF NOT EXISTS athlete_zones (
     athlete_id  INTEGER PRIMARY KEY REFERENCES athletes(id),
     zones       BLOB,

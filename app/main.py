@@ -140,7 +140,8 @@ async def ritmos_test(request: Request):
     day = form.get("day") or date.today().isoformat()
     note = str(form.get("note") or "").strip()[:80]
     src = f"{note + ': ' if note else ''}{dist/1000:g} km en {paces.fmt_time(secs)} ({day})"
-    db.set_vdot(aid, vdot, src, day)
+    import plan_tool
+    plan_tool.set_vdot_everywhere(aid, vdot, src, day)  # BD + data/fitness.json (git)
     return HTMLResponse(views.paces_page(aid, f'<p class="st-done"><b>✓ Nuevo VDOT {vdot}</b>: ritmos del plan actualizados.</p>'))
 
 

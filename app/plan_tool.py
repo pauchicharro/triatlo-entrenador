@@ -22,6 +22,8 @@ Formato:
      "blocks": [{"name": "Calentamiento", "short": "2 km E", "text": "2 km a {E}"}, …],
                                                       # short = versión de una línea (la vista compacta
                                                       # de natación/gimnasio muestra las series con él)
+     "steps": [...],                                  # opcional: pasos para el reloj (ver app/garmin_workouts.py;
+                                                      # app/steps_from_text.py los genera desde los bloques de carrera)
      "template": "gymLower",                          # opcional: hereda bloques de la plantilla
      "focus": "Tren inferior",                        # gimnasio: Tren superior | Tren inferior | Cuerpo completo
      "why": "Para qué sirve esta sesión",
@@ -37,6 +39,9 @@ Uso:
   app/.venv/bin/python app/plan_tool.py vdot 48.5 "Test 5K 08/11: 20:51"
   app/.venv/bin/python app/plan_tool.py vdot-from-race 5000 20:51 "Test 5K" --date 2026-11-08
   app/.venv/bin/python app/plan_tool.py markdown        # reescribe data/training_plan.md
+
+Sin base de datos (sesión de Claude Code en la nube): python3 app/plan_tool.py render <json>
+y python3 app/plan_tool.py vdot-offline 5000 19:56 "Test 5K" --date 2026-11-05
 """
 
 import argparse
@@ -50,6 +55,9 @@ import paces
 
 ROOT = Path(__file__).parent.parent
 TRAINING_PLAN_MD = ROOT / "data" / "training_plan.md"
+# Historial de VDOT versionado en git: así una sesión de Claude Code en la nube
+# (sin app/app.db) puede regenerar el plan con los ritmos correctos.
+FITNESS_FILE = ROOT / "data" / "fitness.json"
 SPORTS = {"run", "swim", "bike", "gym", "rest", "race"}
 CODES = {"E", "M", "T", "I", "R", "CUR", "RP", None}
 
@@ -94,6 +102,8 @@ def expand(plan, s):
         s.setdefault("duration_min", t.get("duration_min"))
         s.setdefault("title", t.get("title"))
         s.setdefault("focus", t.get("focus"))
+        if t.get("steps") and not s.get("steps"):
+            s["steps"] = t["steps"]  # pasos para el reloj (natación, bici)
     return s
 
 
@@ -122,9 +132,41 @@ def import_plan(path, athlete_id, generator="claude-code"):
                 (plan_id, s["date"], seq[s["date"]], s["sport"], s.get("title"), int(bool(s.get("key"))),
                  json.dumps(s, ensure_ascii=False)))
     f = plan.get("fitness")
-    if f and f.get("vdot") and not db.current_vdot(athlete_id):
+    if f and f.get("vdot") and not db.current_vdot(athlete_id) and not fitness_history():
         db.set_vdot(athlete_id, f["vdot"], f.get("source", "estimación inicial"))
+    sync_fitness(athlete_id)
     return plan_id
+
+
+# ------------------------------------------------------------- VDOT (fichero)
+
+def fitness_history():
+    return json.loads(FITNESS_FILE.read_text()) if FITNESS_FILE.exists() else []
+
+
+def fitness_add(vdot, source, day=None):
+    h = fitness_history()
+    h.append({"date": day or date.today().isoformat(), "vdot": vdot, "source": source})
+    h.sort(key=lambda r: r["date"])
+    FITNESS_FILE.write_text(json.dumps(h, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+
+
+def set_vdot_everywhere(athlete_id, vdot, source, day=None):
+    """Guarda un VDOT nuevo en la BD local y en data/fitness.json (que va a git)."""
+    db.set_vdot(athlete_id, vdot, source, day)
+    fitness_add(vdot, source, day)
+
+
+def sync_fitness(athlete_id):
+    """Fichero ↔ BD: añade a cada lado lo que le falte (p. ej. un test registrado en la nube)."""
+    in_db = {(r["set_on"], round(r["vdot"], 1)) for r in db.vdot_history(athlete_id)}
+    in_file = {(r["date"], round(r["vdot"], 1)) for r in fitness_history()}
+    for r in fitness_history():
+        if (r["date"], round(r["vdot"], 1)) not in in_db:
+            db.set_vdot(athlete_id, r["vdot"], r["source"], r["date"])
+    for r in db.vdot_history(athlete_id):
+        if (r["set_on"], round(r["vdot"], 1)) not in in_file:
+            fitness_add(r["vdot"], r["source"], r["set_on"])
 
 
 def current_paces(athlete_id):
@@ -156,15 +198,19 @@ def session_line(s, pz):
 
 
 def write_markdown(athlete_id):
-    """Reescribe data/training_plan.md desde el plan activo (para la web pública y el check-in)."""
+    """Reescribe data/training_plan.md desde el plan activo de la BD."""
     plan_row = db.active_plan(athlete_id)
     if not plan_row:
         raise SystemExit("No hay plan activo")
-    plan = json.loads(plan_row["plan_json"])
-    pz = current_paces(athlete_id)
     v = db.current_vdot(athlete_id)
+    return render_markdown(json.loads(plan_row["plan_json"]), v["vdot"] if v else None, v["source"] if v else "")
+
+
+def render_markdown(plan, vdot=None, vdot_source=""):
+    """data/training_plan.md a partir del JSON y un VDOT (sin base de datos)."""
     g = plan["goal"]
-    sessions = [json.loads(r["session"]) for r in db.plan_sessions(plan_row["id"])]
+    pz = paces.zone_paces(vdot, g.get("target_time_s"), g["distance_m"]) if vdot else None
+    sessions = [expand(plan, s) for s in plan["sessions"]]
     by_day = {}
     for s in sessions:
         by_day.setdefault(s["date"], []).append(s)
@@ -174,11 +220,11 @@ def write_markdown(athlete_id):
 
     tt = paces.fmt_time(g["target_time_s"]) if g.get("target_time_s") else "–"
     out = [f"# Pla d'entrenament — {g['name']} ({g['distance_m']/1000:g}km, {g['race_date']})", "",
-           "_Generat automàticament des del pla de l'app (`data/plans/*.json` → `app/plan_tool.py markdown`). "
-           "No editar a mà: edita el JSON i torna'l a importar._", "",
+           "_Generat automàticament des de `data/plans/*.json` (`app/plan_tool.py`). "
+           "No editar a mà: edita el JSON i regenera._", "",
            f"Objectiu: **{tt}**. {plan.get('summary', '')}", ""]
-    if pz and v:
-        out += [f"**Ritmes actuals** (VDOT {v['vdot']:.1f}, {v['source']}; es recalculen quan canvia el VDOT):", "",
+    if pz:
+        out += [f"**Ritmes actuals** (VDOT {vdot:.1f}, {vdot_source}; es recalculen quan canvia el VDOT):", "",
                 "| Intensitat | Ritme | FC |", "|---|---|---|"]
         for code in ("E", "M", "T", "I", "R", "CUR", "RP"):
             if code in pz:
@@ -209,6 +255,11 @@ def write_markdown(athlete_id):
     return TRAINING_PLAN_MD
 
 
+def _secs(t):
+    parts = [int(x) for x in t.split(":")]
+    return parts[0] * 3600 + parts[1] * 60 + parts[2] if len(parts) == 3 else parts[0] * 60 + parts[1]
+
+
 def main():
     p = argparse.ArgumentParser()
     sub = p.add_subparsers(dest="cmd", required=True)
@@ -219,15 +270,36 @@ def main():
     pr.add_argument("source"); pr.add_argument("--date")
     sub.add_parser("markdown")
     sub.add_parser("validate").add_argument("path")
+    prd = sub.add_parser("render", help="SIN base de datos (nube): regenera training_plan.md desde el JSON + data/fitness.json")
+    prd.add_argument("path")
+    pvo = sub.add_parser("vdot-offline", help="SIN base de datos (nube): añade un test a data/fitness.json")
+    pvo.add_argument("distance_m", type=float); pvo.add_argument("time"); pvo.add_argument("source"); pvo.add_argument("--date")
     p.add_argument("--athlete", type=int)
     args = p.parse_args()
-    db.init()
-    athletes = db.all_athletes()
-    aid = args.athlete or (athletes[0]["id"] if len(athletes) == 1 else None)
     if args.cmd == "validate":
         errs = validate(json.loads(Path(args.path).read_text()))
         print("OK" if not errs else "\n".join(errs))
         return
+    if args.cmd in ("render", "vdot-offline"):
+        if args.cmd == "vdot-offline":
+            v = round(paces.vdot_from_race(args.distance_m, _secs(args.time)), 1)
+            fitness_add(v, f"{args.source}: {args.distance_m/1000:g} km en {paces.fmt_time(_secs(args.time))}", args.date)
+            print(f"VDOT {v} añadido a {FITNESS_FILE} (predicción 10K {paces.fmt_time(paces.predict_time(v, 10000))})")
+            plans = sorted((ROOT / "data" / "plans").glob("*.json"), key=lambda f: f.stat().st_mtime)
+            path = plans[-1]
+        else:
+            path = Path(args.path)
+        plan = json.loads(path.read_text())
+        errs = validate(plan)
+        if errs:
+            raise SystemExit("Plan inválido:\n- " + "\n- ".join(errs))
+        h = fitness_history()
+        last = h[-1] if h else (plan.get("fitness") or {})
+        print(f"Escrito {render_markdown(plan, last.get('vdot'), last.get('source', ''))}")
+        return
+    db.init()
+    athletes = db.all_athletes()
+    aid = args.athlete or (athletes[0]["id"] if len(athletes) == 1 else None)
     if not aid:
         raise SystemExit("Indica --athlete ID")
     if args.cmd == "import":
@@ -235,14 +307,13 @@ def main():
         print(f"Plan {pid} importado")
         print(f"Escrito {write_markdown(aid)}")
     elif args.cmd == "vdot":
-        db.set_vdot(aid, args.value, args.source)
+        set_vdot_everywhere(aid, args.value, args.source)
         print(f"VDOT {args.value} guardado; ritmos recalculados")
         print(f"Escrito {write_markdown(aid)}")
     elif args.cmd == "vdot-from-race":
-        parts = [int(x) for x in args.time.split(":")]
-        secs = parts[0] * 3600 + parts[1] * 60 + parts[2] if len(parts) == 3 else parts[0] * 60 + parts[1]
+        secs = _secs(args.time)
         v = round(paces.vdot_from_race(args.distance_m, secs), 1)
-        db.set_vdot(aid, v, f"{args.source}: {args.distance_m/1000:g} km en {paces.fmt_time(secs)}", args.date)
+        set_vdot_everywhere(aid, v, f"{args.source}: {args.distance_m/1000:g} km en {paces.fmt_time(secs)}", args.date)
         print(f"VDOT {v} guardado (predicción 10K {paces.fmt_time(paces.predict_time(v, 10000))})")
         print(f"Escrito {write_markdown(aid)}")
     elif args.cmd == "markdown":

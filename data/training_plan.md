@@ -1,6 +1,6 @@
 # Pla d'entrenament — San Silvestre 10K (10km, 2026-12-31)
 
-_Generat automàticament des del pla de l'app (`data/plans/*.json` → `app/plan_tool.py markdown`). No editar a mà: edita el JSON i torna'l a importar._
+_Generat automàticament des de `data/plans/*.json` (`app/plan_tool.py`). No editar a mà: edita el JSON i regenera._
 
 Objectiu: **40:00**. Bloque de 8 semanas centrado en correr (4 días/semana). Natación 2 días/semana, siempre combinada con el gimnasio en el mismo sitio (lunes tren inferior, viernes tren superior); bici solo en la semana de descarga. Volumen de carrera progresivo porque venías corriendo poco. Tests de 5 km el 6/11 y el 5/12 fijan los ritmos.
 
