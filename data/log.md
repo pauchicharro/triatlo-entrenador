@@ -10,6 +10,13 @@ Registre cronològic curt d'ajustos i decisions preses en converses amb l'entren
 
 
 
+
+## 2026-11-06
+**Test 5 km (5/11): 19:56** (4:18-3:57-3:58-3:54-3:49, parcials negatius; FC 157→180, màx 183).
+VDOT 46,5 → **50,0**: predicció 10K 41:20 (abans 43:58). Sub-40 (VDOT 51,9) ara és ambiciós però
+plausible: cal +1,9 de VDOT en 8 setmanes. Tots els ritmes recalculats (E 5:07-5:38, T 4:13-4:18,
+I 3:50-3:56, CUR 4:08). Rodatge de dissabte repujat a Garmin amb els ritmes nous. El gimnàs de
+dimecres no apareix a Strava.
 ## 2026-11-05
 Dimecres 4/11: natació 2000 m feta (32'); el gimnàs no apareix a Strava. A petició de l'atleta, test
 de 5 km avançat a avui dijous 5/11 i divendres 6/11 passa a descans. Test pujat a Garmin (km 1 amb

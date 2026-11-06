@@ -2,7 +2,7 @@
 
 ## Objectiu principal
 - **Cursa**: San Silvestre 10K, **31 de desembre de 2026** (córrer, 10 km).
-- **Temps objectiu de l'atleta**: sub-40:00 (4:00/km, VDOT 51,9). Molt ambiciós: les dades de 2026 el situen a VDOT ~46,5 (≈44:00). Es revisa amb els tests de 5 km del 6/11 i del 5/12.
+- **Temps objectiu de l'atleta**: sub-40:00 (4:00/km, VDOT 51,9). Test de 5 km del 5/11: **19:56 → VDOT 50,0** (predicció 10K 41:20). Sub-40 demana VDOT 51,9: ambiciós però plausible. Re-test el 5/12.
 - **Bloc**: 3/11 - 31/12 (8 setmanes), centrat en córrer (4 dies/setmana) natació 2 dies/setmana sempre combinada amb gimnàs (dilluns tren inferior, divendres tren superior; mateix lloc), bici només a la setmana de descàrrega. Pla: `data/plans/san_silvestre_2026.json`.
 - Objectiu anterior (completat 25/10/2026): Challenge Barcelona Triatló, olímpica. Pla arxivat a `data/plans/2026_challenge_barcelona.md`.
 - Volum de córrer recent baix (12-23 km/setmana a set-oct), per això la progressió de km és gradual.
