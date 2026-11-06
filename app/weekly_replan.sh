@@ -49,6 +49,7 @@ echo "Plan: $PLAN · hoy $TODAY · próximo lunes $NEXT_MONDAY"
 OUT=$("$CLAUDE_BIN" -p "$PROMPT" --max-turns 80 \
   --allowedTools "Read" "Edit" "Write" "Glob" "Grep" \
   "Bash(app/.venv/bin/python app/plan_tool.py:*)" "Bash(app/.venv/bin/python app/coach_summary.py:*)" \
+  "Bash(app/.venv/bin/python app/steps_from_text.py:*)" \
   "Bash(.venv/bin/python generate_site.py:*)" "Bash(sqlite3 -readonly:*)" \
   "Bash(git add:*)" "Bash(git commit:*)" "Bash(git push:*)" "Bash(git status:*)" "Bash(git diff:*)")
 STATUS=$?
