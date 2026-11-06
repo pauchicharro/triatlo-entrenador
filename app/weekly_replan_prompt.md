@@ -29,6 +29,9 @@ Todos los ritmos del plan se recalculan solos. Comenta si el objetivo de tiempo 
   viernes natación + tren superior), sin tren inferior el día antes de un test o sesión clave; gimnasio con
   `focus` (Tren superior / Tren inferior), natación con bloques que tengan `short` (series en una línea),
   carrera con intensidades en códigos ({E}, {T}, {I}, {R}, {CUR}, {RP}), nunca ritmos fijos.
+- Las sesiones de carrera, natación y bici deben llevar `steps` (se suben al reloj): para carrera,
+  `app/.venv/bin/python app/steps_from_text.py {{PLAN}} --write` los genera desde los bloques; revisa lo que diga
+  «SIN CONVERTIR» y escríbelos a mano. Natación y bici los heredan de su plantilla.
 - Mantén el formato del JSON (ver docstring de `app/plan_tool.py`). Añade al final de `revisions`:
   `{"date": "{{TODAY}}", "summary": "<1-2 líneas: qué cambió y por qué>"}` (aunque no cambie nada).
 

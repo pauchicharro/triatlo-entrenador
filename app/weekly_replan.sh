@@ -54,7 +54,10 @@ OUT=$("$CLAUDE_BIN" -p "$PROMPT" --max-turns 80 \
 STATUS=$?
 echo "$OUT"
 
-# 4. Aviso
+# 4. Subir a Garmin la semana nueva (y lo que haya cambiado)
+.venv/bin/python app/plan_sync.py
+
+# 5. Aviso
 if [[ $STATUS -eq 0 && -n "$OUT" ]]; then
   notify "Plan de la semana adaptado" "$(echo "$OUT" | tail -3 | tr '\n' ' ' | cut -c1-220)"
 else

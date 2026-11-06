@@ -24,6 +24,19 @@ Aquest projecte és un entrenador personal de triatló. La font de veritat és a
 - Per a mètriques fisiològiques recents (HRV, son, training status, readiness) fes servir Garmin. Per a tendències de volum/càrrega a llarg termini (abans d'abril de 2026) fes servir Strava.
 - No inventis dades d'entrenament: si no hi ha sincronització recent, digues-ho i proposa sincronitzar abans de treure conclusions sobre l'estat de forma.
 
+## Sessió al núvol (claude.ai/code des del mòbil)
+
+Si NO existeix `app/app.db` ni `.env` (sessió de Claude Code al núvol), no tens Strava, Garmin ni l'app:
+- Edita només el JSON del pla a `data/plans/` (mateix format i regles; les sessions de córrer i natació han de
+  dur `steps` per al rellotge: per a córrer, `python3 app/steps_from_text.py <json> --write` els genera des dels blocs).
+- Regenera sense base de dades: `python3 app/plan_tool.py validate <json>`, `python3 app/plan_tool.py render <json>`
+  i `python3 generate_site.py`. Un test: `python3 app/plan_tool.py vdot-offline 5000 19:56 "Test 5K" --date AAAA-MM-DD`.
+- Afegeix l'entrada a `data/log.md` i a `revisions`, fes commit i **push directament a `main`** (si la sessió no
+  ho permet, obre una PR cap a `main` i digues a l'atleta que la fusioni des del mòbil).
+- No inventis dades: si l'atleta et diu com li ha anat, fes-ho servir; les activitats noves no les veuràs.
+- Al rellotge arriba quan el Mac estigui encès: `app/plan_sync.py` (cada hora) fa pull, importa el pla i
+  puja a Garmin els entrenaments dels propers 7 dies. Digues-ho a l'atleta.
+
 ## Format de les sessions (sempre, al màxim detall possible)
 
 - **Córrer**: ritme objectiu (min/km), distància, i pulsacions objectiu (FC, segons les zones d'`athlete_profile.md`).
