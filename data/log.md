@@ -13,6 +13,14 @@ Registre cronològic curt d'ajustos i decisions preses en converses amb l'entren
 
 
 
+
+## 2026-11-11
+Setmana 2 desviada: dilluns 9 **Hyrox** (47', FC 149, 26' a Z4, TRIMP 147) en lloc de natació + tren superior;
+dimarts 10 gimnàs de cames en lloc de l'umbral 3x1200 (sessió clau no feta). Dissabte 7 no va córrer;
+diumenge 8 rodatge de recuperació 6,5 km (FC 137, una mica alta). Ajust: umbral 3x1200 a dijous 12,
+divendres natació + tren superior (cames ja fetes), dissabte rodatge suau + rectes en lloc de 6x200.
+Pendent: preguntar si l'Hyrox serà setmanal per fixar-lo al pla. El reajust automàtic del diumenge no
+es va executar (tasques de launchd no instal·lades).
 ## 2026-11-06 (3)
 Finalment tren superior avui en lloc de cames (millor: les cames es recuperen del test). Setmana 2: dilluns
 tren superior, divendres 13 cames. Pendent per al reajust de diumenge: l'estructura original (cames dilluns

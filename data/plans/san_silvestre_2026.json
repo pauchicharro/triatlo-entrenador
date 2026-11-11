@@ -490,6 +490,10 @@
   {
    "date": "2026-11-06",
    "summary": "Hoy 6/11 tren superior en lugar de pierna (las piernas recuperan del test). Pierna el viernes 13."
+  },
+  {
+   "date": "2026-11-11",
+   "summary": "Lunes 9 Hyrox y martes 10 pierna (sin umbral). Umbral 3x1200 al jueves 12, viernes tren superior, sábado rodaje suave en vez de 6x200."
   }
  ],
  "sessions": [
@@ -842,6 +846,93 @@
   {
    "date": "2026-11-12",
    "sport": "run",
+   "title": "Umbral: 3x1200 m",
+   "distance_km": 7.5,
+   "intensity": "T",
+   "duration_min": null,
+   "key": true,
+   "blocks": [
+    {
+     "name": "Calentamiento",
+     "text": "2 km a {E} + 4 rectas"
+    },
+    {
+     "name": "Principal",
+     "text": "3x1200 m a {T}, recuperando 1' trotando"
+    },
+    {
+     "name": "Vuelta a la calma",
+     "text": "1,5 km a {E}"
+    }
+   ],
+   "why": "El umbral es lo que más mejora el 10K: subir el ritmo que aguantas sin acumular lactato.",
+   "notes": "Recuperada del martes 10 (ese día hiciste pierna en el gimnasio; el lunes, Hyrox). Duro pero controlado.",
+   "steps": [
+    {
+     "type": "warmup",
+     "dist_m": 2000.0,
+     "intensity": "E"
+    },
+    {
+     "type": "repeat",
+     "reps": 4,
+     "steps": [
+      {
+       "type": "interval",
+       "time_s": 20,
+       "note": "Recta progresiva"
+      },
+      {
+       "type": "recovery",
+       "time_s": 40,
+       "note": "Trote o andando"
+      }
+     ]
+    },
+    {
+     "type": "repeat",
+     "reps": 3,
+     "steps": [
+      {
+       "type": "interval",
+       "dist_m": 1200.0,
+       "intensity": "T"
+      },
+      {
+       "type": "recovery",
+       "time_s": 60,
+       "note": "Trotando"
+      }
+     ]
+    },
+    {
+     "type": "cooldown",
+     "dist_m": 1500.0,
+     "intensity": "E"
+    }
+   ]
+  },
+  {
+   "date": "2026-11-13",
+   "sport": "swim",
+   "template": "swimB",
+   "intensity": "E",
+   "distance_m": 1800,
+   "notes": "",
+   "why": "Mantener la natación para 2027 y sumar volumen aeróbico sin impacto."
+  },
+  {
+   "date": "2026-11-13",
+   "sport": "gym",
+   "template": "gymUpper",
+   "focus": "Tren superior",
+   "intensity": null,
+   "notes": "La pierna ya la hiciste el martes 10.",
+   "why": "Tren superior y core: postura, braceo y estética."
+  },
+  {
+   "date": "2026-11-14",
+   "sport": "run",
    "title": "Rodaje suave + rectas",
    "distance_km": 6,
    "intensity": "E",
@@ -858,7 +949,7 @@
     }
    ],
    "why": "Construye base aeróbica y economía sin acumular fatiga. Las rectas activan la velocidad sin coste.",
-   "notes": "",
+   "notes": "En lugar de los 6x200: jueves umbral y domingo tirada larga, mejor no encadenar tres días duros.",
    "steps": [
     {
      "type": "interval",
@@ -880,77 +971,6 @@
        "note": "Trote o andando"
       }
      ]
-    }
-   ]
-  },
-  {
-   "date": "2026-11-13",
-   "sport": "swim",
-   "template": "swimB",
-   "intensity": "E",
-   "distance_m": 1800,
-   "notes": "",
-   "why": "Mantener la natación para 2027 y sumar volumen aeróbico sin impacto."
-  },
-  {
-   "date": "2026-11-13",
-   "sport": "gym",
-   "template": "gymLower",
-   "focus": "Tren inferior",
-   "intensity": null,
-   "notes": "Cambiado con el lunes.",
-   "why": "Tren superior y core: postura y braceo eficientes al final de carrera, y base para nadar."
-  },
-  {
-   "date": "2026-11-14",
-   "sport": "run",
-   "title": "Rodaje + 6x200 m rápidos",
-   "distance_km": 6.5,
-   "intensity": "R",
-   "duration_min": null,
-   "key": false,
-   "blocks": [
-    {
-     "name": "Calentamiento",
-     "text": "3 km a {E}"
-    },
-    {
-     "name": "Principal",
-     "text": "6x200 m a {R}, recuperando 200 m trotando muy suave"
-    },
-    {
-     "name": "Vuelta a la calma",
-     "text": "1 km a {E}"
-    }
-   ],
-   "why": "Economía y velocidad: correr rápido y relajado. Corto, no cansa.",
-   "notes": "",
-   "steps": [
-    {
-     "type": "warmup",
-     "dist_m": 3000.0,
-     "intensity": "E"
-    },
-    {
-     "type": "repeat",
-     "reps": 6,
-     "steps": [
-      {
-       "type": "interval",
-       "dist_m": 200.0,
-       "intensity": "R"
-      },
-      {
-       "type": "recovery",
-       "dist_m": 200.0,
-       "note": "Trotando"
-      }
-     ]
-    },
-    {
-     "type": "cooldown",
-     "dist_m": 1000.0,
-     "intensity": "E"
     }
    ]
   },
