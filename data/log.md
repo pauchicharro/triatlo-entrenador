@@ -14,6 +14,10 @@ Registre cronològic curt d'ajustos i decisions preses en converses amb l'entren
 
 
 
+
+## 2026-11-11 (2)
+L'atleta aclareix: el dia de descans (dimecres) és flexible, només cal un dia complet a la setmana; l'Hyrox
+és esporàdic per ara. Anotat al perfil i al prompt del reajust setmanal.
 ## 2026-11-11
 Setmana 2 desviada: dilluns 9 **Hyrox** (47', FC 149, 26' a Z4, TRIMP 147) en lloc de natació + tren superior;
 dimarts 10 gimnàs de cames en lloc de l'umbral 3x1200 (sessió clau no feta). Dissabte 7 no va córrer;

@@ -10,6 +10,7 @@ El JSON del plan activo es: {{PLAN}}. Hoy: {{TODAY}}. El próximo lunes: {{NEXT_
   y el JSON del plan.
 - Si quieres ver una sesión concreta (vueltas, ritmos de las series), consulta `app/app.db` con sqlite3 en
   modo solo lectura (tablas activities, activity_details.laps, activity_metrics.metrics).
+- Actividades fuera del plan (p. ej. Hyrox esporádico): cuéntalas como carga real y reajusta alrededor.
 - Si hay datos de Garmin recientes en `data/garmin/` (sueño, training status), tenlos en cuenta.
 
 ## 2. Tests
@@ -24,7 +25,7 @@ Todos los ritmos del plan se recalculan solos. Comenta si el objetivo de tiempo 
   falta. Reglas: subida de km de carrera ≤10-15 % por semana; si hubo fatiga, sesiones clave saltadas, FC alta
   en rodajes o TSB muy negativo, baja carga en vez de recuperar lo perdido; si todo fue bien, sigue el plan.
   No muevas la carrera ni elimines tests sin un motivo claro.
-- Respeta las restricciones: miércoles descanso completo, máx. 2 h/día entre semana, **2 días de gimnasio por
+- Respeta las restricciones: 1 día de descanso completo por semana (por defecto miércoles, pero flexible: ponlo donde mejor encaje), máx. 2 h/día entre semana, **2 días de gimnasio por
   semana y siempre el mismo día que natación** (están en el mismo sitio: p. ej. lunes natación + tren inferior,
   viernes natación + tren superior), sin tren inferior el día antes de un test o sesión clave (cada semana, pierna el lunes o el viernes según cuál de los dos días siguientes NO sea clave; si ambos lo son, el lunes con RPE ≤7 y sin pliometría); gimnasio con
   `focus` (Tren superior / Tren inferior), natación con bloques que tengan `short` (series en una línea),

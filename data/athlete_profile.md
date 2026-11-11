@@ -71,9 +71,12 @@ igual de fiables que les de córrer.
 ## Disponibilitat
 - Entre setmana: màxim 2h/dia.
 - Cap de setmana: més flexible.
-- **Dia de descans complet: dimecres.**
+- **Un dia de descans complet a la setmana, flexible** (per defecte dimecres, però es pot moure: posar-lo on encaixi millor, p. ex. després de dos dies durs o abans d'una sessió clau).
 - Vol incloure sessions de gimnàs (força) regularment.
 - **És alt i li agrada veure's bé**: el gimnàs no és només complement de córrer, també busca estètica. Mantenir sempre 2 dies/setmana (un de cames, un de tren superior) amb volum suficient, sense treure'l en setmanes de càrrega; només reduir-lo a la setmana de cursa. Si vol fer cames un dia de descans, adaptar la resta en comptes de prohibir-ho.
+
+## Altres activitats
+- **Hyrox**: esporàdic (de moment no és setmanal). Quan en faci, comptar-lo com a sessió dura (TRIMP ~150, molt temps a Z4) i reajustar els dies següents perquè no trepitgi les sessions clau.
 
 ## Lesions / limitacions
 - Cap de coneguda.
