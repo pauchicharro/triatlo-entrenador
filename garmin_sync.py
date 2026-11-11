@@ -93,7 +93,7 @@ def sync_wellness(client, days):
     for i in range(days):
         day = (date.today() - timedelta(days=i)).isoformat()
         out_path = WELLNESS_DIR / f"{day}.json"
-        if out_path.exists():
+        if out_path.exists() and i > 1:  # hoy y ayer se refrescan (el sueño/VFC llegan durante el día)
             continue
 
         wellness = {}

@@ -1,6 +1,6 @@
 #!/bin/zsh
 # Adaptación semanal del plan (la lanza launchd los domingos a las 20:00).
-#   1. Sincroniza Strava y descarga el detalle de los últimos días.
+#   1. Trae de Garmin las actividades de los últimos días (con detalle) y el bienestar.
 #   2. Regenera el resumen para el entrenador.
 #   3. Claude Code (sin interfaz) analiza la semana, adapta el plan, lo publica.
 #   4. Notificación en el Mac con el resumen.
@@ -18,7 +18,7 @@ notify() {
 }
 
 # 1-2. Datos frescos (espera hasta 30 min si el proceso de fondo está descargando)
-app/.venv/bin/python app/enrich.py --sync --since-days 10 --wait 30
+app/.venv/bin/python app/garmin_source.py --days 10 --wellness
 app/.venv/bin/python app/coach_summary.py
 
 # 3. Claude Code: la CLI viene con la extensión de VS Code; usamos la versión más reciente instalada

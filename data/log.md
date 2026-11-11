@@ -15,6 +15,13 @@ Registre cronològic curt d'ajustos i decisions preses en converses amb l'entren
 
 
 
+
+## 2026-11-11 (3)
+L'app passa de Strava a **Garmin** (l'atleta vol deixar de pagar Strava; de moment l'app només la fa servir ell):
+activitats noves amb detall complet des de Garmin + recuperació (son, VFC, Body Battery, estat d'entrenament,
+càrrega aguda/crònica). Les 198 activitats des d'abril ja existents s'han enllaçat sense duplicats (triatlons
+"multisport" i pàdel/tennis inclosos). Històric de Strava anterior a agost 2025 en mode lleuger (~1 KB/activitat,
+sense sèries). Correcció: la VFC sí que està disponible (abans es creia que no).
 ## 2026-11-11 (2)
 L'atleta aclareix: el dia de descans (dimecres) és flexible, només cal un dia complet a la setmana; l'Hyrox
 és esporàdic per ara. Anotat al perfil i al prompt del reajust setmanal.

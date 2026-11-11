@@ -67,6 +67,16 @@ def main():
         notify("Entrenador: conflicto", "No he podido traer los cambios de GitHub (ver app/plan_sync.log)")
         return 1
 
+    # 1b. Actividades y bienestar de Garmin
+    try:
+        import garmin_source
+        import garmin_sync
+        client = garmin_source.login()
+        garmin_source.sync(days=3, client=client)
+        garmin_sync.sync_wellness(client, 3)
+    except Exception as e:
+        print(f"Garmin (actividades) falló: {e}")
+
     # 2. Plan y VDOT → app
     path = active_plan_file()
     plan = json.loads(path.read_text())

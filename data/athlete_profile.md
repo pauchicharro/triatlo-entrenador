@@ -16,7 +16,7 @@
 - **VO2max**: 56,8 (running) — nivell molt bo.
 - **Training status**: Productiu, balanç de càrrega "BALANCED" (aeròbic baix/alt i anaeròbic dins de rang objectiu) — no hi ha senyals de sobreentrenament ni detraining.
 - **FC màxima observada** (90 dies): 192 bpm.
-- **HRV**: no disponible via API per aquest compte/dispositiu (Forerunner 965) — fem servir training status + son com a senyals de recuperació en el seu lloc.
+- **VFC (HRV)**: sí que està disponible (des de novembre 2026 es llegeix de Garmin cada dia): rang habitual ~79-114 ms, mitjana setmanal ~86-91, estat BALANCED. Juntament amb son, Body Battery i estat d'entrenament és a la secció 7 de `data/app_summary.md`.
 
 ## Zones de córrer (prova de laboratori, LabSportSalud, 07/01/2025)
 

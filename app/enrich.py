@@ -215,6 +215,10 @@ def compute_metrics(streams, zones, sport_type, device_watts=False):
         if c:
             # Strava da la cadencia de carrera en pasos/min de UNA pierna
             m["cadence_avg"] = round(c * (2 if sport_type in ("Run", "TrailRun", "VirtualRun") else 1), 1)
+    # Garmin deja huecos (None) en algunas series: los tratamos como "sin dato"
+    temp = [x for x in temp if x is not None] if temp else None
+    alt = [x for x in alt if x is not None] if alt else None
+    watts = [x if x is not None else 0 for x in watts] if watts else None
     if watts and device_watts:
         m["watts_avg"] = round(mean(watts, w_mov) or 0, 1)
         # Potencia normalizada (media móvil 30 s ^4)
@@ -240,7 +244,10 @@ def recompute_metrics(athlete_id):
 
 # ---------------------------------------------------------------------- trabajo
 
-def enrich_athlete(athlete_id, max_activities=None, log=print, since=None):
+LIGHT_DROP = ("segment_efforts", "map", "photos", "best_efforts_raw")
+
+
+def enrich_athlete(athlete_id, max_activities=None, log=print, since=None, light_before=None):
     """Descarga detalle + streams de las actividades pendientes (más recientes primero).
 
     La cola se vuelve a consultar en cada vuelta: si mientras tanto entra una
@@ -278,7 +285,8 @@ def enrich_athlete(athlete_id, max_activities=None, log=print, since=None):
             token = strava.valid_access_token(athlete_id)  # se refresca si caduca
             aid = row["id"]
 
-            r = _api_get(f"/activities/{aid}", token, {"include_all_efforts": "true"})
+            light = bool(light_before) and (row["start_date_local"] or "") < light_before
+            r = _api_get(f"/activities/{aid}", token, {"include_all_efforts": "false" if light else "true"})
             if r.status_code == 404:
                 db.mark_enriched(aid, "no encontrada")
                 continue
@@ -288,6 +296,17 @@ def enrich_athlete(athlete_id, max_activities=None, log=print, since=None):
             if r.status_code >= 400:
                 raise RuntimeError(f"Strava {r.status_code}: {r.text[:200]}")
             detail = r.json()
+
+            if light:
+                # Histórico antiguo en modo ligero (~1 KB): resumen, vueltas, parciales y
+                # mejores esfuerzos, pero sin series segundo a segundo, segmentos ni mapa.
+                for k in LIGHT_DROP:
+                    detail.pop(k, None)
+                db.save_detail(aid, detail, _pack(detail), None)
+                db.mark_enriched(aid, "ligero")
+                if i % 25 == 0 or len(pending) == 1:
+                    log(f"  {i} hechas (ligero), quedan {len(pending) - 1} · {row['start_date_local'][:10]}")
+                continue
 
             streams = None
             if not detail.get("manual"):
@@ -324,6 +343,7 @@ def main():
     p.add_argument("--max", type=int, help="máximo de actividades por atleta en esta pasada")
     p.add_argument("--zones", help="fija zonas de FC a mano: ATLETA_ID:130,140,150,175 (inicio de Z2..Z5)")
     p.add_argument("--sync", action="store_true", help="antes, sincroniza la lista de actividades de Strava")
+    p.add_argument("--light-before", help="YYYY-MM-DD: las actividades anteriores se descargan en modo ligero (sin streams)")
     p.add_argument("--since-days", type=int, help="solo actividades de los últimos N días")
     p.add_argument("--wait", type=int, default=0,
                    help="si otro proceso está descargando, espera hasta N min a que termine lo de --since-days")
@@ -345,7 +365,8 @@ def main():
         if args.sync:
             strava.sync_athlete(a["id"])
             print(f"Atleta {a['id']}: {db.get_athlete(a['id'])['sync_message']}", flush=True)
-        ok = enrich_athlete(a["id"], args.max, log=lambda s: print(s, flush=True), since=since)
+        ok = enrich_athlete(a["id"], args.max, log=lambda s: print(s, flush=True), since=since,
+                            light_before=args.light_before)
         if ok is False and args.wait:
             # El proceso de fondo tiene el cerrojo; como coge primero lo más
             # reciente, basta con esperar a que la cola de estos días se vacíe.

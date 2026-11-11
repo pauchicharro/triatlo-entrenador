@@ -151,7 +151,9 @@ CREATE TABLE IF NOT EXISTS athlete_zones (
 MIGRATIONS = [
     "ALTER TABLE activities ADD COLUMN enrich_status TEXT",   # NULL = pendiente
     "ALTER TABLE athletes ADD COLUMN enrich_error TEXT",
-    "ALTER TABLE athletes ADD COLUMN share_token TEXT",       # enlace público de solo lectura del plan
+    "ALTER TABLE athletes ADD COLUMN share_token TEXT",
+    "ALTER TABLE activities ADD COLUMN garmin_id INTEGER",     # actividad equivalente en Garmin Connect
+    "ALTER TABLE activities ADD COLUMN garmin_json BLOB",      # resumen de Garmin (carga, Training Effect…)       # enlace público de solo lectura del plan
 ]
 
 

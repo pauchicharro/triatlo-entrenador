@@ -32,25 +32,24 @@ SESSION_SECRET = os.environ.get("SESSION_SECRET") or secrets.token_hex(32)
 app.add_middleware(SessionMiddleware, secret_key=SESSION_SECRET, max_age=180 * 24 * 3600)
 db.init()
 
-AUTO_SYNC_MINUTES = 10
+AUTO_SYNC_MINUTES = 15
 
 
 def _auto_sync_loop():
-    """Cada 10 min: trae las actividades nuevas de Strava de todos los atletas y
-    descarga su detalle (si el proceso de fondo ya está descargando, este coge
-    las nuevas primero). Así la web se actualiza sola tras entrenar."""
+    """Cada 10 min: trae las actividades nuevas de Garmin Connect con todo su
+    detalle. Así la web se actualiza sola tras entrenar. (Strava ya no se usa
+    para lo nuevo: solo queda su histórico.)"""
     import threading
     import time
 
     def loop():
         time.sleep(5)
         while True:
-            for a in db.all_athletes():
-                try:
-                    strava.sync_athlete(a["id"])
-                    enrich.enrich_athlete(a["id"], log=lambda *_: None, since=_days_ago(3))
-                except Exception as e:  # nunca tumbar el servidor por un fallo de red
-                    print(f"auto-sync atleta {a['id']}: {e}", flush=True)
+            try:
+                import garmin_source
+                garmin_source.sync(days=3, log=lambda *_: None)
+            except Exception as e:  # nunca tumbar el servidor por un fallo de red
+                print(f"auto-sync Garmin: {e}", flush=True)
             time.sleep(AUTO_SYNC_MINUTES * 60)
 
     threading.Thread(target=loop, daemon=True, name="auto-sync").start()
@@ -72,18 +71,18 @@ def page(body):
 
 @app.get("/", response_class=HTMLResponse)
 def home(request: Request, sport: str = None, offset: int = 0):
-    athlete_id = request.session.get("athlete_id")
+    athlete_id = _athlete(request)
     athlete = db.get_athlete(athlete_id) if athlete_id else None
     if not athlete:
         return page("""<h1>Entrenador de triatlón</h1>
-<p>Conecta tu cuenta de Strava para importar tu histórico.</p>
-<p><a class="btn" href="/login">Conectar con Strava</a></p>""")
+<p>Abre la app en el Mac (<a href="http://localhost:8000">localhost:8000</a>) y pulsa 📱 para
+vincular este dispositivo con el código QR.</p>""")
     return HTMLResponse(views.home_page(athlete, sport, max(0, offset)))
 
 
 @app.get("/activity/{activity_id}", response_class=HTMLResponse)
 def activity(request: Request, activity_id: int):
-    athlete_id = request.session.get("athlete_id")
+    athlete_id = _athlete(request)
     html = views.activity_page(athlete_id, activity_id) if athlete_id else None
     if not html:
         return RedirectResponse("/", status_code=303)
@@ -92,7 +91,14 @@ def activity(request: Request, activity_id: int):
 
 def _athlete(request):
     aid = request.session.get("athlete_id")
-    return aid if aid and db.get_athlete(aid) else None
+    if aid and db.get_athlete(aid):
+        return aid
+    # Uso personal: en el propio Mac (localhost) se entra directamente, sin Strava
+    athletes = db.all_athletes()
+    if request.client and request.client.host in ("127.0.0.1", "::1") and len(athletes) == 1:
+        request.session["athlete_id"] = athletes[0]["id"]
+        return athletes[0]["id"]
+    return None
 
 
 @app.get("/plan", response_class=HTMLResponse)
@@ -280,10 +286,10 @@ def callback(request: Request, background: BackgroundTasks,
 
 @app.get("/sync")
 def sync(request: Request, background: BackgroundTasks):
-    athlete_id = request.session.get("athlete_id")
-    if athlete_id and db.get_athlete(athlete_id):
-        background.add_task(strava.sync_athlete, athlete_id)
-        background.add_task(enrich.enrich_athlete, athlete_id)
+    athlete_id = _athlete(request)
+    if athlete_id:
+        import garmin_source
+        background.add_task(garmin_source.sync, 3, None, lambda *_: None)
     return RedirectResponse("/", status_code=303)
 
 

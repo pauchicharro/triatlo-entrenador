@@ -340,6 +340,12 @@ def section_recent(acts, zones, today, days=21):
             bits.append(f"NP {m['watts_np']:.0f}W")
         if m.get("temp_avg") is not None and sp not in SWIM:
             bits.append(f"{m['temp_avg']:.0f}°C")
+        g = m
+        if g.get("garmin_activityTrainingLoad"):
+            bits.append(f"carga Garmin {g['garmin_activityTrainingLoad']:.0f}")
+        if g.get("garmin_aerobicTrainingEffect"):
+            bits.append(f"TE {g['garmin_aerobicTrainingEffect']:.1f}/{(g.get('garmin_anaerobicTrainingEffect') or 0):.1f}"
+                        + (f" ({str(g.get('garmin_trainingEffectLabel')).lower()})" if g.get("garmin_trainingEffectLabel") else ""))
         if a["perceived_exertion"]:
             bits.append(f"RPE {a['perceived_exertion']:.0f}")
         if a["trainer"] and disc(sp) in ("bike", "run"):  # en natación "trainer" = piscina
@@ -420,6 +426,44 @@ def section_plan(athlete_id, today):
     return "\n".join(lines)
 
 
+def section_recovery(today, days=14):
+    """Sueño, VFC, Body Battery y estado de entrenamiento (Garmin, data/garmin/wellness/)."""
+    wdir = ROOT / "data" / "garmin" / "wellness"
+    rows = []
+    for i in range(days - 1, -1, -1):
+        d = (today - timedelta(days=i)).isoformat()
+        f = wdir / f"{d}.json"
+        if not f.exists():
+            continue
+        try:
+            w = json.loads(f.read_text())
+        except ValueError:
+            continue
+        sl = (w.get("sleep") or {}).get("dailySleepDTO") or {}
+        hrv = (w.get("hrv") or {}).get("hrvSummary") or {}
+        bb = w.get("body_battery")
+        bb = bb[0] if isinstance(bb, list) and bb else (bb if isinstance(bb, dict) else {})
+        st = ((w.get("training_status") or {}).get("mostRecentTrainingStatus") or {}).get("latestTrainingStatusData") or {}
+        st = next(iter(st.values()), {}) if st else {}
+        acute = st.get("acuteTrainingLoadDTO") or {}
+        rows.append((d, sl.get("sleepTimeSeconds"), ((sl.get("sleepScores") or {}).get("overall") or {}).get("value"),
+                     hrv.get("lastNightAvg"), hrv.get("weeklyAvg"), hrv.get("status"),
+                     bb.get("charged"), (st.get("trainingStatusFeedbackPhrase") or "").split("_")[0].lower(),
+                     acute.get("dailyTrainingLoadAcute"), acute.get("dailyTrainingLoadChronic"), acute.get("acwrStatus")))
+    if not rows:
+        return "## 7. Recuperación (Garmin)\nSin datos de bienestar recientes: ejecuta `garmin_sync.py` o `garmin_source.py --wellness`."
+    lines = ["## 7. Recuperación (Garmin)",
+             "VFC = variabilidad de la FC nocturna (ms; por debajo de su rango habitual = fatiga/estrés). "
+             "Carga aguda/crónica y ACWR son los de Garmin (ratio óptimo ~0,8-1,3).", "",
+             "| Día | Sueño | Nota sueño | VFC noche (media 7 d) | Estado VFC | Body Battery cargado | Estado entreno | Carga aguda/crónica | ACWR |",
+             "|---|---|---|---|---|---|---|---|---|"]
+    for r in rows:
+        sleep = f"{r[1]/3600:.1f} h" if r[1] else "–"
+        lines.append(f"| {r[0][5:]} | {sleep} | {r[2] or '–'} | {r[3] or '–'} ({r[4] or '–'}) | {(r[5] or '–').lower()} | "
+                     f"{r[6] or '–'} | {r[7] or '–'} | {r[8] or '–'}/{r[9] or '–'} | {(r[10] or '–').lower()} |")
+    return "\n".join(lines)
+
+
 def build(athlete_id, today=None):
     today = today or date.today()
     acts = load_activities(athlete_id)
@@ -435,7 +479,8 @@ def build(athlete_id, today=None):
              section_weeks(acts, zones, today),
              section_trends(acts, today),
              section_best(acts, today),
-             section_recent(acts, zones, today)]
+             section_recent(acts, zones, today),
+             section_recovery(today)]
     return "\n\n".join(parts) + "\n"
 
 

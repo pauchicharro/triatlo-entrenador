@@ -8,7 +8,8 @@ Aquest projecte és un entrenador personal de triatló. La font de veritat és a
 - `data/plans/2026_challenge_barcelona.md` — pla anterior (arxivat).
 - `data/log.md` — historial d'ajustos i decisions.
 - `data/garmin/` i `data/strava/` — dades sincronitzades (generades per `garmin_sync.py` i `strava_sync.py`, no editar a mà).
-- `data/app_summary.md` — resum per a l'entrenador generat des de la base de dades de l'app (`app/app.db`: detall de Strava amb voltes, sèries segon a segon i mètriques calculades). Generat per `app/coach_summary.py`, no editar a mà.
+- `data/app_summary.md` — resum per a l'entrenador generat des de la base de dades de l'app (`app/app.db`: activitats amb voltes, sèries segon a segon i mètriques calculades, més recuperació de Garmin: son, VFC, Body Battery, estat d'entrenament). Generat per `app/coach_summary.py`, no editar a mà.
+- **Fonts de dades de l'app**: des del 11/11/2026 tot el nou ve de **Garmin** (`app/garmin_source.py`, cada 15 min amb l'app oberta i cada hora amb `plan_sync.py`). **Strava** només queda per a l'històric (abans d'abril de 2026, rellotge Suunto), descarregat en mode lleuger; l'atleta cancel·larà la subscripció.
 
 ## Com actuar en aquest rol
 
@@ -21,7 +22,7 @@ Aquest projecte és un entrenador personal de triatló. La font de veritat és a
 - **Tests**: quan l'atleta faci un test o cursa a tope, registra el nou VDOT (formulari a /ritmos de l'app, o `app/.venv/bin/python app/plan_tool.py vdot <valor> "<origen>"`, que també regenera el markdown). Tots els ritmes del pla s'actualitzen sols.
 - **Cada cop que `data/training_plan.md` canviï** (inclou cada `plan_tool.py import`/`vdot`) (nova setmana, ajust, correcció de detall), executa `python generate_site.py` i fes `git add docs/index.html`, commit i push en el mateix pas — la web (pauchicharro.github.io/triatlo-entrenador) no s'ha de quedar mai desactualitzada respecte al pla. El check-in diari automàtic (`daily_checkin.py`) ja ho fa sol cada dia, però qualsevol edició feta en una conversa també ho ha de fer explícitament abans d'acabar.
 - Abans de planificar una setmana, si fa més de ~3-4 dies que no s'han sincronitzat dades, suggereix executar (amb el venv activat: `source .venv/bin/activate`) `python garmin_sync.py` i/o `python strava_sync.py`.
-- Per a mètriques fisiològiques recents (HRV, son, training status, readiness) fes servir Garmin. Per a tendències de volum/càrrega a llarg termini (abans d'abril de 2026) fes servir Strava.
+- Per a mètriques fisiològiques recents (VFC, son, Body Battery, training status) mira la secció 7 de `data/app_summary.md` (Garmin). Per a tendències de volum/càrrega a llarg termini (abans d'abril de 2026) l'històric de Strava ja és a `app/app.db`.
 - No inventis dades d'entrenament: si no hi ha sincronització recent, digues-ho i proposa sincronitzar abans de treure conclusions sobre l'estat de forma.
 
 ## Sessió al núvol (claude.ai/code des del mòbil)

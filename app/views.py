@@ -575,13 +575,13 @@ def home_page(athlete, sport_filter=None, offset=0):
     err = athlete["enrich_error"]
 
     sync_card = f"""<div class="card">
-<div class="{'err' if status=='error' else 'ink2'}">Strava: <b>{e(athlete['sync_message'] or status)}</b>
- · última sincronización {_local_hhmm(athlete['last_synced_at'])} (automática cada 10 min)
+<div class="{'err' if status=='error' else 'ink2'}">Garmin: <b>{e(athlete['sync_message'] or status)}</b>
+ · última sincronización {_local_hhmm(athlete['last_synced_at'])} (automática cada 15 min)
  · <a href="/sync">sincronizar ahora</a> · <a href="/logout">salir</a></div>
-<div style="margin-top:.6rem"><b>Detalle descargado: {done} de {total} actividades</b> ({pct:.0f} %)</div>
+<div style="margin-top:.6rem"><b>Histórico de Strava: {done} de {total} actividades con detalle</b> ({pct:.0f} %)</div>
 <div class="prog"><div style="width:{pct:.1f}%"></div></div>
-<div class="explain">Strava solo deja hacer ~1000 llamadas al día, así que el detalle (vueltas, FC segundo a segundo,
-zonas…) se descarga poco a poco, de la actividad más reciente a la más antigua.
+<div class="explain">Las actividades nuevas llegan de Garmin con todo el detalle. Del histórico antiguo de Strava se
+descargan solo resumen y vueltas (modo ligero), poco a poco.
 {('<span class="err">Último error: ' + e(err) + '</span>') if err else ''}</div></div>"""
 
     explainer = """<details class="card"><summary><b>¿Qué datos guardamos de cada actividad?</b></summary>
