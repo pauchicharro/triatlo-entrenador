@@ -494,6 +494,10 @@
   {
    "date": "2026-11-11",
    "summary": "Lunes 9 Hyrox y martes 10 pierna (sin umbral). Umbral 3x1200 al jueves 12, viernes tren superior, sábado rodaje suave en vez de 6x200."
+  },
+  {
+   "date": "2026-11-11",
+   "summary": "Natación + tren superior al miércoles 11; el viernes 13 pasa a descanso (después del umbral)."
   }
  ],
  "sessions": [
@@ -837,11 +841,21 @@
   },
   {
    "date": "2026-11-11",
-   "sport": "rest",
-   "title": "Descanso",
+   "sport": "swim",
+   "template": "swimB",
+   "intensity": "E",
+   "distance_m": 1800,
+   "notes": "",
+   "why": "Mantener la natación para 2027 y sumar volumen aeróbico sin impacto."
+  },
+  {
+   "date": "2026-11-11",
+   "sport": "gym",
+   "template": "gymUpper",
+   "focus": "Tren superior",
    "intensity": null,
-   "blocks": [],
-   "notes": "Descanso completo. Si te apetece, 20' de movilidad o paseo."
+   "notes": "Movido del viernes: hoy no cargas piernas y mañana llegas fresco al umbral.",
+   "why": "Tren superior y core: postura, braceo y estética."
   },
   {
    "date": "2026-11-12",
@@ -914,21 +928,11 @@
   },
   {
    "date": "2026-11-13",
-   "sport": "swim",
-   "template": "swimB",
-   "intensity": "E",
-   "distance_m": 1800,
-   "notes": "",
-   "why": "Mantener la natación para 2027 y sumar volumen aeróbico sin impacto."
-  },
-  {
-   "date": "2026-11-13",
-   "sport": "gym",
-   "template": "gymUpper",
-   "focus": "Tren superior",
+   "sport": "rest",
+   "title": "Descanso",
    "intensity": null,
-   "notes": "La pierna ya la hiciste el martes 10.",
-   "why": "Tren superior y core: postura, braceo y estética."
+   "blocks": [],
+   "notes": "Descanso completo tras el umbral del jueves (movido del miércoles)."
   },
   {
    "date": "2026-11-14",

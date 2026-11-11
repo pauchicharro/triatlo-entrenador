@@ -16,6 +16,10 @@ Registre cronològic curt d'ajustos i decisions preses en converses amb l'entren
 
 
 
+
+## 2026-11-11 (4)
+Natació tècnica + tren superior passen de divendres 13 a avui dimecres 11 (descans flexible): divendres
+queda de descans just després de l'umbral de dijous.
 ## 2026-11-11 (3)
 L'app passa de Strava a **Garmin** (l'atleta vol deixar de pagar Strava; de moment l'app només la fa servir ell):
 activitats noves amb detall complet des de Garmin + recuperació (son, VFC, Body Battery, estat d'entrenament,
