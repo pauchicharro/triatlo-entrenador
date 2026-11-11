@@ -62,6 +62,10 @@ def _days_ago(n):
 
 @app.on_event("startup")
 def _start_auto_sync():
+    # Un mensaje del chat que se quedó a medias al reiniciar el servidor no debe quedar «pensando…»
+    with db.connect() as conn:
+        conn.execute("UPDATE chat_messages SET status='error', text='Se reinició la app mientras respondía. Vuelve a enviarlo.' "
+                     "WHERE status='pending'")
     _auto_sync_loop()
 
 
@@ -256,6 +260,42 @@ def shared_session(token: str, session_id: int):
     if not html:
         return RedirectResponse(f"/c/{token}", status_code=303)
     return HTMLResponse(views.publicize(html, token))
+
+
+# ------------------------------------------------------ chat con el entrenador
+
+@app.get("/chat", response_class=HTMLResponse)
+def chat(request: Request):
+    if not _athlete(request):
+        return RedirectResponse("/", status_code=303)
+    import coach_chat
+    return HTMLResponse(views.chat_page(coach_chat.messages(), coach_chat.busy()))
+
+
+@app.post("/chat")
+async def chat_send(request: Request):
+    if not _athlete(request):
+        return RedirectResponse("/", status_code=303)
+    import coach_chat
+    text = str((await request.form()).get("text") or "").strip()[:4000]
+    if text:
+        coach_chat.send(text)
+    return RedirectResponse("/chat", status_code=303)
+
+
+@app.post("/chat/nueva")
+def chat_new(request: Request):
+    if _athlete(request):
+        import coach_chat
+        coach_chat.new_conversation()
+    return RedirectResponse("/chat", status_code=303)
+
+
+@app.get("/chat/estado")
+def chat_state(request: Request):
+    from fastapi.responses import JSONResponse
+    import coach_chat
+    return JSONResponse({"busy": coach_chat.busy() if _athlete(request) else False})
 
 
 @app.get("/login")

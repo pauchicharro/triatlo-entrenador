@@ -140,6 +140,17 @@ CREATE TABLE IF NOT EXISTS garmin_uploads (
     uploaded_at TEXT DEFAULT (datetime('now'))
 );
 
+-- Chat con el entrenador desde la app
+CREATE TABLE IF NOT EXISTS chat_messages (
+    id              INTEGER PRIMARY KEY AUTOINCREMENT,
+    role            TEXT NOT NULL,          -- user | coach | system
+    text            TEXT NOT NULL,
+    status          TEXT DEFAULT 'done',    -- pending | done | error
+    claude_session  TEXT,                   -- para continuar la conversación (--resume)
+    seconds         INTEGER,
+    created_at      TEXT DEFAULT (datetime('now'))
+);
+
 CREATE TABLE IF NOT EXISTS athlete_zones (
     athlete_id  INTEGER PRIMARY KEY REFERENCES athletes(id),
     zones       BLOB,

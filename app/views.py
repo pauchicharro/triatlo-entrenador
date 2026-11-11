@@ -24,7 +24,7 @@ CSS = """
  --page:#0d0d0d;--surface:#1a1a19;--ink:#f0efec;--ink2:#c3c2b7;--muted:#898781;
  --grid:#2c2c2a;--axis:#383835;--border:rgba(255,255,255,.10);--line:#3987e5;
  --z1:#184f95;--z2:#1c5cab;--z3:#2a78d6;--z4:#5598e7;--z5:#9ec5f4;--zt1:#fff;--zt2:#fff;--zt3:#fff;--zt4:#0b0b0b;--zt5:#0b0b0b;--good:#0ca30c;--bad:#e66767}
-*{box-sizing:border-box}
+*{box-sizing:border-box} html,body{overflow-x:hidden;max-width:100%}
 body{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--page);color:var(--ink);
  max-width:900px;margin:0 auto;padding:1.5rem 16px 4rem;line-height:1.45}
 a{color:var(--line)} h1{font-size:1.6rem;margin:.2rem 0} h2{font-size:1.15rem;margin:2rem 0 .3rem}
@@ -656,7 +656,7 @@ import paces as P  # noqa: E402
 from datetime import date as _date, timedelta as _td  # noqa: E402
 
 PLAN_CSS = """
-.nav{display:flex;gap:1rem;margin-bottom:1rem;font-size:.95rem}
+.nav{display:flex;flex-wrap:wrap;gap:.35rem .9rem;margin-bottom:1rem;font-size:.95rem}
 .nav a{text-decoration:none;color:var(--ink2)} .nav a.on{color:var(--ink);font-weight:600}
 .chip{display:inline-block;font-size:.75rem;font-weight:600;padding:.1rem .45rem;border-radius:999px;border:1px solid var(--border);white-space:nowrap}
 .st-done{color:var(--good)} .st-partial{color:#b07a00} .st-miss{color:var(--bad)} .st-todo{color:var(--muted)} .st-today{color:var(--line)}
@@ -692,7 +692,7 @@ DAYS_ES = ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"]
 
 
 def nav(on):
-    items = [("/", "Inicio"), ("/plan", "Plan"), ("/prevision", "Previsión"), ("/ritmos", "Ritmos")]
+    items = [("/", "Inicio"), ("/plan", "Plan"), ("/chat", "Entrenador"), ("/prevision", "Previsión"), ("/ritmos", "Ritmos")]
     return ('<div class="nav">' + "".join(
         f'<a href="{h}" class="{"on" if h == on else ""}">{t}</a>' for h, t in items)
         + '<a href="/movil" class="movil" title="Abrir en el móvil" style="margin-left:auto">📱</a></div>')
@@ -1108,3 +1108,74 @@ def publicize(html, token):
     html = re.sub(r'<a href="/ritmos">(.*?)</a>', r'\1', html)
     html = re.sub(r'<a href="https://www\.strava\.com[^"]*">(.*?)</a>', r'\1', html)
     return html
+
+
+
+# ------------------------------------------------------------------ chat
+
+CHAT_CSS = """
+.msgs{display:flex;flex-direction:column;gap:.6rem;margin:.6rem 0 6.5rem}
+.msg{max-width:85%;padding:.55rem .8rem;border-radius:14px;line-height:1.45;font-size:.95rem;word-wrap:break-word}
+.msg.user{align-self:flex-end;background:var(--line);color:#fff;border-bottom-right-radius:4px}
+.msg.coach{align-self:flex-start;background:var(--surface);border:1px solid var(--border);border-bottom-left-radius:4px}
+.msg.error{border-color:var(--bad)}
+.msg.system{align-self:center;background:none;color:var(--muted);font-size:.8rem}
+.msg .meta{font-size:.72rem;color:var(--muted);margin-top:.25rem}
+.msg.user .meta{color:rgba(255,255,255,.75)}
+.composer{position:fixed;left:0;right:0;bottom:0;background:var(--page);border-top:1px solid var(--border);padding:.6rem 16px calc(.6rem + env(safe-area-inset-bottom))}
+.composer form{max-width:900px;margin:0 auto;display:flex;gap:.5rem}
+.composer textarea{width:100%;resize:none;height:2.8rem;padding:.6rem;border-radius:10px;border:1px solid var(--border);background:var(--surface);color:var(--ink);font:inherit}
+.composer button{border:0;border-radius:10px;padding:0 1rem;background:var(--accent);color:#fff;font-weight:600}
+.composer button:disabled{opacity:.5}
+.dots::after{content:"…";animation:d 1.2s steps(3) infinite}
+.sugs{display:flex;flex-wrap:wrap;gap:.4rem;margin:.4rem 0}
+.sugs button{border:1px solid var(--border);background:var(--surface);color:var(--ink2);border-radius:999px;padding:.3rem .7rem;font-size:.82rem}
+"""
+
+
+def _md(text):
+    """Markdown mínimo: **negrita**, `código`, listas y saltos de línea."""
+    import re
+    t = escape(text or "")
+    t = re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", t)
+    t = re.sub(r"`([^`]+)`", r"<code>\1</code>", t)
+    t = re.sub(r"(?m)^#{1,4}\s*(.+)$", r"<b>\1</b>", t)
+    t = re.sub(r"(?m)^\s*[-*]\s+", "• ", t)
+    return t.replace("\n", "<br>")
+
+
+def chat_page(msgs, busy):
+    items = ""
+    for m in msgs:
+        if m["role"] == "system":
+            items += f'<div class="msg system">— {escape(m["text"])} —</div>'
+            continue
+        if m["status"] == "pending":
+            items += '<div class="msg coach"><span class="dots">Pensando</span><div class="meta">Puede tardar 1-2 min si cambia el plan</div></div>'
+            continue
+        meta = _local_hhmm(m["created_at"]) + (f" · {m['seconds']} s" if m["seconds"] else "")
+        cls = f'{m["role"]}{" error" if m["status"] == "error" else ""}'
+        items += f'<div class="msg {cls}">{_md(m["text"])}<div class="meta">{meta}</div></div>'
+    if not msgs:
+        items = ('<p class="ink2">Escríbeme como en el Mac: mover sesiones, decirme cómo te ha ido, pedir el entreno '
+                 'de mañana, preguntar ritmos… Puedo cambiar el plan, subirlo al reloj y publicarlo.</p>')
+    sugs = ["¿Qué toca mañana?", "Hoy no puedo entrenar, reorganiza la semana", "¿Cómo voy de carga y recuperación?",
+            "Sube al reloj los entrenos de esta semana"]
+    sug_html = "".join(f'<button type="button" onclick="pick(this)">{escape(x)}</button>' for x in sugs)
+    poll = """<script>
+setTimeout(function poll(){fetch('/chat/estado').then(r=>r.json()).then(d=>{if(!d.busy)location.reload();else setTimeout(poll,3000)}).catch(()=>setTimeout(poll,5000))},3000);
+</script>""" if busy else ""
+    body = f"""{nav('/chat')}<div style="display:flex;align-items:center;justify-content:space-between">
+<h1 style="margin:0">Entrenador</h1>
+<form method="post" action="/chat/nueva"><button class="chip" style="cursor:pointer">Nueva conversación</button></form></div>
+<div class="msgs" id="msgs">{items}</div>
+<div class="composer"><form method="post" action="/chat" onsubmit="this.querySelector('button').disabled=true">
+<div style="flex:1"><div class="sugs" {'style="display:none"' if msgs else ''}>{sug_html}</div>
+<textarea name="text" id="t" placeholder="{'Respondiendo…' if busy else 'Escribe al entrenador'}" {'disabled' if busy else ''} required></textarea></div>
+<button {'disabled' if busy else ''}>Enviar</button></form></div>
+<script>window.scrollTo(0,document.body.scrollHeight);
+function pick(b){{var t=document.getElementById('t');t.value=b.textContent;t.focus();}}
+document.getElementById('t').addEventListener('keydown',function(e){{if(e.key==='Enter'&&(e.metaKey||e.ctrlKey))this.form.submit();}});</script>
+{poll}"""
+    return page(body, title="Entrenador", head=f"<style>{PLAN_CSS}{CHAT_CSS}</style>"
+                + '<meta name="apple-mobile-web-app-capable" content="yes">')
