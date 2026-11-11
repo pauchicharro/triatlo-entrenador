@@ -41,6 +41,7 @@ normalmente desde el móvil. Hoy es {today}.
   valida (`app/.venv/bin/python app/plan_tool.py validate <json>`) y publica todo con
   `.venv/bin/python app/plan_sync.py` (importa, sube los próximos 7 días a Garmin, regenera la web y hace push).
   Commit de data/plans y data/log.md antes de plan_sync.
+- Carrera siempre por tiempo (minutos), salvo tests y carreras.
 - Sé crítico si lo que propone no tiene sentido para su entrenamiento: dilo, con el coste y una alternativa.
 - Al final di en una línea qué has cambiado (o «sin cambios»).
 

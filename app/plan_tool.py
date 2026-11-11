@@ -185,7 +185,9 @@ SPORT_CA = {"run": "Córrer", "swim": "Natació", "bike": "Bici", "gym": "Gimnà
 
 def session_line(s, pz):
     head = f"**{SPORT_CA[s['sport']]}"
-    if s.get("distance_km"):
+    if s["sport"] == "run" and s.get("duration_min"):
+        head += f" {s['duration_min']}min"
+    elif s.get("distance_km"):
         head += f" {s['distance_km']:g}km"
     elif s.get("distance_m"):
         head += f" {s['distance_m']:g}m"

@@ -28,6 +28,9 @@ def _dur(text):
     m = re.match(r"(\d+)'(?:(\d+)\")?", text)
     if m:
         return {"time_s": int(m.group(1)) * 60 + int(m.group(2) or 0)}
+    m = re.match(r"(\d+)\"", text)
+    if m:
+        return {"time_s": int(m.group(1))}
     m = re.match(r"(\d+)\s*s\b", text)
     if m:
         return {"time_s": int(m.group(1))}
@@ -57,7 +60,7 @@ def parse_piece(piece, kind):
     if m:
         return [{"type": "recovery", **_dur(m.group(1)), "note": m.group(2).capitalize()}]
     # NxD (m|km|') a {C}, recuperando R (trotando|andando|trote)
-    m = re.match(r"(\d+)x" + r"(\d+(?:[.,]\d+)?\s*(?:km|m)|\d+')" + r"\s+a\s+" + CODE +
+    m = re.match(r"(\d+)x" + r"(\d+(?:[.,]\d+)?\s*(?:km|m)\b|\d+'(?:\d+\")?|\d+\")" + r"\s+a\s+" + CODE +
                  r"(?:,?\s*recuperando\s+(\d+(?:\s*m|'(?:\d+\")?|\s*s)))?\s*(trotando|andando|trote)?", p)
     if m:
         reps, work, code, rest = int(m.group(1)), _dur(m.group(2)), m.group(3), m.group(4)
@@ -65,6 +68,10 @@ def parse_piece(piece, kind):
         if rest:
             inner.append({"type": "recovery", **_dur(rest), "note": (m.group(5) or "trote").capitalize()})
         return [{"type": "repeat", "reps": reps, "steps": inner}]
+    # X' (o X'YY") a {C}  — el atleta entrena por tiempo
+    m = re.match(r"(\d+'(?:\d+\")?)\s+a\s+" + CODE, p)
+    if m:
+        return [{"type": kind, **_dur(m.group(1)), "intensity": m.group(2)}]
     # X km (continuos|muy suaves)? a {C}
     m = re.match(NUM + r"\s*km\b[^{]*?a\s+" + CODE, p)
     if m:

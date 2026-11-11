@@ -40,7 +40,7 @@ Si NO existeix `app/app.db` ni `.env` (sessió de Claude Code al núvol), no ten
 
 ## Format de les sessions (sempre, al màxim detall possible)
 
-- **Córrer**: ritme objectiu (min/km), distància, i pulsacions objectiu (FC, segons les zones d'`athlete_profile.md`).
+- **Córrer**: **per temps** (l'atleta sempre entrena per temps, no per distància): minuts de cada bloc, ritme objectiu (min/km, amb codis `{E}`, `{T}`…) i pulsacions objectiu. Les sèries també per temps (p. ex. 3x5' a `{T}`). Excepció: tests i curses, per distància. Es pot indicar la distància aproximada entre parèntesis.
 - **Bici**: distància, i ritme/velocitat objectiu quan tingui sentit donar-lo (sense potenciòmetre, és orientatiu).
 - **Natació**: piscina de 25m, l'atleta té tot el material (palas, pull buoy, aletes, tabla). Donar la sèrie completa (escalfament, sèrie tècnica, sèrie principal, afluixament) amb metres i sortides/descansos, no només la distància total.
 - **Gimnàs**: està al mateix lloc que la piscina — les sessions de natació+gimnàs són combinades sense desplaçament. Donar exercicis concrets amb sèries i repeticions, no només "força general".

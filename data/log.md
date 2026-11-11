@@ -17,6 +17,12 @@ Registre cronològic curt d'ajustos i decisions preses en converses amb l'entren
 
 
 
+
+## 2026-11-11 (5)
+L'atleta sempre entrena córrer per temps: totes les sessions de córrer des del 12/11 passen a minuts
+(rodatges/tirades arrodonits a 5', sèries convertides amb el VDOT 50: 3x1200 → 3x5', 5x800 → 5x3'…).
+Tests i cursa es queden per distància. Norma afegida a CLAUDE.md, perfil, reajust i xat.
+També: possible marató de Salzburg (maig 2027); pendent confirmar data, experiència i objectiu.
 ## 2026-11-11 (4)
 Natació tècnica + tren superior passen de divendres 13 a avui dimecres 11 (descans flexible): divendres
 queda de descans just després de l'umbral de dijous.

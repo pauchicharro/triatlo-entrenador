@@ -29,7 +29,7 @@ Todos los ritmos del plan se recalculan solos. Comenta si el objetivo de tiempo 
   semana y siempre el mismo día que natación** (están en el mismo sitio: p. ej. lunes natación + tren inferior,
   viernes natación + tren superior), sin tren inferior el día antes de un test o sesión clave (cada semana, pierna el lunes o el viernes según cuál de los dos días siguientes NO sea clave; si ambos lo son, el lunes con RPE ≤7 y sin pliometría); gimnasio con
   `focus` (Tren superior / Tren inferior), natación con bloques que tengan `short` (series en una línea),
-  carrera con intensidades en códigos ({E}, {T}, {I}, {R}, {CUR}, {RP}), nunca ritmos fijos.
+  carrera **por tiempo** (bloques y series en minutos, p. ej. "10' a {E}", "3x5' a {T}, recuperando 1' trotando"; solo tests y carreras por distancia) con intensidades en códigos ({E}, {T}, {I}, {R}, {CUR}, {RP}), nunca ritmos fijos.
 - Las sesiones de carrera, natación y bici deben llevar `steps` (se suben al reloj): para carrera,
   `app/.venv/bin/python app/steps_from_text.py {{PLAN}} --write` los genera desde los bloques; revisa lo que diga
   «SIN CONVERTIR» y escríbelos a mano. Natación y bici los heredan de su plantilla.

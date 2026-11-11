@@ -73,6 +73,7 @@ igual de fiables que les de córrer.
 - Cap de setmana: més flexible.
 - **Un dia de descans complet a la setmana, flexible** (per defecte dimecres, però es pot moure: posar-lo on encaixi millor, p. ex. després de dos dies durs o abans d'una sessió clau).
 - Vol incloure sessions de gimnàs (força) regularment.
+- **Córrer sempre per temps, no per distància** (rodatges, tirades i sèries en minuts).
 - **És alt i li agrada veure's bé**: el gimnàs no és només complement de córrer, també busca estètica. Mantenir sempre 2 dies/setmana (un de cames, un de tren superior) amb volum suficient, sense treure'l en setmanes de càrrega; només reduir-lo a la setmana de cursa. Si vol fer cames un dia de descans, adaptar la resta en comptes de prohibir-ho.
 
 ## Altres activitats

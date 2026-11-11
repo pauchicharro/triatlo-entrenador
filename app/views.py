@@ -798,6 +798,8 @@ def _chip(st, lab):
 
 
 def _size(s):
+    if s.get("sport") == "run" and s.get("duration_min"):  # el atleta entrena por tiempo
+        return f"{s['duration_min']} min" + (f" (≈{s['distance_km']:g} km)" if s.get("distance_km") else "")
     if s.get("distance_km"):
         return f"{s['distance_km']:g} km"
     if s.get("distance_m"):

@@ -498,6 +498,10 @@
   {
    "date": "2026-11-11",
    "summary": "Natación + tren superior al miércoles 11; el viernes 13 pasa a descanso (después del umbral)."
+  },
+  {
+   "date": "2026-11-11",
+   "summary": "Carrera por tiempo (como entrena el atleta): rodajes, tiradas y series en minutos desde el 12/11; tests y carrera, por distancia."
   }
  ],
  "sessions": [
@@ -860,23 +864,23 @@
   {
    "date": "2026-11-12",
    "sport": "run",
-   "title": "Umbral: 3x1200 m",
+   "title": "Umbral: 3x5'",
    "distance_km": 7.5,
    "intensity": "T",
-   "duration_min": null,
+   "duration_min": 42,
    "key": true,
    "blocks": [
     {
      "name": "Calentamiento",
-     "text": "2 km a {E} + 4 rectas"
+     "text": "10' a {E} (FC <140) + 4 rectas"
     },
     {
      "name": "Principal",
-     "text": "3x1200 m a {T}, recuperando 1' trotando"
+     "text": "3x5' a {T}, recuperando 1' trotando"
     },
     {
      "name": "Vuelta a la calma",
-     "text": "1,5 km a {E}"
+     "text": "10' a {E} (FC <140)"
     }
    ],
    "why": "El umbral es lo que más mejora el 10K: subir el ritmo que aguantas sin acumular lactato.",
@@ -884,8 +888,8 @@
    "steps": [
     {
      "type": "warmup",
-     "dist_m": 2000.0,
-     "intensity": "E"
+     "intensity": "E",
+     "time_s": 600
     },
     {
      "type": "repeat",
@@ -909,8 +913,8 @@
      "steps": [
       {
        "type": "interval",
-       "dist_m": 1200.0,
-       "intensity": "T"
+       "intensity": "T",
+       "time_s": 300
       },
       {
        "type": "recovery",
@@ -921,8 +925,8 @@
     },
     {
      "type": "cooldown",
-     "dist_m": 1500.0,
-     "intensity": "E"
+     "intensity": "E",
+     "time_s": 600
     }
    ]
   },
@@ -940,12 +944,12 @@
    "title": "Rodaje suave + rectas",
    "distance_km": 6,
    "intensity": "E",
-   "duration_min": null,
+   "duration_min": 31,
    "key": false,
    "blocks": [
     {
      "name": "Rodaje",
-     "text": "5 km continuos a {E} (FC <140, debes poder hablar)"
+     "text": "25' a {E} (FC <140)"
     },
     {
      "name": "Rectas",
@@ -957,8 +961,8 @@
    "steps": [
     {
      "type": "interval",
-     "dist_m": 5000.0,
-     "intensity": "E"
+     "intensity": "E",
+     "time_s": 1500
     },
     {
      "type": "repeat",
@@ -984,12 +988,12 @@
    "title": "Tirada larga",
    "distance_km": 9,
    "intensity": "E",
-   "duration_min": null,
+   "duration_min": 50,
    "key": true,
    "blocks": [
     {
      "name": "Tirada",
-     "text": "9 km continuos a {E}, FC <145 incluso al final"
+     "text": "50' a {E} (FC <145)"
     }
    ],
    "why": "Resistencia aeróbica y adaptación de tendones al volumen.",
@@ -997,8 +1001,8 @@
    "steps": [
     {
      "type": "interval",
-     "dist_m": 9000.0,
-     "intensity": "E"
+     "intensity": "E",
+     "time_s": 3000
     }
    ]
   },
@@ -1023,23 +1027,23 @@
   {
    "date": "2026-11-17",
    "sport": "run",
-   "title": "Intervalos: 5x800 m",
+   "title": "Intervalos: 5x3'",
    "distance_km": 8.5,
    "intensity": "I",
-   "duration_min": null,
+   "duration_min": 54,
    "key": true,
    "blocks": [
     {
      "name": "Calentamiento",
-     "text": "2,5 km a {E} + 4 rectas"
+     "text": "15' a {E} (FC <140) + 4 rectas"
     },
     {
      "name": "Principal",
-     "text": "5x800 m a {I}, recuperando 2' trotando"
+     "text": "5x3' a {I}, recuperando 2' trotando"
     },
     {
      "name": "Vuelta a la calma",
-     "text": "1,5 km a {E}"
+     "text": "10' a {E} (FC <140)"
     }
    ],
    "why": "Primer contacto con el VO2máx: sube tu techo aeróbico.",
@@ -1047,8 +1051,8 @@
    "steps": [
     {
      "type": "warmup",
-     "dist_m": 2500.0,
-     "intensity": "E"
+     "intensity": "E",
+     "time_s": 900
     },
     {
      "type": "repeat",
@@ -1072,8 +1076,8 @@
      "steps": [
       {
        "type": "interval",
-       "dist_m": 800.0,
-       "intensity": "I"
+       "intensity": "I",
+       "time_s": 180
       },
       {
        "type": "recovery",
@@ -1084,8 +1088,8 @@
     },
     {
      "type": "cooldown",
-     "dist_m": 1500.0,
-     "intensity": "E"
+     "intensity": "E",
+     "time_s": 600
     }
    ]
   },
@@ -1103,12 +1107,12 @@
    "title": "Rodaje suave + rectas",
    "distance_km": 7,
    "intensity": "E",
-   "duration_min": null,
+   "duration_min": 36,
    "key": false,
    "blocks": [
     {
      "name": "Rodaje",
-     "text": "6 km continuos a {E} (FC <140, debes poder hablar)"
+     "text": "30' a {E} (FC <140)"
     },
     {
      "name": "Rectas",
@@ -1120,8 +1124,8 @@
    "steps": [
     {
      "type": "interval",
-     "dist_m": 6000.0,
-     "intensity": "E"
+     "intensity": "E",
+     "time_s": 1800
     },
     {
      "type": "repeat",
@@ -1165,12 +1169,12 @@
    "title": "Umbral continuo: 2x10'",
    "distance_km": 8.5,
    "intensity": "T",
-   "duration_min": null,
+   "duration_min": 44,
    "key": true,
    "blocks": [
     {
      "name": "Calentamiento",
-     "text": "2 km a {E}"
+     "text": "10' a {E} (FC <140)"
     },
     {
      "name": "Principal",
@@ -1178,7 +1182,7 @@
     },
     {
      "name": "Vuelta a la calma",
-     "text": "1,5 km a {E}"
+     "text": "10' a {E} (FC <140)"
     }
    ],
    "why": "Umbral en bloques más largos: aprender a sostener el esfuerzo.",
@@ -1186,8 +1190,8 @@
    "steps": [
     {
      "type": "warmup",
-     "dist_m": 2000.0,
-     "intensity": "E"
+     "intensity": "E",
+     "time_s": 600
     },
     {
      "type": "repeat",
@@ -1207,8 +1211,8 @@
     },
     {
      "type": "cooldown",
-     "dist_m": 1500.0,
-     "intensity": "E"
+     "intensity": "E",
+     "time_s": 600
     }
    ]
   },
@@ -1218,12 +1222,12 @@
    "title": "Tirada larga",
    "distance_km": 11,
    "intensity": "E",
-   "duration_min": null,
+   "duration_min": 60,
    "key": false,
    "blocks": [
     {
      "name": "Tirada",
-     "text": "11 km a {E}, FC <145"
+     "text": "60' a {E} (FC <145)"
     }
    ],
    "why": "Resistencia aeróbica.",
@@ -1231,8 +1235,8 @@
    "steps": [
     {
      "type": "interval",
-     "dist_m": 11000.0,
-     "intensity": "E"
+     "intensity": "E",
+     "time_s": 3600
     }
    ]
   },
@@ -1257,23 +1261,23 @@
   {
    "date": "2026-11-24",
    "sport": "run",
-   "title": "Intervalos: 5x1000 m",
+   "title": "Intervalos: 5x4'",
    "distance_km": 10,
    "intensity": "I",
-   "duration_min": null,
+   "duration_min": 62,
    "key": true,
    "blocks": [
     {
      "name": "Calentamiento",
-     "text": "2,5 km a {E} + 4 rectas"
+     "text": "15' a {E} (FC <140) + 4 rectas"
     },
     {
      "name": "Principal",
-     "text": "5x1000 m a {I}, recuperando 2'30\" trotando"
+     "text": "5x4' a {I}, recuperando 2'30\" trotando"
     },
     {
      "name": "Vuelta a la calma",
-     "text": "1,5 km a {E}"
+     "text": "10' a {E} (FC <140)"
     }
    ],
    "why": "VO2máx con series más largas: ya muy cerca de lo que pide el 10K.",
@@ -1281,8 +1285,8 @@
    "steps": [
     {
      "type": "warmup",
-     "dist_m": 2500.0,
-     "intensity": "E"
+     "intensity": "E",
+     "time_s": 900
     },
     {
      "type": "repeat",
@@ -1306,8 +1310,8 @@
      "steps": [
       {
        "type": "interval",
-       "dist_m": 1000.0,
-       "intensity": "I"
+       "intensity": "I",
+       "time_s": 240
       },
       {
        "type": "recovery",
@@ -1318,8 +1322,8 @@
     },
     {
      "type": "cooldown",
-     "dist_m": 1500.0,
-     "intensity": "E"
+     "intensity": "E",
+     "time_s": 600
     }
    ]
   },
@@ -1337,12 +1341,12 @@
    "title": "Rodaje suave + rectas",
    "distance_km": 8,
    "intensity": "E",
-   "duration_min": null,
+   "duration_min": 46,
    "key": false,
    "blocks": [
     {
      "name": "Rodaje",
-     "text": "7 km continuos a {E} (FC <140, debes poder hablar)"
+     "text": "40' a {E} (FC <140)"
     },
     {
      "name": "Rectas",
@@ -1354,8 +1358,8 @@
    "steps": [
     {
      "type": "interval",
-     "dist_m": 7000.0,
-     "intensity": "E"
+     "intensity": "E",
+     "time_s": 2400
     },
     {
      "type": "repeat",
@@ -1396,23 +1400,23 @@
   {
    "date": "2026-11-28",
    "sport": "run",
-   "title": "Umbral: 3x2 km",
+   "title": "Umbral: 3x8'30\"",
    "distance_km": 10,
    "intensity": "T",
-   "duration_min": null,
+   "duration_min": 50,
    "key": true,
    "blocks": [
     {
      "name": "Calentamiento",
-     "text": "2 km a {E}"
+     "text": "10' a {E} (FC <140)"
     },
     {
      "name": "Principal",
-     "text": "3x2 km a {T}, recuperando 1'30\" trotando"
+     "text": "3x8'30\" a {T}, recuperando 1'30\" trotando"
     },
     {
      "name": "Vuelta a la calma",
-     "text": "2 km a {E}"
+     "text": "10' a {E} (FC <140)"
     }
    ],
    "why": "Umbral con volumen: 6 km de calidad.",
@@ -1420,8 +1424,8 @@
    "steps": [
     {
      "type": "warmup",
-     "dist_m": 2000.0,
-     "intensity": "E"
+     "intensity": "E",
+     "time_s": 600
     },
     {
      "type": "repeat",
@@ -1429,8 +1433,8 @@
      "steps": [
       {
        "type": "interval",
-       "dist_m": 2000.0,
-       "intensity": "T"
+       "intensity": "T",
+       "time_s": 510
       },
       {
        "type": "recovery",
@@ -1441,8 +1445,8 @@
     },
     {
      "type": "cooldown",
-     "dist_m": 2000.0,
-     "intensity": "E"
+     "intensity": "E",
+     "time_s": 600
     }
    ]
   },
@@ -1452,16 +1456,16 @@
    "title": "Tirada larga con final a ritmo M",
    "distance_km": 13,
    "intensity": "E",
-   "duration_min": null,
+   "duration_min": 69,
    "key": false,
    "blocks": [
     {
      "name": "Tirada",
-     "text": "11 km a {E}"
+     "text": "60' a {E} (FC <145)"
     },
     {
      "name": "Final",
-     "text": "2 km a {M}"
+     "text": "9' a {M}"
     }
    ],
    "why": "Resistencia + aprender a apretar con fatiga.",
@@ -1469,13 +1473,13 @@
    "steps": [
     {
      "type": "interval",
-     "dist_m": 11000.0,
-     "intensity": "E"
+     "intensity": "E",
+     "time_s": 3600
     },
     {
      "type": "interval",
-     "dist_m": 2000.0,
-     "intensity": "M"
+     "intensity": "M",
+     "time_s": 540
     }
    ]
   },
@@ -1500,23 +1504,23 @@
   {
    "date": "2026-12-01",
    "sport": "run",
-   "title": "Rodaje con 4x400 m vivos",
+   "title": "Rodaje con 4x1'40\" vivos",
    "distance_km": 7,
    "intensity": "CUR",
-   "duration_min": null,
+   "duration_min": 41,
    "key": false,
    "blocks": [
     {
      "name": "Calentamiento",
-     "text": "4 km a {E}"
+     "text": "20' a {E} (FC <140)"
     },
     {
      "name": "Principal",
-     "text": "4x400 m a {CUR}, recuperando 1' andando"
+     "text": "4x1'40\" a {CUR}, recuperando 1' andando"
     },
     {
      "name": "Vuelta a la calma",
-     "text": "1,4 km a {E}"
+     "text": "10' a {E} (FC <140)"
     }
    ],
    "why": "Mantener la chispa en la semana de descarga sin cansar.",
@@ -1524,8 +1528,8 @@
    "steps": [
     {
      "type": "warmup",
-     "dist_m": 4000.0,
-     "intensity": "E"
+     "intensity": "E",
+     "time_s": 1200
     },
     {
      "type": "repeat",
@@ -1533,8 +1537,8 @@
      "steps": [
       {
        "type": "interval",
-       "dist_m": 400.0,
-       "intensity": "CUR"
+       "intensity": "CUR",
+       "time_s": 100
       },
       {
        "type": "recovery",
@@ -1545,8 +1549,8 @@
     },
     {
      "type": "cooldown",
-     "dist_m": 1400.0,
-     "intensity": "E"
+     "intensity": "E",
+     "time_s": 600
     }
    ]
   },
@@ -1659,12 +1663,12 @@
    "title": "Rodaje largo suave",
    "distance_km": 10,
    "intensity": "E",
-   "duration_min": null,
+   "duration_min": 55,
    "key": false,
    "blocks": [
     {
      "name": "Rodaje",
-     "text": "10 km a {E}"
+     "text": "55' a {E} (FC <140)"
     }
    ],
    "why": "Volumen suave tras el test.",
@@ -1672,8 +1676,8 @@
    "steps": [
     {
      "type": "interval",
-     "dist_m": 10000.0,
-     "intensity": "E"
+     "intensity": "E",
+     "time_s": 3300
     }
    ]
   },
@@ -1698,23 +1702,23 @@
   {
    "date": "2026-12-08",
    "sport": "run",
-   "title": "Intervalos: 4x1200 m",
+   "title": "Intervalos: 4x4'45\"",
    "distance_km": 10,
    "intensity": "I",
-   "duration_min": null,
+   "duration_min": 58,
    "key": true,
    "blocks": [
     {
      "name": "Calentamiento",
-     "text": "2,5 km a {E} + 4 rectas"
+     "text": "15' a {E} (FC <140) + 4 rectas"
     },
     {
      "name": "Principal",
-     "text": "4x1200 m a {I}, recuperando 2'30\" trotando"
+     "text": "4x4'45\" a {I}, recuperando 2'30\" trotando"
     },
     {
      "name": "Vuelta a la calma",
-     "text": "1,5 km a {E}"
+     "text": "10' a {E} (FC <140)"
     }
    ],
    "why": "VO2máx con series largas.",
@@ -1722,8 +1726,8 @@
    "steps": [
     {
      "type": "warmup",
-     "dist_m": 2500.0,
-     "intensity": "E"
+     "intensity": "E",
+     "time_s": 900
     },
     {
      "type": "repeat",
@@ -1747,8 +1751,8 @@
      "steps": [
       {
        "type": "interval",
-       "dist_m": 1200.0,
-       "intensity": "I"
+       "intensity": "I",
+       "time_s": 285
       },
       {
        "type": "recovery",
@@ -1759,8 +1763,8 @@
     },
     {
      "type": "cooldown",
-     "dist_m": 1500.0,
-     "intensity": "E"
+     "intensity": "E",
+     "time_s": 600
     }
    ]
   },
@@ -1778,12 +1782,12 @@
    "title": "Rodaje suave + rectas",
    "distance_km": 8,
    "intensity": "E",
-   "duration_min": null,
+   "duration_min": 46,
    "key": false,
    "blocks": [
     {
      "name": "Rodaje",
-     "text": "7 km continuos a {E} (FC <140, debes poder hablar)"
+     "text": "40' a {E} (FC <140)"
     },
     {
      "name": "Rectas",
@@ -1795,8 +1799,8 @@
    "steps": [
     {
      "type": "interval",
-     "dist_m": 7000.0,
-     "intensity": "E"
+     "intensity": "E",
+     "time_s": 2400
     },
     {
      "type": "repeat",
@@ -1837,23 +1841,23 @@
   {
    "date": "2026-12-12",
    "sport": "run",
-   "title": "Específico 10K: 3x2 km a ritmo de carrera",
+   "title": "Específico 10K: 3x8'15\" a ritmo de carrera",
    "distance_km": 10,
    "intensity": "CUR",
-   "duration_min": null,
+   "duration_min": 55,
    "key": true,
    "blocks": [
     {
      "name": "Calentamiento",
-     "text": "2 km a {E} + 4 rectas"
+     "text": "10' a {E} (FC <140) + 4 rectas"
     },
     {
      "name": "Principal",
-     "text": "3x2 km a {CUR}, recuperando 2' trotando"
+     "text": "3x8'15\" a {CUR}, recuperando 2' trotando"
     },
     {
      "name": "Vuelta a la calma",
-     "text": "2 km a {E}"
+     "text": "10' a {E} (FC <140)"
     }
    ],
    "why": "Acostumbrar el cuerpo y la cabeza al ritmo exacto de la carrera.",
@@ -1861,8 +1865,8 @@
    "steps": [
     {
      "type": "warmup",
-     "dist_m": 2000.0,
-     "intensity": "E"
+     "intensity": "E",
+     "time_s": 600
     },
     {
      "type": "repeat",
@@ -1886,8 +1890,8 @@
      "steps": [
       {
        "type": "interval",
-       "dist_m": 2000.0,
-       "intensity": "CUR"
+       "intensity": "CUR",
+       "time_s": 495
       },
       {
        "type": "recovery",
@@ -1898,8 +1902,8 @@
     },
     {
      "type": "cooldown",
-     "dist_m": 2000.0,
-     "intensity": "E"
+     "intensity": "E",
+     "time_s": 600
     }
    ]
   },
@@ -1909,16 +1913,16 @@
    "title": "Tirada larga con final a ritmo M",
    "distance_km": 15,
    "intensity": "E",
-   "duration_min": null,
+   "duration_min": 79,
    "key": false,
    "blocks": [
     {
      "name": "Tirada",
-     "text": "12 km a {E}"
+     "text": "65' a {E} (FC <145)"
     },
     {
      "name": "Final",
-     "text": "3 km a {M}"
+     "text": "14' a {M}"
     }
    ],
    "why": "Resistencia para que el km 8-10 no se haga eterno.",
@@ -1926,13 +1930,13 @@
    "steps": [
     {
      "type": "interval",
-     "dist_m": 12000.0,
-     "intensity": "E"
+     "intensity": "E",
+     "time_s": 3900
     },
     {
      "type": "interval",
-     "dist_m": 3000.0,
-     "intensity": "M"
+     "intensity": "M",
+     "time_s": 840
     }
    ]
   },
@@ -1957,23 +1961,23 @@
   {
    "date": "2026-12-15",
    "sport": "run",
-   "title": "Intervalos: 6x1000 m",
+   "title": "Intervalos: 6x4'",
    "distance_km": 11,
    "intensity": "I",
-   "duration_min": null,
+   "duration_min": 65,
    "key": true,
    "blocks": [
     {
      "name": "Calentamiento",
-     "text": "2,5 km a {E} + 4 rectas"
+     "text": "15' a {E} (FC <140) + 4 rectas"
     },
     {
      "name": "Principal",
-     "text": "6x1000 m a {I}, recuperando 2' trotando"
+     "text": "6x4' a {I}, recuperando 2' trotando"
     },
     {
      "name": "Vuelta a la calma",
-     "text": "1,5 km a {E}"
+     "text": "10' a {E} (FC <140)"
     }
    ],
    "why": "La sesión más dura del plan: máximo estímulo de VO2máx.",
@@ -1981,8 +1985,8 @@
    "steps": [
     {
      "type": "warmup",
-     "dist_m": 2500.0,
-     "intensity": "E"
+     "intensity": "E",
+     "time_s": 900
     },
     {
      "type": "repeat",
@@ -2006,8 +2010,8 @@
      "steps": [
       {
        "type": "interval",
-       "dist_m": 1000.0,
-       "intensity": "I"
+       "intensity": "I",
+       "time_s": 240
       },
       {
        "type": "recovery",
@@ -2018,8 +2022,8 @@
     },
     {
      "type": "cooldown",
-     "dist_m": 1500.0,
-     "intensity": "E"
+     "intensity": "E",
+     "time_s": 600
     }
    ]
   },
@@ -2037,12 +2041,12 @@
    "title": "Rodaje suave + rectas",
    "distance_km": 8,
    "intensity": "E",
-   "duration_min": null,
+   "duration_min": 46,
    "key": false,
    "blocks": [
     {
      "name": "Rodaje",
-     "text": "7 km continuos a {E} (FC <140, debes poder hablar)"
+     "text": "40' a {E} (FC <140)"
     },
     {
      "name": "Rectas",
@@ -2054,8 +2058,8 @@
    "steps": [
     {
      "type": "interval",
-     "dist_m": 7000.0,
-     "intensity": "E"
+     "intensity": "E",
+     "time_s": 2400
     },
     {
      "type": "repeat",
@@ -2096,27 +2100,23 @@
   {
    "date": "2026-12-19",
    "sport": "run",
-   "title": "Específico 10K: 2x3 km + rápidos",
+   "title": "Específico 10K: 2x12'30\" + rápidos",
    "distance_km": 11,
    "intensity": "CUR",
-   "duration_min": null,
+   "duration_min": 63,
    "key": true,
    "blocks": [
     {
      "name": "Calentamiento",
-     "text": "2 km a {E} + 4 rectas"
+     "text": "10' a {E} (FC <140) + 4 rectas"
     },
     {
      "name": "Principal",
-     "text": "2x3 km a {CUR}, recuperando 3' trotando"
-    },
-    {
-     "name": "Rápidos",
-     "text": "4x200 m a {R}, recuperando 200 m trote"
+     "text": "2x12'30\" a {CUR}, recuperando 3' trotando, y 4x45\" a {R}, recuperando 1'10\" trote"
     },
     {
      "name": "Vuelta a la calma",
-     "text": "1,5 km a {E}"
+     "text": "10' a {E} (FC <140)"
     }
    ],
    "why": "6 km a ritmo de carrera: si salen cómodos, el objetivo es realista.",
@@ -2124,8 +2124,8 @@
    "steps": [
     {
      "type": "warmup",
-     "dist_m": 2000.0,
-     "intensity": "E"
+     "intensity": "E",
+     "time_s": 600
     },
     {
      "type": "repeat",
@@ -2149,8 +2149,8 @@
      "steps": [
       {
        "type": "interval",
-       "dist_m": 3000.0,
-       "intensity": "CUR"
+       "intensity": "CUR",
+       "time_s": 750
       },
       {
        "type": "recovery",
@@ -2165,20 +2165,20 @@
      "steps": [
       {
        "type": "interval",
-       "dist_m": 200.0,
-       "intensity": "R"
+       "intensity": "R",
+       "time_s": 45
       },
       {
        "type": "recovery",
-       "dist_m": 200.0,
-       "note": "Trote"
+       "note": "Trote",
+       "time_s": 70
       }
      ]
     },
     {
      "type": "cooldown",
-     "dist_m": 1500.0,
-     "intensity": "E"
+     "intensity": "E",
+     "time_s": 600
     }
    ]
   },
@@ -2188,12 +2188,12 @@
    "title": "Tirada larga",
    "distance_km": 16,
    "intensity": "E",
-   "duration_min": null,
+   "duration_min": 85,
    "key": false,
    "blocks": [
     {
      "name": "Tirada",
-     "text": "16 km a {E}, FC <145"
+     "text": "85' a {E} (FC <145)"
     }
    ],
    "why": "Última tirada larga.",
@@ -2201,8 +2201,8 @@
    "steps": [
     {
      "type": "interval",
-     "dist_m": 16000.0,
-     "intensity": "E"
+     "intensity": "E",
+     "time_s": 5100
     }
    ]
   },
@@ -2227,23 +2227,23 @@
   {
    "date": "2026-12-22",
    "sport": "run",
-   "title": "Intervalos: 5x800 m",
+   "title": "Intervalos: 5x3'",
    "distance_km": 8.5,
    "intensity": "I",
-   "duration_min": null,
+   "duration_min": 54,
    "key": true,
    "blocks": [
     {
      "name": "Calentamiento",
-     "text": "2,5 km a {E} + 4 rectas"
+     "text": "15' a {E} (FC <140) + 4 rectas"
     },
     {
      "name": "Principal",
-     "text": "5x800 m a {I}, recuperando 2' trotando"
+     "text": "5x3' a {I}, recuperando 2' trotando"
     },
     {
      "name": "Vuelta a la calma",
-     "text": "1,5 km a {E}"
+     "text": "10' a {E} (FC <140)"
     }
    ],
    "why": "Mantener la intensidad bajando volumen.",
@@ -2251,8 +2251,8 @@
    "steps": [
     {
      "type": "warmup",
-     "dist_m": 2500.0,
-     "intensity": "E"
+     "intensity": "E",
+     "time_s": 900
     },
     {
      "type": "repeat",
@@ -2276,8 +2276,8 @@
      "steps": [
       {
        "type": "interval",
-       "dist_m": 800.0,
-       "intensity": "I"
+       "intensity": "I",
+       "time_s": 180
       },
       {
        "type": "recovery",
@@ -2288,8 +2288,8 @@
     },
     {
      "type": "cooldown",
-     "dist_m": 1500.0,
-     "intensity": "E"
+     "intensity": "E",
+     "time_s": 600
     }
    ]
   },
@@ -2333,20 +2333,20 @@
    "title": "Umbral + ritmo de carrera",
    "distance_km": 10,
    "intensity": "T",
-   "duration_min": null,
+   "duration_min": 52,
    "key": true,
    "blocks": [
     {
      "name": "Calentamiento",
-     "text": "2 km a {E}"
+     "text": "10' a {E} (FC <140)"
     },
     {
      "name": "Principal",
-     "text": "3 km a {T}, 2' trote, y 3x1 km a {CUR} recuperando 1'30\""
+     "text": "13' a {T} + 2' trote, y 3x4'15\" a {CUR}, recuperando 1'30\" trote"
     },
     {
      "name": "Vuelta a la calma",
-     "text": "1,5 km a {E}"
+     "text": "10' a {E} (FC <140)"
     }
    ],
    "why": "Último estímulo fuerte: a partir de aquí, solo afinar.",
@@ -2354,13 +2354,13 @@
    "steps": [
     {
      "type": "warmup",
-     "dist_m": 2000.0,
-     "intensity": "E"
+     "intensity": "E",
+     "time_s": 600
     },
     {
      "type": "interval",
-     "dist_m": 3000.0,
-     "intensity": "T"
+     "intensity": "T",
+     "time_s": 780
     },
     {
      "type": "recovery",
@@ -2373,8 +2373,8 @@
      "steps": [
       {
        "type": "interval",
-       "dist_m": 1000.0,
-       "intensity": "CUR"
+       "intensity": "CUR",
+       "time_s": 255
       },
       {
        "type": "recovery",
@@ -2385,8 +2385,8 @@
     },
     {
      "type": "cooldown",
-     "dist_m": 1500.0,
-     "intensity": "E"
+     "intensity": "E",
+     "time_s": 600
     }
    ]
   },
@@ -2396,12 +2396,12 @@
    "title": "Rodaje largo suave",
    "distance_km": 12,
    "intensity": "E",
-   "duration_min": null,
+   "duration_min": 65,
    "key": false,
    "blocks": [
     {
      "name": "Rodaje",
-     "text": "12 km a {E}"
+     "text": "65' a {E} (FC <140)"
     }
    ],
    "why": "Mantener el volumen sin cansar.",
@@ -2409,8 +2409,8 @@
    "steps": [
     {
      "type": "interval",
-     "dist_m": 12000.0,
-     "intensity": "E"
+     "intensity": "E",
+     "time_s": 3900
     }
    ]
   },
@@ -2429,20 +2429,20 @@
    "title": "Activación pre-carrera",
    "distance_km": 6,
    "intensity": "CUR",
-   "duration_min": null,
+   "duration_min": 31,
    "key": false,
    "blocks": [
     {
      "name": "Calentamiento",
-     "text": "3 km a {E}"
+     "text": "15' a {E} (FC <140)"
     },
     {
      "name": "Principal",
-     "text": "4x400 m a {CUR}, recuperando 1' andando"
+     "text": "4x1'40\" a {CUR}, recuperando 1' andando"
     },
     {
      "name": "Vuelta a la calma",
-     "text": "1 km a {E}"
+     "text": "5' a {E} (FC <140)"
     }
    ],
    "why": "Recordar el ritmo de carrera con piernas frescas.",
@@ -2450,8 +2450,8 @@
    "steps": [
     {
      "type": "warmup",
-     "dist_m": 3000.0,
-     "intensity": "E"
+     "intensity": "E",
+     "time_s": 900
     },
     {
      "type": "repeat",
@@ -2459,8 +2459,8 @@
      "steps": [
       {
        "type": "interval",
-       "dist_m": 400.0,
-       "intensity": "CUR"
+       "intensity": "CUR",
+       "time_s": 100
       },
       {
        "type": "recovery",
@@ -2471,8 +2471,8 @@
     },
     {
      "type": "cooldown",
-     "dist_m": 1000.0,
-     "intensity": "E"
+     "intensity": "E",
+     "time_s": 300
     }
    ]
   },
