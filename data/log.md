@@ -18,6 +18,10 @@ Registre cronològic curt d'ajustos i decisions preses en converses amb l'entren
 
 
 
+
+## 2026-11-13
+Dimecres 11: gimnàs tren superior (31') + natació tècnica 1800 m ✓. Dijous 12: descans. Umbral 3x5' passa
+a avui divendres 13 (son 7,7 h, VFC 88 dins del rang, Garmin "recovery"). Càrrega aguda baixa aquesta setmana.
 ## 2026-11-11 (5)
 L'atleta sempre entrena córrer per temps: totes les sessions de córrer des del 12/11 passen a minuts
 (rodatges/tirades arrodonits a 5', sèries convertides amb el VDOT 50: 3x1200 → 3x5', 5x800 → 5x3'…).

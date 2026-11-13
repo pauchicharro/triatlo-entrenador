@@ -502,6 +502,10 @@
   {
    "date": "2026-11-11",
    "summary": "Carrera por tiempo (como entrena el atleta): rodajes, tiradas y series en minutos desde el 12/11; tests y carrera, por distancia."
+  },
+  {
+   "date": "2026-11-13",
+   "summary": "Jueves 12 descanso; umbral 3x5' al viernes 13."
   }
  ],
  "sessions": [
@@ -863,6 +867,14 @@
   },
   {
    "date": "2026-11-12",
+   "sport": "rest",
+   "title": "Descanso",
+   "intensity": null,
+   "blocks": [],
+   "notes": "Descanso completo (cambiado con el viernes)."
+  },
+  {
+   "date": "2026-11-13",
    "sport": "run",
    "title": "Umbral: 3x5'",
    "distance_km": 7.5,
@@ -884,7 +896,7 @@
     }
    ],
    "why": "El umbral es lo que más mejora el 10K: subir el ritmo que aguantas sin acumular lactato.",
-   "notes": "Recuperada del martes 10 (ese día hiciste pierna en el gimnasio; el lunes, Hyrox). Duro pero controlado.",
+   "notes": "Movida del jueves (descansaste). Llegas fresco: VFC normal, buen sueño.",
    "steps": [
     {
      "type": "warmup",
@@ -929,14 +941,6 @@
      "time_s": 600
     }
    ]
-  },
-  {
-   "date": "2026-11-13",
-   "sport": "rest",
-   "title": "Descanso",
-   "intensity": null,
-   "blocks": [],
-   "notes": "Descanso completo tras el umbral del jueves (movido del miércoles)."
   },
   {
    "date": "2026-11-14",
