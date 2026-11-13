@@ -167,6 +167,16 @@ def sync_window(days=7, today=None, log=print):
     with db.connect() as conn:
         have = {(r["date"], r["name"]): r for r in conn.execute(
             "SELECT * FROM garmin_uploads WHERE date BETWEEN ? AND ?", (today.isoformat(), end.isoformat()))}
+        # Sesiones movidas desde días ya pasados (p. ej. de ayer a hoy): su entreno viejo
+        # sigue en el calendario de Garmin; si ya no está en el plan, también se borra.
+        past = conn.execute("SELECT * FROM garmin_uploads WHERE date BETWEEN ? AND ?",
+                            ((today - timedelta(days=3)).isoformat(), (today - timedelta(days=1)).isoformat())).fetchall()
+    planned_past = {(r["date"], build_workout(json.loads(r["session"]), pz)["workoutName"])
+                    for r in db.plan_sessions(plan["id"], (today - timedelta(days=3)).isoformat(), (today - timedelta(days=1)).isoformat())
+                    if json.loads(r["session"]).get("steps") and r["sport"] in SPORTS}
+    for r in past:
+        if (r["date"], r["name"]) not in planned_past:
+            have[(r["date"], r["name"])] = r
     todo_up = [(k, v) for k, v in want.items() if k not in have or have[k]["hash"] != v[1]]
     todo_del = [r for k, r in have.items() if k not in want or have[k]["hash"] != want[k][1]]
     if not todo_up and not todo_del:
