@@ -510,6 +510,10 @@
   {
    "date": "2026-11-16",
    "summary": "Semana 3 con 3 carreras (~28 km) en vez de 4: la anterior solo hubo 18 km. Pierna el jueves con natación, viernes bici suave, lunes tren superior."
+  },
+  {
+   "date": "2026-11-16",
+   "summary": "Lunes 16 rodaje suave 25' (sin tiempo para gimnasio, algo cansado); natación + tren superior al viernes 20 en lugar de la bici."
   }
  ],
  "sessions": [
@@ -1016,21 +1020,28 @@
   },
   {
    "date": "2026-11-16",
-   "sport": "swim",
-   "template": "swimA",
+   "sport": "run",
+   "title": "Rodaje muy suave",
+   "distance_km": 4.5,
+   "duration_min": 25,
    "intensity": "E",
-   "distance_m": 2000,
-   "notes": "",
-   "why": "Mantener la natación para 2027 y sumar volumen aeróbico sin impacto."
-  },
-  {
-   "date": "2026-11-16",
-   "sport": "gym",
-   "template": "gymUpper",
-   "focus": "Tren superior",
-   "intensity": null,
-   "notes": "Mañana son series: hoy nada de piernas.",
-   "why": "Tren superior y core: postura, braceo y estética."
+   "key": false,
+   "blocks": [
+    {
+     "name": "Rodaje",
+     "text": "25' a {E}, por la parte lenta del rango (FC <135). Si a los 10' sigues sin sensaciones, termina andando"
+    }
+   ],
+   "steps": [
+    {
+     "type": "interval",
+     "time_s": 1500,
+     "intensity": "E",
+     "note": "Muy suave, FC <135"
+    }
+   ],
+   "why": "Moverte sin cansarte: llegas fresco a las series de mañana.",
+   "notes": "Sin rectas hoy. Cambiado por natación + gimnasio (sin tiempo y algo cansado; VFC y sueño bien)."
   },
   {
    "date": "2026-11-17",
@@ -1129,11 +1140,21 @@
   },
   {
    "date": "2026-11-20",
-   "sport": "bike",
-   "template": "bikeE",
+   "sport": "swim",
+   "template": "swimA",
    "intensity": "E",
-   "notes": "Suave de verdad (FC 125-140): mañana es umbral. La del sábado pasado fue a FC 141 de media durante 90'; hoy, más tranquilo.",
-   "why": "Volumen aeróbico sin impacto, sin cargar las piernas antes del umbral."
+   "distance_m": 2000,
+   "notes": "Movida del lunes.",
+   "why": "Volumen aeróbico sin impacto antes del umbral del sábado."
+  },
+  {
+   "date": "2026-11-20",
+   "sport": "gym",
+   "template": "gymUpper",
+   "focus": "Tren superior",
+   "intensity": null,
+   "notes": "Movido del lunes. Solo tren superior: mañana es umbral.",
+   "why": "Tren superior y core: postura, braceo y estética."
   },
   {
    "date": "2026-11-21",

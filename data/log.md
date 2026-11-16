@@ -20,6 +20,11 @@ Registre cronològic curt d'ajustos i decisions preses en converses amb l'entren
 
 
 
+
+## 2026-11-16 (2)
+L'atleta va cansat i sense temps per al gimnàs: avui rodatge molt suau 25' (FC <135) en lloc de natació +
+tren superior, que passen a divendres 20 (en lloc de la bici). Dades de recuperació bones (VFC 98, son 7 h,
+Body Battery 77): el cansament sembla més de vida que físic; les sèries de demà es mantenen.
 ## 2026-11-16 (reajust setmanal manual)
 Setmana 2: umbral 3x5' (13/11) fet però **massa ràpid** (4:04-4:07 vs 4:13-4:18, FC fins a 176; escalfament i
 tornada també ràpids, FC 151-154); dissabte bici 90' (FC 141, TRIMP 239) en lloc de rodatge suau; diumenge
