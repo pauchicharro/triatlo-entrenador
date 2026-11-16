@@ -22,6 +22,11 @@ Registre cronològic curt d'ajustos i decisions preses en converses amb l'entren
 
 
 
+
+## 2026-11-16 (4)
+Marató de Salzburg: serà la primera. Desig sub-3 (VDOT ~53,5 necessari; avui 50 → ~3:10). Objectius A sub-3 /
+B 3:05 / C acabar fort; decidir ritme amb mitja marató de test (març-abril). Sense mitjos ironmans el 2027:
+la marató és el focus de primavera.
 ## 2026-11-16 (3)
 **Inscrit a la Marató de Salzburg (diumenge 23/05/2027, 8:30).** Anotat al perfil. Després de la San Silvestre
 toca transició curta i bloc de marató d'~18 setmanes. Pendent de concretar objectiu i calendari de triatló 2027.

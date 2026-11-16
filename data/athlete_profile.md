@@ -10,7 +10,12 @@
 ## Següent objectiu (inscrit)
 - **Marató de Salzburg — diumenge 23 de maig de 2027, 8:30** (inscrit el 16/11/2026). ~20 setmanes després de
   la San Silvestre: 1-2 setmanes de transició + bloc de marató d'~18 setmanes (gener → maig).
-- Predicció amb VDOT 50: ~3:10. Pendent: maratons anteriors, objectiu de temps i triatlons previstos el 2027.
+- **Primera marató.** Desig: **sub-3** (4:16/km, VDOT ~53,5; avui VDOT 50 → ~3:10). Molt ambiciós: a la primera
+  marató se sol rendir per sota de la predicció del VDOT (manca de resistència específica). Objectius per nivells:
+  A sub-3, B 3:05, C acabar fort. El ritme de cursa es decidirà a març-abril amb una mitja marató de test
+  (sub-3 necessitaria ~1:26 o millor).
+- **No té mitjos ironmans el 2027** → la marató és l'objectiu principal de la primavera: natació i bici en manteniment
+  durant el bloc, gimnàs 2 dies (cames en manteniment a les setmanes de més volum).
 - Criteris ja parlats: tirades llargues per temps, màxim ~2 h 30; pujar el volum de córrer de forma gradual
   (venia de 12-23 km/setmana); mantenir 2 dies de gimnàs (cames en manteniment a les setmanes de més volum).
 
