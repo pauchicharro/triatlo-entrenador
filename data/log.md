@@ -19,6 +19,13 @@ Registre cronològic curt d'ajustos i decisions preses en converses amb l'entren
 
 
 
+
+## 2026-11-16 (reajust setmanal manual)
+Setmana 2: umbral 3x5' (13/11) fet però **massa ràpid** (4:04-4:07 vs 4:13-4:18, FC fins a 176; escalfament i
+tornada també ràpids, FC 151-154); dissabte bici 90' (FC 141, TRIMP 239) en lloc de rodatge suau; diumenge
+tirada 50' perfecta (5:16/km, FC 142, desacoblament 1%). Córrer setmana 2: ~18 km. Setmana 3: 3 curses (~28 km)
+en lloc de 4 (~37): sèries dt, umbral ds, tirada 50' dg; dijous natació + cames (dilluns i divendres van abans
+de sessió clau), divendres bici suau, dilluns natació + tren superior. Insistir a respectar els ritmes.
 ## 2026-11-13
 Dimecres 11: gimnàs tren superior (31') + natació tècnica 1800 m ✓. Dijous 12: descans. Umbral 3x5' passa
 a avui divendres 13 (son 7,7 h, VFC 88 dins del rang, Garmin "recovery"). Càrrega aguda baixa aquesta setmana.
