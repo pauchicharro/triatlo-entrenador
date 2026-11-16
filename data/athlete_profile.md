@@ -7,6 +7,13 @@
 - Objectiu anterior (completat 25/10/2026): Challenge Barcelona Triatló, olímpica. Pla arxivat a `data/plans/2026_challenge_barcelona.md`.
 - Volum de córrer recent baix (12-23 km/setmana a set-oct), per això la progressió de km és gradual.
 
+## Següent objectiu (inscrit)
+- **Marató de Salzburg — diumenge 23 de maig de 2027, 8:30** (inscrit el 16/11/2026). ~20 setmanes després de
+  la San Silvestre: 1-2 setmanes de transició + bloc de marató d'~18 setmanes (gener → maig).
+- Predicció amb VDOT 50: ~3:10. Pendent: maratons anteriors, objectiu de temps i triatlons previstos el 2027.
+- Criteris ja parlats: tirades llargues per temps, màxim ~2 h 30; pujar el volum de córrer de forma gradual
+  (venia de 12-23 km/setmana); mantenir 2 dies de gimnàs (cames en manteniment a les setmanes de més volum).
+
 ## Experiència
 - 10 anys fent triatló.
 - Acaba de completar el Challenge Walchsee (mitjà Ironman, 28/06/2026): 1,89km natació / 78,05km bici (1005m desnivell) / 20,80km córrer, 4:56:01. Ritme de gestió de l'esforç molt bo (FC progressiva 133→156→168 per disciplina). Anàlisi completa a `data/garmin/activities/23406635364.json`.

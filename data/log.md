@@ -21,6 +21,10 @@ Registre cronològic curt d'ajustos i decisions preses en converses amb l'entren
 
 
 
+
+## 2026-11-16 (3)
+**Inscrit a la Marató de Salzburg (diumenge 23/05/2027, 8:30).** Anotat al perfil. Després de la San Silvestre
+toca transició curta i bloc de marató d'~18 setmanes. Pendent de concretar objectiu i calendari de triatló 2027.
 ## 2026-11-16 (2)
 L'atleta va cansat i sense temps per al gimnàs: avui rodatge molt suau 25' (FC <135) en lloc de natació +
 tren superior, que passen a divendres 20 (en lloc de la bici). Dades de recuperació bones (VFC 98, son 7 h,
