@@ -23,6 +23,12 @@ Registre cronològic curt d'ajustos i decisions preses en converses amb l'entren
 
 
 
+
+## 2026-11-18
+Sèries 5x3' (17/11) molt ben fetes: 3:53-3:53-3:55-3:54-3:59 (objectiu 3:50-3:56), TE 3,2 "VO2max". A millorar:
+recuperacions caminant/parat (tocava trotar) i escalfament un altre cop ràpid (FC 146-152; tercera sessió
+seguida). Dilluns 16 no va córrer (fa de dia de descans). Natació tècnica + cames passen a avui dimecres 18;
+dijous 19 lliure (bici molt suau opcional, sense córrer).
 ## 2026-11-16 (4)
 Marató de Salzburg: serà la primera. Desig sub-3 (VDOT ~53,5 necessari; avui 50 → ~3:10). Objectius A sub-3 /
 B 3:05 / C acabar fort; decidir ritme amb mitja marató de test (març-abril). Sense mitjos ironmans el 2027:

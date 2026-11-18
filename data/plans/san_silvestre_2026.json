@@ -514,6 +514,10 @@
   {
    "date": "2026-11-16",
    "summary": "Lunes 16 rodaje suave 25' (sin tiempo para gimnasio, algo cansado); natación + tren superior al viernes 20 en lugar de la bici."
+  },
+  {
+   "date": "2026-11-18",
+   "summary": "Natación técnica + tren inferior al miércoles 18 (el lunes no entrenó); jueves 19 libre."
   }
  ],
  "sessions": [
@@ -1114,14 +1118,6 @@
   },
   {
    "date": "2026-11-18",
-   "sport": "rest",
-   "title": "Descanso",
-   "intensity": null,
-   "blocks": [],
-   "notes": "Descanso completo. Si te apetece, 20' de movilidad o paseo."
-  },
-  {
-   "date": "2026-11-19",
    "sport": "swim",
    "template": "swimB",
    "intensity": "E",
@@ -1130,13 +1126,21 @@
    "why": "Volumen aeróbico sin impacto y técnica de natación."
   },
   {
-   "date": "2026-11-19",
+   "date": "2026-11-18",
    "sport": "gym",
    "template": "gymLower",
    "focus": "Tren inferior",
    "intensity": null,
-   "notes": "Pierna hoy: el viernes es suave y el umbral del sábado queda a dos días.",
+   "notes": "Movido del jueves: pierna a 3 días del umbral del sábado.",
    "why": "Fuerza y pliometría: economía de carrera, tendones y estética."
+  },
+  {
+   "date": "2026-11-19",
+   "sport": "rest",
+   "title": "Descanso",
+   "intensity": null,
+   "blocks": [],
+   "notes": "Libre. Si te apetece moverte, 30-45' de bici muy suave (FC <130); nada de correr: esta semana ya llevas la carga justa."
   },
   {
    "date": "2026-11-20",
