@@ -44,7 +44,17 @@ def _auto_sync_loop():
 
     def loop():
         time.sleep(5)
+        n = 0
         while True:
+            if n % 4 == 0:  # cada hora: plan ↔ GitHub ↔ Garmin, web pública y versión móvil cifrada
+                try:
+                    import subprocess
+                    root = Path(__file__).parent.parent
+                    subprocess.run([str(root / ".venv" / "bin" / "python"), str(root / "app" / "plan_sync.py")],
+                                   cwd=root, capture_output=True, timeout=900)
+                except Exception as e:
+                    print(f"plan_sync: {e}", flush=True)
+            n += 1
             try:
                 import garmin_source
                 garmin_source.sync(days=3, log=lambda *_: None)

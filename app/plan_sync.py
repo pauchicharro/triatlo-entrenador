@@ -26,7 +26,8 @@ sys.path.insert(0, str(ROOT))  # garmin_sync.py está en la raíz del proyecto
 import db  # noqa: E402
 import plan_tool  # noqa: E402
 
-PUBLISHED = ["data/training_plan.md", "data/fitness.json", "data/activity_days.json", "docs/index.html"]
+PUBLISHED = ["data/training_plan.md", "data/fitness.json", "data/activity_days.json", "docs/index.html",
+             "docs/entrenos/index.html"]
 
 
 def git(*args, check=True):
@@ -106,6 +107,12 @@ def main():
 
     # 4. Web pública + subir lo generado aquí
     subprocess.run([str(ROOT / ".venv" / "bin" / "python"), "generate_site.py"], cwd=ROOT, capture_output=True)
+    try:  # versión móvil cifrada (docs/entrenos/)
+        import mobile_site
+        if mobile_site.write():
+            print("Versión móvil actualizada")
+    except Exception as e:
+        print(f"Versión móvil falló: {e}")
     git("add", *[p for p in PUBLISHED if (ROOT / p).exists()])
     if subprocess.run(["git", "diff", "--cached", "--quiet"], cwd=ROOT).returncode != 0:
         git("commit", "-q", "-m", "Sincronització automàtica del pla (Mac)\n\n"
