@@ -518,6 +518,10 @@
   {
    "date": "2026-11-18",
    "summary": "Natación técnica + tren inferior al miércoles 18 (el lunes no entrenó); jueves 19 libre."
+  },
+  {
+   "date": "2026-11-19",
+   "summary": "Jueves 19 rodaje suave 30' (recupera el del lunes, no hecho)."
   }
  ],
  "sessions": [
@@ -1136,11 +1140,28 @@
   },
   {
    "date": "2026-11-19",
-   "sport": "rest",
-   "title": "Descanso",
-   "intensity": null,
-   "blocks": [],
-   "notes": "Libre. Si te apetece moverte, 30-45' de bici muy suave (FC <130); nada de correr: esta semana ya llevas la carga justa."
+   "sport": "run",
+   "title": "Rodaje suave",
+   "distance_km": 5,
+   "duration_min": 30,
+   "intensity": "E",
+   "key": false,
+   "blocks": [
+    {
+     "name": "Rodaje",
+     "text": "30' a {E}, por la parte lenta del rango (FC <140). Sin rectas: ayer pliometría y el sábado umbral"
+    }
+   ],
+   "steps": [
+    {
+     "type": "interval",
+     "time_s": 1800,
+     "intensity": "E",
+     "note": "Suave de verdad, FC <140"
+    }
+   ],
+   "why": "Recupera el rodaje del lunes (no hecho) sin añadir carga a la semana.",
+   "notes": "Si notas las piernas cargadas de la pierna de ayer, quédate en 20-25'."
   },
   {
    "date": "2026-11-20",

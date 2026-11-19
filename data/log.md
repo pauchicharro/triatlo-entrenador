@@ -24,6 +24,10 @@ Registre cronològic curt d'ajustos i decisions preses en converses amb l'entren
 
 
 
+
+## 2026-11-19
+Dimecres 18: gimnàs cames 37' + natació tècnica ✓; son 8,8 h (93). L'atleta vol córrer avui (dijous, lliure):
+rodatge suau 30' (FC <140, sense rectes), que recupera el del dilluns no fet; la càrrega setmanal queda com estava prevista.
 ## 2026-11-18
 Sèries 5x3' (17/11) molt ben fetes: 3:53-3:53-3:55-3:54-3:59 (objectiu 3:50-3:56), TE 3,2 "VO2max". A millorar:
 recuperacions caminant/parat (tocava trotar) i escalfament un altre cop ràpid (FC 146-152; tercera sessió
