@@ -25,6 +25,10 @@ Registre cronològic curt d'ajustos i decisions preses en converses amb l'entren
 
 
 
+## 2026-11-22
+- Divendres sense natació/gimnàs (falta de temps) i dissabte sense llindar 2x10' (diarrea i cansament). No es recupera el llindar.
+- Diumenge: la tirada de 50' passa a 45' suaus (FC <140), amb opció de tallar a 30' si l'estómac no respon.
+
 ## 2026-11-19
 Dimecres 18: gimnàs cames 37' + natació tècnica ✓; son 8,8 h (93). L'atleta vol córrer avui (dijous, lliure):
 rodatge suau 30' (FC <140, sense rectes), que recupera el del dilluns no fet; la càrrega setmanal queda com estava prevista.

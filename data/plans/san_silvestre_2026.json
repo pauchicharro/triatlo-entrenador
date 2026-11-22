@@ -522,6 +522,10 @@
   {
    "date": "2026-11-19",
    "summary": "Jueves 19 rodaje suave 30' (recupera el del lunes, no hecho)."
+  },
+  {
+   "date": "2026-11-22",
+   "summary": "Sábado sin umbral por diarrea y cansancio, viernes sin natación/gym. La tirada del domingo pasa a 45' suaves (FC<140); no se recupera el umbral."
   }
  ],
  "sessions": [
@@ -1237,25 +1241,24 @@
   {
    "date": "2026-11-22",
    "sport": "run",
-   "title": "Tirada larga",
+   "title": "Rodaje largo suave (post-gastroenteritis)",
    "distance_km": 9.5,
    "intensity": "E",
-   "duration_min": 50,
+   "duration_min": 45,
    "key": false,
    "blocks": [
     {
-     "name": "Tirada",
-     "text": "50' a {E} (FC <145)"
+     "name": "Rodaje",
+     "text": "45' a {E} (FC <140)"
     }
    ],
    "why": "Resistencia aeróbica.",
-   "notes": "Igual que la del 15/11: la subimos la semana que viene si va bien.",
+   "notes": "Después de la diarrea del sábado: todo suave, nada de umbral. Bebe antes y lleva agua/sales si hace falta. Si a los 20' notas el estómago o las piernas vacías, corta a 30'.",
    "steps": [
     {
      "type": "interval",
-     "time_s": 3000,
-     "intensity": "E",
-     "note": "Tirada suave, FC <145"
+     "time_s": 2700,
+     "intensity": "E"
     }
    ]
   },
