@@ -60,7 +60,7 @@ Objectiu: **40:00**. Bloque de 8 semanas centrado en correr (4 días/semana). Na
 | Dijous 19/11 | **Córrer 30min** — Rodaje suave. Rodaje: 30' a 5:07-5:38/km, por la parte lenta del rango (FC <140). Sin rectas: ayer pliometría y el sábado umbral. |
 | Divendres 20/11 | **Natació 2000m** — Natación aeróbica. Calentamiento: 400 m: 200 m crol suave + 100 m espalda + 100 m crol con pull buoy. Técnica: 6x50 m con aletas: 25 m catch-up + 25 m crol normal, salida 1'10". Principal: 8x125 m a ritmo aeróbico (RPE 5/10, ~1:40/100m), salida 2'25". Vuelta a la calma: 300 m: 200 m crol muy suave + 100 m espalda. + **Gimnàs 35min** — Tren superior + core (Tren superior). Activación: rotaciones de hombro con goma + 2x15 face pull con goma. Dominadas o jalón al pecho: 3x6-8 dominadas (asistidas si hace falta) o jalón al pecho, descanso 90". Press de banca con mancuernas: 3x10, RPE 7, descanso 90". Remo con mancuerna: 3x10 por brazo apoyado en banco, descanso 60". Press militar con mancuernas: 3x10 de pie, sin arquear la espalda, descanso 60". Core: 2 rondas: dead bug 10/lado · Pallof press con goma 10/lado · plancha frontal 40 s. |
 | Dissabte 21/11 | **Córrer 44min** — Umbral continuo: 2x10'. Calentamiento: 10' a 5:07-5:38/km (FC <140). Principal: 2x10' a 4:13-4:18/km, recuperando 2' trotando. Vuelta a la calma: 10' a 5:07-5:38/km (FC <140). |
-| Diumenge 22/11 | **Córrer 45min** — Rodaje largo suave (post-gastroenteritis). Rodaje: 45' a 5:07-5:38/km (FC <140). |
+| Diumenge 22/11 | **Córrer 50min** — Tirada larga suave. Rodaje: 50' a 5:07-5:38/km (FC <140). |
 
 ## Setmana 4 (23/11 - 29/11) — Construcción
 
