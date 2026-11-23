@@ -25,6 +25,11 @@ Registre cronològic curt d'ajustos i decisions preses en converses amb l'entren
 
 
 
+## 2026-11-23 — Setmana 23-29/11
+- Setmana anterior: 24 km en 3 sortides (5x3' bé, rodatge 30' FC 135 perfecte, tirada 50' a 5:18 amb FC 145 → massa ràpida). Sense llindar ni natació/gimnàs divendres. CTL baixant (97), TSB +36.
+- Ajust: 4x4' a {I} (no 5x4'), dijous 30' + rectes, dissabte es recupera el 2x10' a {T} (no 3x8'30"), diumenge 50' suaus sense final a M, dilluns cama lleugera (dimarts i dissabte clau). ~33 km; la setmana següent és descàrrega amb re-test el 5/12.
+- Punt clau: rodatges suaus de veritat (5:30-5:40, FC <140).
+
 ## 2026-11-22
 - Divendres sense natació/gimnàs (falta de temps) i dissabte sense llindar 2x10' (diarrea i cansament). No es recupera el llindar.
 - Diumenge: tirada de 50' (l'atleta es troba bé), estrictament suau (FC <140), tallant si l'estómac no respon.

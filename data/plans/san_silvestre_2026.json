@@ -526,6 +526,10 @@
   {
    "date": "2026-11-22",
    "summary": "Sábado sin umbral por diarrea y cansancio, viernes sin natación/gym. La tirada del domingo se mantiene en 50' pero estrictamente suave (FC<140); no se recupera el umbral."
+  },
+  {
+   "date": "2026-11-23",
+   "summary": "Semana 23-29/11 ajustada a una semana anterior cortada (24 km, 3 rodajes, umbral perdido): 4x4' en vez de 5x4', rodaje del jueves a 30', se recupera el 2x10' el sábado en lugar del 3x8'30\", tirada de 50' suave sin final a M, pierna ligera el lunes. ~33 km, antes de la descarga y el re-test del 5/12."
   }
  ],
  "sessions": [
@@ -1274,41 +1278,41 @@
   {
    "date": "2026-11-23",
    "sport": "gym",
-   "template": "gymLower",
+   "template": "gymLower_light",
    "focus": "Tren inferior",
    "intensity": null,
-   "notes": "",
-   "why": "Fuerza y pliometría: mejor economía de carrera y tendones más fuertes (Aquiles, rodilla)."
+   "notes": "Martes y sábado son sesiones clave: pierna suave, RPE ≤7 y sin pliometría.",
+   "why": "Mantener la fuerza de piernas sin llegar cargado a las series del martes."
   },
   {
    "date": "2026-11-24",
    "sport": "run",
-   "title": "Intervalos: 5x4'",
-   "distance_km": 10,
+   "title": "Intervalos: 4x4'",
+   "distance_km": 9.5,
    "intensity": "I",
-   "duration_min": 62,
+   "duration_min": 50,
    "key": true,
    "blocks": [
     {
      "name": "Calentamiento",
-     "text": "15' a {E} (FC <140) + 4 rectas"
+     "text": "12' a {E} (FC <140) + 4 rectas"
     },
     {
      "name": "Principal",
-     "text": "5x4' a {I}, recuperando 2'30\" trotando"
+     "text": "4x4' a {I}, recuperando 2'30\" trotando"
     },
     {
      "name": "Vuelta a la calma",
      "text": "10' a {E} (FC <140)"
     }
    ],
-   "why": "VO2máx con series más largas: ya muy cerca de lo que pide el 10K.",
-   "notes": "",
+   "why": "Progresión desde el 5x3' del 17/11 (16' a ritmo I en vez de 15', series más largas). Solo 4: vienes de una semana cortada por la diarrea.",
+   "notes": "Calentamiento de verdad suave (5:30-5:40). Las series a 3:50-3:56, no más rápido: si la última sale a 3:45 es que te pasaste en las primeras.",
    "steps": [
     {
      "type": "warmup",
-     "intensity": "E",
-     "time_s": 900
+     "time_s": 720,
+     "intensity": "E"
     },
     {
      "type": "repeat",
@@ -1328,12 +1332,12 @@
     },
     {
      "type": "repeat",
-     "reps": 5,
+     "reps": 4,
      "steps": [
       {
        "type": "interval",
-       "intensity": "I",
-       "time_s": 240
+       "time_s": 240,
+       "intensity": "I"
       },
       {
        "type": "recovery",
@@ -1344,8 +1348,8 @@
     },
     {
      "type": "cooldown",
-     "intensity": "E",
-     "time_s": 600
+     "time_s": 600,
+     "intensity": "E"
     }
    ]
   },
@@ -1361,14 +1365,14 @@
    "date": "2026-11-26",
    "sport": "run",
    "title": "Rodaje suave + rectas",
-   "distance_km": 8,
+   "distance_km": 6,
    "intensity": "E",
-   "duration_min": 46,
+   "duration_min": 36,
    "key": false,
    "blocks": [
     {
      "name": "Rodaje",
-     "text": "40' a {E} (FC <140)"
+     "text": "30' a {E} (FC <140)"
     },
     {
      "name": "Rectas",
@@ -1376,12 +1380,12 @@
     }
    ],
    "why": "Construye base aeróbica y economía sin acumular fatiga. Las rectas activan la velocidad sin coste.",
-   "notes": "",
+   "notes": "Ritmo del jueves 19/11 (5:35, FC 135): ese es el ritmo suave bueno.",
    "steps": [
     {
      "type": "interval",
-     "intensity": "E",
-     "time_s": 2400
+     "time_s": 1800,
+     "intensity": "E"
     },
     {
      "type": "repeat",
@@ -1422,10 +1426,10 @@
   {
    "date": "2026-11-28",
    "sport": "run",
-   "title": "Umbral: 3x8'30\"",
-   "distance_km": 10,
+   "title": "Umbral: 2x10'",
+   "distance_km": 8.5,
    "intensity": "T",
-   "duration_min": 50,
+   "duration_min": 42,
    "key": true,
    "blocks": [
     {
@@ -1434,74 +1438,65 @@
     },
     {
      "name": "Principal",
-     "text": "3x8'30\" a {T}, recuperando 1'30\" trotando"
+     "text": "2x10' a {T}, recuperando 2' trotando"
     },
     {
      "name": "Vuelta a la calma",
      "text": "10' a {E} (FC <140)"
     }
    ],
-   "why": "Umbral con volumen: 6 km de calidad.",
-   "notes": "",
+   "why": "El umbral que se cayó el 21/11. Pasar de 3x5' a bloques de 10' es el paso hacia el ritmo de 10K.",
+   "notes": "A 4:13-4:18, NO a 4:03-4:07 como el 13/11: si sale más rápido deja de ser umbral y te deja cansado para el domingo.",
    "steps": [
     {
      "type": "warmup",
-     "intensity": "E",
-     "time_s": 600
+     "time_s": 600,
+     "intensity": "E"
     },
     {
      "type": "repeat",
-     "reps": 3,
+     "reps": 2,
      "steps": [
       {
        "type": "interval",
-       "intensity": "T",
-       "time_s": 510
+       "time_s": 600,
+       "intensity": "T"
       },
       {
        "type": "recovery",
-       "time_s": 90,
+       "time_s": 120,
        "note": "Trotando"
       }
      ]
     },
     {
      "type": "cooldown",
-     "intensity": "E",
-     "time_s": 600
+     "time_s": 600,
+     "intensity": "E"
     }
    ]
   },
   {
    "date": "2026-11-29",
    "sport": "run",
-   "title": "Tirada larga con final a ritmo M",
-   "distance_km": 13,
+   "title": "Tirada larga suave",
+   "distance_km": 9.5,
    "intensity": "E",
-   "duration_min": 69,
+   "duration_min": 50,
    "key": false,
    "blocks": [
     {
      "name": "Tirada",
-     "text": "60' a {E} (FC <145)"
-    },
-    {
-     "name": "Final",
-     "text": "9' a {M}"
+     "text": "50' a {E} (FC <140)"
     }
    ],
-   "why": "Resistencia + aprender a apretar con fatiga.",
-   "notes": "",
+   "why": "Mismo tiempo que las dos últimas, pero esta vez suave de verdad: el 15/11 y el 22/11 fueron a 5:18 con FC 142-145 (77 % en Z3).",
+   "notes": "Objetivo 5:30-5:40/km. Si la FC pasa de 140, frena. Sin final a ritmo M: para el 10K no hace falta y primero hay que asentar el suave.",
    "steps": [
     {
      "type": "interval",
-     "intensity": "E",
-     "time_s": 3600
-    },
-    {
-     "type": "interval",
-     "intensity": "M",
-     "time_s": 540
+     "time_s": 3000,
+     "intensity": "E"
     }
    ]
   },
