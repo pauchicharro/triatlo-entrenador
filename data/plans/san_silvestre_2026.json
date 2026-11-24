@@ -456,6 +456,48 @@
      "note": "Z2, cadencia 85-95; últimos 10' muy suave"
     }
    ]
+  },
+  "coreHome": {
+   "title": "Core en casa",
+   "focus": "Core",
+   "duration_min": 15,
+   "blocks": [
+    {
+     "name": "Formato",
+     "short": "2 vueltas · 30\" descanso entre ejercicios",
+     "text": "Justo al llegar de correr, antes de la ducha. 2 vueltas de los 6 ejercicios, 30\" de descanso entre ejercicios. Sin material, en una esterilla."
+    },
+    {
+     "name": "Plancha frontal",
+     "short": "40\"",
+     "text": "40\" con glúteos apretados y cadera alineada (sin hundir la lumbar)"
+    },
+    {
+     "name": "Plancha lateral",
+     "short": "30\"/lado",
+     "text": "30\" por lado, cadera alta"
+    },
+    {
+     "name": "Dead bug",
+     "short": "10/lado",
+     "text": "10 por lado, lento, con la lumbar pegada al suelo"
+    },
+    {
+     "name": "Puente de glúteo a una pierna",
+     "short": "10/lado",
+     "text": "10 por lado, 1\" arriba apretando glúteo"
+    },
+    {
+     "name": "Bird dog",
+     "short": "10/lado",
+     "text": "10 por lado, 2\" arriba sin rotar la cadera"
+    },
+    {
+     "name": "Superman en Y",
+     "short": "12",
+     "text": "12 repeticiones, brazos en Y, mirada al suelo"
+    }
+   ]
   }
  },
  "revisions": [
@@ -530,6 +572,10 @@
   {
    "date": "2026-11-23",
    "summary": "Semana 23-29/11 ajustada a una semana anterior cortada (24 km, 3 rodajes, umbral perdido): 4x4' en vez de 5x4', rodaje del jueves a 30', se recupera el 2x10' el sábado en lugar del 3x8'30\", tirada de 50' suave sin final a M, pierna ligera el lunes. ~33 km, antes de la descarga y el re-test del 5/12."
+  },
+  {
+   "date": "2026-11-24",
+   "summary": "Se añade core en casa (15', plantilla coreHome) después del rodaje del jueves y de la tirada del domingo; a partir de ahora 2 días por semana tras sesiones suaves."
   }
  ],
  "sessions": [
@@ -1406,6 +1452,15 @@
    ]
   },
   {
+   "date": "2026-11-26",
+   "sport": "gym",
+   "template": "coreHome",
+   "focus": "Core",
+   "intensity": null,
+   "notes": "En casa, justo después de correr.",
+   "why": "Core estable = postura y zancada eficientes al final del 10K y, sobre todo, en la maratón."
+  },
+  {
    "date": "2026-11-27",
    "sport": "swim",
    "template": "swimB",
@@ -1499,6 +1554,15 @@
      "intensity": "E"
     }
    ]
+  },
+  {
+   "date": "2026-11-29",
+   "sport": "gym",
+   "template": "coreHome",
+   "focus": "Core",
+   "intensity": null,
+   "notes": "En casa, justo después de correr.",
+   "why": "Core estable = postura y zancada eficientes al final del 10K y, sobre todo, en la maratón."
   },
   {
    "date": "2026-11-30",

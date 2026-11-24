@@ -25,7 +25,7 @@ Formato:
      "steps": [...],                                  # opcional: pasos para el reloj (ver app/garmin_workouts.py;
                                                       # app/steps_from_text.py los genera desde los bloques de carrera)
      "template": "gymLower",                          # opcional: hereda bloques de la plantilla
-     "focus": "Tren inferior",                        # gimnasio: Tren superior | Tren inferior | Cuerpo completo
+     "focus": "Tren inferior",                        # gimnasio: Tren superior | Tren inferior | Cuerpo completo | Core (en casa)
      "why": "Para qué sirve esta sesión",
      "notes": "Consejos"}
   ]
@@ -83,8 +83,8 @@ def validate(plan):
         if s.get("template") and s["template"] not in templates:
             errors.append(f"{where}: plantilla '{s['template']}' no existe")
         tf = (templates.get(s.get("template") or "") or {}).get("focus")
-        if s.get("sport") == "gym" and (s.get("focus") or tf) not in ("Tren superior", "Tren inferior", "Cuerpo completo"):
-            errors.append(f"{where}: el gimnasio necesita focus = Tren superior | Tren inferior | Cuerpo completo")
+        if s.get("sport") == "gym" and (s.get("focus") or tf) not in ("Tren superior", "Tren inferior", "Cuerpo completo", "Core"):
+            errors.append(f"{where}: el gimnasio necesita focus = Tren superior | Tren inferior | Cuerpo completo | Core")
         if not s.get("blocks") and not s.get("template") and s.get("sport") not in ("rest",):
             errors.append(f"{where}: sin bloques (hay que detallar la sesión)")
         seen.add(s.get("date"))
