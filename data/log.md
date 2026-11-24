@@ -27,6 +27,7 @@ Registre cronològic curt d'ajustos i decisions preses en converses amb l'entren
 
 ## 2026-11-24 — Core a casa
 - A petició de l'atleta: core a casa (15', plantilla `coreHome`, focus Core) després del rodatge de dijous 26 i de la tirada de diumenge 29. A partir d'ara, 2 dies/setmana després de sessions suaus, mai després de sèries/llindar.
+- Les sessions de gimnàs i core es pugen al rellotge com a entrenament de força (exercicis del catàleg de Garmin, sèries, repeticions i descansos).
 
 ## 2026-11-23 — Setmana 23-29/11
 - Setmana anterior: 24 km en 3 sortides (5x3' bé, rodatge 30' FC 135 perfecte, tirada 50' a 5:18 amb FC 145 → massa ràpida). Sense llindar ni natació/gimnàs divendres. CTL baixant (97), TSB +36.

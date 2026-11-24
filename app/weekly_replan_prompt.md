@@ -33,7 +33,7 @@ Todos los ritmos del plan se recalculan solos. Comenta si el objetivo de tiempo 
   carrera **por tiempo** (bloques y series en minutos, p. ej. "10' a {E}", "3x5' a {T}, recuperando 1' trotando"; solo tests y carreras por distancia) con intensidades en códigos ({E}, {T}, {I}, {R}, {CUR}, {RP}), nunca ritmos fijos.
 - Las sesiones de carrera, natación y bici deben llevar `steps` (se suben al reloj): para carrera,
   `app/.venv/bin/python app/steps_from_text.py {{PLAN}} --write` los genera desde los bloques; revisa lo que diga
-  «SIN CONVERTIR» y escríbelos a mano. Natación y bici los heredan de su plantilla.
+  «SIN CONVERTIR» y escríbelos a mano. Natación, bici y gimnasio/core los heredan de su plantilla (el gimnasio se sube al reloj como entreno de fuerza).
 - Mantén el formato del JSON (ver docstring de `app/plan_tool.py`). Añade al final de `revisions`:
   `{"date": "{{TODAY}}", "summary": "<1-2 líneas: qué cambió y por qué>"}` (aunque no cambie nada).
 

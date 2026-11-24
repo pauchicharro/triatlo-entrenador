@@ -379,6 +379,182 @@
      "short": "plancha lateral 3×30 s · Copenhague 2×20 s",
      "text": "3x30 s plancha lateral por lado + 2x20 s Copenhague por lado"
     }
+   ],
+   "steps": [
+    {
+     "type": "repeat",
+     "reps": 2,
+     "steps": [
+      {
+       "type": "interval",
+       "exercise": "HIP_RAISE/HIP_RAISE",
+       "note": "Activación: puente de glúteo",
+       "reps": 10
+      },
+      {
+       "type": "rest",
+       "time_s": 20
+      },
+      {
+       "type": "interval",
+       "exercise": "HIP_STABILITY/LATERAL_WALKS_WITH_BAND_AT_ANKLES",
+       "note": "Monster walk con goma, 10 pasos por lado",
+       "reps": 20
+      },
+      {
+       "type": "rest",
+       "time_s": 30
+      }
+     ]
+    },
+    {
+     "type": "repeat",
+     "reps": 3,
+     "steps": [
+      {
+       "type": "interval",
+       "exercise": "PLYO/LATERAL_LEAP_AND_HOP",
+       "note": "Pogo jumps: tobillo rígido, contacto corto",
+       "reps": 15
+      },
+      {
+       "type": "rest",
+       "time_s": 60
+      }
+     ]
+    },
+    {
+     "type": "repeat",
+     "reps": 3,
+     "steps": [
+      {
+       "type": "interval",
+       "exercise": "PLYO/BOX_JUMP",
+       "note": "Salto a cajón, bajar andando",
+       "reps": 6
+      },
+      {
+       "type": "rest",
+       "time_s": 60
+      }
+     ]
+    },
+    {
+     "type": "repeat",
+     "reps": 3,
+     "steps": [
+      {
+       "type": "interval",
+       "exercise": "LUNGE/DUMBBELL_BULGARIAN_SPLIT_SQUAT",
+       "note": "Búlgara 8 por pierna, RPE 7",
+       "reps": 16
+      },
+      {
+       "type": "rest",
+       "time_s": 90
+      }
+     ]
+    },
+    {
+     "type": "repeat",
+     "reps": 3,
+     "steps": [
+      {
+       "type": "interval",
+       "exercise": "DEADLIFT/ROMANIAN_DEADLIFT",
+       "note": "Peso muerto rumano, espalda neutra",
+       "reps": 8
+      },
+      {
+       "type": "rest",
+       "time_s": 90
+      }
+     ]
+    },
+    {
+     "type": "repeat",
+     "reps": 3,
+     "steps": [
+      {
+       "type": "interval",
+       "exercise": "HIP_RAISE/BARBELL_HIP_THRUST_WITH_BENCH",
+       "note": "Hip thrust, pausa 1s arriba",
+       "reps": 10
+      },
+      {
+       "type": "rest",
+       "time_s": 60
+      }
+     ]
+    },
+    {
+     "type": "repeat",
+     "reps": 3,
+     "steps": [
+      {
+       "type": "interval",
+       "exercise": "CALF_RAISE/SINGLE_LEG_STANDING_CALF_RAISE",
+       "note": "Gemelo excéntrico 12 por pierna: sube con dos, baja con una en 3s",
+       "reps": 24
+      },
+      {
+       "type": "rest",
+       "time_s": 60
+      }
+     ]
+    },
+    {
+     "type": "repeat",
+     "reps": 3,
+     "steps": [
+      {
+       "type": "interval",
+       "exercise": "PLANK/SIDE_PLANK",
+       "note": "Plancha lateral izquierda",
+       "time_s": 30
+      },
+      {
+       "type": "rest",
+       "time_s": 10
+      },
+      {
+       "type": "interval",
+       "exercise": "PLANK/SIDE_PLANK",
+       "note": "Plancha lateral derecha",
+       "time_s": 30
+      },
+      {
+       "type": "rest",
+       "time_s": 30
+      }
+     ]
+    },
+    {
+     "type": "repeat",
+     "reps": 2,
+     "steps": [
+      {
+       "type": "interval",
+       "exercise": "PLANK/SIDE_PLANK_WITH_FEET_ON_BENCH",
+       "note": "Copenhague lado izquierdo",
+       "time_s": 20
+      },
+      {
+       "type": "rest",
+       "time_s": 10
+      },
+      {
+       "type": "interval",
+       "exercise": "PLANK/SIDE_PLANK_WITH_FEET_ON_BENCH",
+       "note": "Copenhague lado derecho",
+       "time_s": 20
+      },
+      {
+       "type": "rest",
+       "time_s": 30
+      }
+     ]
+    }
    ]
   },
   "gymLower_light": {
@@ -395,6 +571,90 @@
      "name": "Circuito (2 rondas, sin llegar al fallo)",
      "short": "2 rondas: búlgara 6 · PM rumano 6 · gemelo 10 · plancha lat. 30 s",
      "text": "sentadilla búlgara 6/pierna · peso muerto rumano 6 · gemelo excéntrico 10/pierna · plancha lateral 30 s/lado"
+    }
+   ],
+   "steps": [
+    {
+     "type": "repeat",
+     "reps": 2,
+     "steps": [
+      {
+       "type": "interval",
+       "exercise": "HIP_RAISE/HIP_RAISE",
+       "note": "Activación: puente de glúteo",
+       "reps": 10
+      },
+      {
+       "type": "rest",
+       "time_s": 20
+      },
+      {
+       "type": "interval",
+       "exercise": "HIP_STABILITY/LATERAL_WALKS_WITH_BAND_AT_ANKLES",
+       "note": "Monster walk, 10 pasos por lado",
+       "reps": 20
+      },
+      {
+       "type": "rest",
+       "time_s": 30
+      }
+     ]
+    },
+    {
+     "type": "repeat",
+     "reps": 2,
+     "steps": [
+      {
+       "type": "interval",
+       "exercise": "LUNGE/DUMBBELL_BULGARIAN_SPLIT_SQUAT",
+       "note": "Búlgara 6 por pierna, sin llegar al fallo",
+       "reps": 12
+      },
+      {
+       "type": "rest",
+       "time_s": 45
+      },
+      {
+       "type": "interval",
+       "exercise": "DEADLIFT/ROMANIAN_DEADLIFT",
+       "note": "Peso muerto rumano",
+       "reps": 6
+      },
+      {
+       "type": "rest",
+       "time_s": 45
+      },
+      {
+       "type": "interval",
+       "exercise": "CALF_RAISE/SINGLE_LEG_STANDING_CALF_RAISE",
+       "note": "Gemelo excéntrico 10 por pierna",
+       "reps": 20
+      },
+      {
+       "type": "rest",
+       "time_s": 45
+      },
+      {
+       "type": "interval",
+       "exercise": "PLANK/SIDE_PLANK",
+       "note": "Plancha lateral izquierda",
+       "time_s": 30
+      },
+      {
+       "type": "rest",
+       "time_s": 10
+      },
+      {
+       "type": "interval",
+       "exercise": "PLANK/SIDE_PLANK",
+       "note": "Plancha lateral derecha",
+       "time_s": 30
+      },
+      {
+       "type": "rest",
+       "time_s": 90
+      }
+     ]
     }
    ]
   },
@@ -432,6 +692,128 @@
      "name": "Core",
      "short": "2 rondas: dead bug · Pallof · plancha 40 s",
      "text": "2 rondas: dead bug 10/lado · Pallof press con goma 10/lado · plancha frontal 40 s"
+    }
+   ],
+   "steps": [
+    {
+     "type": "warmup",
+     "note": "Activación: rotaciones de hombro con goma"
+    },
+    {
+     "type": "repeat",
+     "reps": 2,
+     "steps": [
+      {
+       "type": "interval",
+       "exercise": "ROW/BANDED_FACE_PULLS",
+       "note": "Face pull con goma",
+       "reps": 15
+      },
+      {
+       "type": "rest",
+       "time_s": 30
+      }
+     ]
+    },
+    {
+     "type": "repeat",
+     "reps": 3,
+     "steps": [
+      {
+       "type": "interval",
+       "exercise": "PULL_UP/PULL_UP",
+       "note": "Dominadas 6-8 (asistidas) o jalón al pecho",
+       "reps": 8
+      },
+      {
+       "type": "rest",
+       "time_s": 90
+      }
+     ]
+    },
+    {
+     "type": "repeat",
+     "reps": 3,
+     "steps": [
+      {
+       "type": "interval",
+       "exercise": "BENCH_PRESS/DUMBBELL_BENCH_PRESS",
+       "note": "Press banca mancuernas, RPE 7",
+       "reps": 10
+      },
+      {
+       "type": "rest",
+       "time_s": 90
+      }
+     ]
+    },
+    {
+     "type": "repeat",
+     "reps": 3,
+     "steps": [
+      {
+       "type": "interval",
+       "exercise": "ROW/DUMBBELL_ROW",
+       "note": "Remo mancuerna 10 por brazo, apoyado en banco",
+       "reps": 20
+      },
+      {
+       "type": "rest",
+       "time_s": 60
+      }
+     ]
+    },
+    {
+     "type": "repeat",
+     "reps": 3,
+     "steps": [
+      {
+       "type": "interval",
+       "exercise": "SHOULDER_PRESS/DUMBBELL_SHOULDER_PRESS",
+       "note": "Press militar de pie, sin arquear",
+       "reps": 10
+      },
+      {
+       "type": "rest",
+       "time_s": 60
+      }
+     ]
+    },
+    {
+     "type": "repeat",
+     "reps": 2,
+     "steps": [
+      {
+       "type": "interval",
+       "exercise": "HIP_STABILITY/DEAD_BUG",
+       "note": "Dead bug 10 por lado",
+       "reps": 20
+      },
+      {
+       "type": "rest",
+       "time_s": 20
+      },
+      {
+       "type": "interval",
+       "exercise": "CORE/CABLE_CORE_PRESS",
+       "note": "Pallof press con goma 10 por lado",
+       "reps": 20
+      },
+      {
+       "type": "rest",
+       "time_s": 20
+      },
+      {
+       "type": "interval",
+       "exercise": "PLANK/PLANK",
+       "note": "Plancha frontal",
+       "time_s": 40
+      },
+      {
+       "type": "rest",
+       "time_s": 45
+      }
+     ]
     }
    ]
   },
@@ -496,6 +878,84 @@
      "name": "Superman en Y",
      "short": "12",
      "text": "12 repeticiones, brazos en Y, mirada al suelo"
+    }
+   ],
+   "steps": [
+    {
+     "type": "repeat",
+     "reps": 2,
+     "steps": [
+      {
+       "type": "interval",
+       "exercise": "PLANK/PLANK",
+       "note": "Plancha frontal: glúteos apretados, sin hundir lumbar",
+       "time_s": 40
+      },
+      {
+       "type": "rest",
+       "time_s": 30
+      },
+      {
+       "type": "interval",
+       "exercise": "PLANK/SIDE_PLANK",
+       "note": "Plancha lateral lado izquierdo, cadera alta",
+       "time_s": 30
+      },
+      {
+       "type": "rest",
+       "time_s": 10
+      },
+      {
+       "type": "interval",
+       "exercise": "PLANK/SIDE_PLANK",
+       "note": "Plancha lateral lado derecho, cadera alta",
+       "time_s": 30
+      },
+      {
+       "type": "rest",
+       "time_s": 30
+      },
+      {
+       "type": "interval",
+       "exercise": "HIP_STABILITY/DEAD_BUG",
+       "note": "Dead bug 10 por lado, lumbar pegada al suelo",
+       "reps": 20
+      },
+      {
+       "type": "rest",
+       "time_s": 30
+      },
+      {
+       "type": "interval",
+       "exercise": "HIP_RAISE/SINGLE_LEG_HIP_RAISE",
+       "note": "Puente a una pierna 10 por lado, 1s arriba",
+       "reps": 20
+      },
+      {
+       "type": "rest",
+       "time_s": 30
+      },
+      {
+       "type": "interval",
+       "exercise": "HIP_STABILITY/QUADRUPED_WITH_LEG_LIFT",
+       "note": "Bird dog 10 por lado, 2s arriba sin rotar cadera",
+       "reps": 20
+      },
+      {
+       "type": "rest",
+       "time_s": 30
+      },
+      {
+       "type": "interval",
+       "exercise": "HYPEREXTENSION/SUPERMAN_FROM_FLOOR",
+       "note": "Superman brazos en Y, mirada al suelo",
+       "reps": 12
+      },
+      {
+       "type": "rest",
+       "time_s": 30
+      }
+     ]
     }
    ]
   }
@@ -575,7 +1035,7 @@
   },
   {
    "date": "2026-11-24",
-   "summary": "Se añade core en casa (15', plantilla coreHome) después del rodaje del jueves y de la tirada del domingo; a partir de ahora 2 días por semana tras sesiones suaves."
+   "summary": "Se añade core en casa (15', plantilla coreHome) después del rodaje del jueves y de la tirada del domingo; a partir de ahora 2 días por semana tras sesiones suaves. Las sesiones de gimnasio y core llevan pasos de fuerza y se suben al reloj."
   }
  ],
  "sessions": [

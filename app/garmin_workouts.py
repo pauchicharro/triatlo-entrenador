@@ -16,6 +16,9 @@ Cada sesión necesita el campo opcional `steps` en el JSON del plan:
   type: warmup | interval | recovery | rest | cooldown | repeat
   duración: dist_m o time_s (sin ninguno = hasta pulsar vuelta)
   intensity: código de ritmo (E, M, T, I, R, CUR, RP) → objetivo de ritmo en el reloj
+  fuerza (gym): {"type": "interval", "exercise": "PLANK/SIDE_PLANK", "reps": 10 | "time_s": 30,
+  "note": "…"}; exercise = categoría/nombre de connect.garmin.com/web-data/exercises/Exercises.json
+  (opcional: sin él, el reloj muestra solo la nota). Descansos: {"type": "rest", "time_s": 60}.
   natación: stroke (free | back | breast | fly | drill | any) y equipment (fins | pull_buoy |
   paddles | kickboard); la piscina es de 25 m. Los descansos van como {"type": "rest", "time_s": 15}.
 
@@ -37,7 +40,8 @@ import plan_tool  # noqa: E402
 
 STEP_TYPES = {"warmup": (1, "warmup"), "cooldown": (2, "cooldown"), "interval": (3, "interval"),
               "recovery": (4, "recovery"), "rest": (5, "rest"), "repeat": (6, "repeat")}
-SPORTS = {"run": (1, "running"), "race": (1, "running"), "bike": (2, "cycling"), "swim": (4, "swimming")}
+SPORTS = {"run": (1, "running"), "race": (1, "running"), "bike": (2, "cycling"), "swim": (4, "swimming"),
+          "gym": (5, "strength_training")}
 STROKES = {"any": (1, "any_stroke"), "back": (2, "backstroke"), "breast": (3, "breaststroke"),
            "drill": (4, "drill"), "fly": (5, "fly"), "free": (6, "free")}
 EQUIPMENT = {"fins": (1, "fins"), "kickboard": (2, "kickboard"), "paddles": (3, "paddles"),
@@ -61,6 +65,8 @@ def _step(st, order, pz):
         end, val = {"conditionTypeId": 3, "conditionTypeKey": "distance"}, float(st["dist_m"])
     elif st.get("time_s"):
         end, val = {"conditionTypeId": 2, "conditionTypeKey": "time"}, float(st["time_s"])
+    elif st.get("reps"):
+        end, val = {"conditionTypeId": 10, "conditionTypeKey": "reps"}, float(st["reps"])
     else:
         end, val = {"conditionTypeId": 1, "conditionTypeKey": "lap.button"}, None
     out = {"type": "ExecutableStepDTO", "stepOrder": order,
@@ -79,6 +85,8 @@ def _step(st, order, pz):
     if st.get("hr"):  # objetivo de FC en ppm [mín, máx]
         out["targetType"] = {"workoutTargetTypeId": 4, "workoutTargetTypeKey": "heart.rate.zone"}
         out["targetValueOne"], out["targetValueTwo"] = float(st["hr"][0]), float(st["hr"][1])
+    if st.get("exercise"):  # fuerza: "CATEGORÍA/NOMBRE" del catálogo de ejercicios de Garmin
+        out["category"], out["exerciseName"] = st["exercise"].split("/")
     if st.get("stroke"):
         i, k = STROKES[st["stroke"]]
         out["strokeType"] = {"strokeTypeId": i, "strokeTypeKey": k}
