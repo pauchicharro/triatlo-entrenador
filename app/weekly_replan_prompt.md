@@ -12,6 +12,12 @@ El JSON del plan activo es: {{PLAN}}. Hoy: {{TODAY}}. El próximo lunes: {{NEXT_
   modo solo lectura (tablas activities, activity_details.laps, activity_metrics.metrics).
 - Actividades fuera del plan (p. ej. Hyrox esporádico): cuéntalas como carga real y reajusta alrededor.
 - Si hay datos de Garmin recientes en `data/garmin/` (sueño, training status), tenlos en cuenta.
+- **Tiempo en Múnich**: lee `data/weather.md` (previsión de la semana con avisos). Días con ❄️ NIEVE o 🧊 HIELO:
+  no pongas series, umbral ni test al aire libre → muévelos a un día seco (respetando que no vayan dos claves
+  seguidas ni pierna el día antes) o, si no hay hueco, indícalos en cinta (en la cinta, 1 % de inclinación).
+  Rodajes suaves con nieve: permitidos, más cortos si hace falta, por FC y no por ritmo, con aviso de cuidado.
+  Frío fuerte (sensación ≤ −10 °C): calentamiento más largo y dentro de casa si se puede. Menciona en las notas
+  de la sesión afectada el porqué. La previsión a más de 5 días es orientativa.
 
 ## 2. Tests
 Si esta semana el plan tenía un test o carrera a tope y se hizo, saca el tiempo de la parte a tope (vuelta

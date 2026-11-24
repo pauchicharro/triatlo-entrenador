@@ -24,7 +24,7 @@ _lock = threading.Lock()
 ALLOWED_TOOLS = [
     "Read", "Edit", "Write", "Glob", "Grep",
     "Bash(app/.venv/bin/python app/plan_tool.py:*)", "Bash(app/.venv/bin/python app/coach_summary.py:*)",
-    "Bash(app/.venv/bin/python app/steps_from_text.py:*)", "Bash(app/.venv/bin/python app/garmin_source.py:*)",
+    "Bash(app/.venv/bin/python app/steps_from_text.py:*)", "Bash(app/.venv/bin/python app/weather.py:*)", "Bash(app/.venv/bin/python app/garmin_source.py:*)",
     "Bash(.venv/bin/python app/plan_sync.py:*)", "Bash(.venv/bin/python app/garmin_workouts.py:*)",
     "Bash(.venv/bin/python generate_site.py:*)", "Bash(sqlite3 -readonly:*)",
     "Bash(git add:*)", "Bash(git commit:*)", "Bash(git push:*)", "Bash(git pull:*)",
@@ -41,6 +41,8 @@ normalmente desde el móvil. Hoy es {today}.
   valida (`app/.venv/bin/python app/plan_tool.py validate <json>`) y publica todo con
   `.venv/bin/python app/plan_sync.py` (importa, sube los próximos 7 días a Garmin, regenera la web y hace push).
   Commit de data/plans y data/log.md antes de plan_sync.
+- Si planificas días concretos, mira el tiempo: `app/.venv/bin/python app/weather.py` (escribe data/weather.md).
+  Con nieve o hielo, nada de series/umbral fuera (otro día o cinta); rodajes suaves con cuidado y por FC.
 - Carrera siempre por tiempo (minutos), salvo tests y carreras.
 - Sé crítico si lo que propone no tiene sentido para su entrenamiento: dilo, con el coste y una alternativa.
 - Al final di en una línea qué has cambiado (o «sin cambios»).

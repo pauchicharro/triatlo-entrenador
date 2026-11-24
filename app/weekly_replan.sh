@@ -20,6 +20,7 @@ notify() {
 # 1-2. Datos frescos (espera hasta 30 min si el proceso de fondo está descargando)
 app/.venv/bin/python app/garmin_source.py --days 10 --wellness
 app/.venv/bin/python app/coach_summary.py
+app/.venv/bin/python app/weather.py --days 10 || echo "(sin previsión del tiempo)"
 
 # 3. Claude Code: la CLI viene con la extensión de VS Code; usamos la versión más reciente instalada
 CLAUDE_BIN=$(ls -d "$HOME"/.vscode/extensions/anthropic.claude-code-*/resources/native-binary/claude 2>/dev/null | sort -V | tail -1)
@@ -48,7 +49,7 @@ echo "Plan: $PLAN · hoy $TODAY · próximo lunes $NEXT_MONDAY"
 
 OUT=$("$CLAUDE_BIN" -p "$PROMPT" --max-turns 80 \
   --allowedTools "Read" "Edit" "Write" "Glob" "Grep" \
-  "Bash(app/.venv/bin/python app/plan_tool.py:*)" "Bash(app/.venv/bin/python app/coach_summary.py:*)" \
+  "Bash(app/.venv/bin/python app/plan_tool.py:*)" "Bash(app/.venv/bin/python app/coach_summary.py:*)" "Bash(app/.venv/bin/python app/weather.py:*)" \
   "Bash(app/.venv/bin/python app/steps_from_text.py:*)" \
   "Bash(.venv/bin/python generate_site.py:*)" "Bash(sqlite3 -readonly:*)" \
   "Bash(git add:*)" "Bash(git commit:*)" "Bash(git push:*)" "Bash(git status:*)" "Bash(git diff:*)")

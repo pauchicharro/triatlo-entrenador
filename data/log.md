@@ -25,6 +25,10 @@ Registre cronològic curt d'ajustos i decisions preses en converses amb l'entren
 
 
 
+## 2026-11-24 — Temps a Múnic
+- Nou `app/weather.py` (Open-Meteo) → `data/weather.md` amb avisos de neu/gel/fred/vent. L'usen el reajust setmanal, el xat i les sessions manuals: amb neu o gel, sèries/llindar/test a un altre dia o a la cinta.
+- Aquesta setmana: possible gel dijous 26 (rodatge suau, amb compte); dissabte sec per al llindar.
+
 ## 2026-11-24 — Core a casa
 - A petició de l'atleta: core a casa (15', plantilla `coreHome`, focus Core) després del rodatge de dijous 26 i de la tirada de diumenge 29. A partir d'ara, 2 dies/setmana després de sessions suaus, mai després de sèries/llindar.
 - Les sessions de gimnàs i core es pugen al rellotge com a entrenament de força (sèries, repeticions i descansos). Sense nom d'exercici de Garmin: el rellotge mostra la nota curta ("Plancha 40\"", "Dead bug 10 x lado"), a petició de l'atleta.

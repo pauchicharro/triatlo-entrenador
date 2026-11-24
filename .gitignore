@@ -17,3 +17,4 @@ app/uvicorn.log
 app/bin/
 app/plan_sync.log
 app/.mobile_site.hash
+data/weather.md

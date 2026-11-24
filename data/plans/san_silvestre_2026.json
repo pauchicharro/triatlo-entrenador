@@ -1002,6 +1002,10 @@
   {
    "date": "2026-11-24",
    "summary": "Se añade core en casa (15', plantilla coreHome) después del rodaje del jueves y de la tirada del domingo; a partir de ahora 2 días por semana tras sesiones suaves. Las sesiones de gimnasio y core llevan pasos de fuerza y se suben al reloj."
+  },
+  {
+   "date": "2026-11-24",
+   "summary": "Se añade la previsión del tiempo de Múnich (app/weather.py) al ajuste semanal. Esta semana: aviso de posible hielo el jueves 26 (rodaje suave, con cuidado); sábado seco para el umbral."
   }
  ],
  "sessions": [
@@ -1852,7 +1856,7 @@
     }
    ],
    "why": "Construye base aeróbica y economía sin acumular fatiga. Las rectas activan la velocidad sin coste.",
-   "notes": "Ritmo del jueves 19/11 (5:35, FC 135): ese es el ritmo suave bueno.",
+   "notes": "Ritmo del jueves 19/11 (5:35, FC 135): ese es el ritmo suave bueno. Previsión: -2/-1 °C con algo de nieve (~1 cm) y riesgo de hielo: zapatilla con agarre, ve por FC y no por ritmo, y salta las rectas si el suelo resbala. Si está muy helado, cámbialo por el miércoles (seco).",
    "steps": [
     {
      "type": "interval",
