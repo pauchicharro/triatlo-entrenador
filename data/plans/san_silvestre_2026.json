@@ -387,8 +387,7 @@
      "steps": [
       {
        "type": "interval",
-       "exercise": "HIP_RAISE/HIP_RAISE",
-       "note": "Activación: puente de glúteo",
+       "note": "Puente glúteo 10",
        "reps": 10
       },
       {
@@ -397,8 +396,7 @@
       },
       {
        "type": "interval",
-       "exercise": "HIP_STABILITY/LATERAL_WALKS_WITH_BAND_AT_ANKLES",
-       "note": "Monster walk con goma, 10 pasos por lado",
+       "note": "Monster walk 10 x lado",
        "reps": 20
       },
       {
@@ -413,8 +411,7 @@
      "steps": [
       {
        "type": "interval",
-       "exercise": "PLYO/LATERAL_LEAP_AND_HOP",
-       "note": "Pogo jumps: tobillo rígido, contacto corto",
+       "note": "Pogo jumps 15",
        "reps": 15
       },
       {
@@ -429,8 +426,7 @@
      "steps": [
       {
        "type": "interval",
-       "exercise": "PLYO/BOX_JUMP",
-       "note": "Salto a cajón, bajar andando",
+       "note": "Saltos cajón 6",
        "reps": 6
       },
       {
@@ -445,8 +441,7 @@
      "steps": [
       {
        "type": "interval",
-       "exercise": "LUNGE/DUMBBELL_BULGARIAN_SPLIT_SQUAT",
-       "note": "Búlgara 8 por pierna, RPE 7",
+       "note": "Búlgara 8 x pierna",
        "reps": 16
       },
       {
@@ -461,8 +456,7 @@
      "steps": [
       {
        "type": "interval",
-       "exercise": "DEADLIFT/ROMANIAN_DEADLIFT",
-       "note": "Peso muerto rumano, espalda neutra",
+       "note": "Peso muerto rumano 8",
        "reps": 8
       },
       {
@@ -477,8 +471,7 @@
      "steps": [
       {
        "type": "interval",
-       "exercise": "HIP_RAISE/BARBELL_HIP_THRUST_WITH_BENCH",
-       "note": "Hip thrust, pausa 1s arriba",
+       "note": "Hip thrust 10",
        "reps": 10
       },
       {
@@ -493,8 +486,7 @@
      "steps": [
       {
        "type": "interval",
-       "exercise": "CALF_RAISE/SINGLE_LEG_STANDING_CALF_RAISE",
-       "note": "Gemelo excéntrico 12 por pierna: sube con dos, baja con una en 3s",
+       "note": "Gemelo excéntrico 12 x pierna",
        "reps": 24
       },
       {
@@ -509,8 +501,7 @@
      "steps": [
       {
        "type": "interval",
-       "exercise": "PLANK/SIDE_PLANK",
-       "note": "Plancha lateral izquierda",
+       "note": "Lateral izq 30\"",
        "time_s": 30
       },
       {
@@ -519,8 +510,7 @@
       },
       {
        "type": "interval",
-       "exercise": "PLANK/SIDE_PLANK",
-       "note": "Plancha lateral derecha",
+       "note": "Lateral dcha 30\"",
        "time_s": 30
       },
       {
@@ -535,8 +525,7 @@
      "steps": [
       {
        "type": "interval",
-       "exercise": "PLANK/SIDE_PLANK_WITH_FEET_ON_BENCH",
-       "note": "Copenhague lado izquierdo",
+       "note": "Copenhague izq 20\"",
        "time_s": 20
       },
       {
@@ -545,8 +534,7 @@
       },
       {
        "type": "interval",
-       "exercise": "PLANK/SIDE_PLANK_WITH_FEET_ON_BENCH",
-       "note": "Copenhague lado derecho",
+       "note": "Copenhague dcha 20\"",
        "time_s": 20
       },
       {
@@ -580,8 +568,7 @@
      "steps": [
       {
        "type": "interval",
-       "exercise": "HIP_RAISE/HIP_RAISE",
-       "note": "Activación: puente de glúteo",
+       "note": "Puente glúteo 10",
        "reps": 10
       },
       {
@@ -590,8 +577,7 @@
       },
       {
        "type": "interval",
-       "exercise": "HIP_STABILITY/LATERAL_WALKS_WITH_BAND_AT_ANKLES",
-       "note": "Monster walk, 10 pasos por lado",
+       "note": "Monster walk 10 x lado",
        "reps": 20
       },
       {
@@ -606,8 +592,7 @@
      "steps": [
       {
        "type": "interval",
-       "exercise": "LUNGE/DUMBBELL_BULGARIAN_SPLIT_SQUAT",
-       "note": "Búlgara 6 por pierna, sin llegar al fallo",
+       "note": "Búlgara 6 x pierna",
        "reps": 12
       },
       {
@@ -616,8 +601,7 @@
       },
       {
        "type": "interval",
-       "exercise": "DEADLIFT/ROMANIAN_DEADLIFT",
-       "note": "Peso muerto rumano",
+       "note": "Peso muerto rumano 6",
        "reps": 6
       },
       {
@@ -626,8 +610,7 @@
       },
       {
        "type": "interval",
-       "exercise": "CALF_RAISE/SINGLE_LEG_STANDING_CALF_RAISE",
-       "note": "Gemelo excéntrico 10 por pierna",
+       "note": "Gemelo excéntrico 10 x pierna",
        "reps": 20
       },
       {
@@ -636,8 +619,7 @@
       },
       {
        "type": "interval",
-       "exercise": "PLANK/SIDE_PLANK",
-       "note": "Plancha lateral izquierda",
+       "note": "Lateral izq 30\"",
        "time_s": 30
       },
       {
@@ -646,8 +628,7 @@
       },
       {
        "type": "interval",
-       "exercise": "PLANK/SIDE_PLANK",
-       "note": "Plancha lateral derecha",
+       "note": "Lateral dcha 30\"",
        "time_s": 30
       },
       {
@@ -705,8 +686,7 @@
      "steps": [
       {
        "type": "interval",
-       "exercise": "ROW/BANDED_FACE_PULLS",
-       "note": "Face pull con goma",
+       "note": "Face pull 15",
        "reps": 15
       },
       {
@@ -721,8 +701,7 @@
      "steps": [
       {
        "type": "interval",
-       "exercise": "PULL_UP/PULL_UP",
-       "note": "Dominadas 6-8 (asistidas) o jalón al pecho",
+       "note": "Dominadas/jalón 6-8",
        "reps": 8
       },
       {
@@ -737,8 +716,7 @@
      "steps": [
       {
        "type": "interval",
-       "exercise": "BENCH_PRESS/DUMBBELL_BENCH_PRESS",
-       "note": "Press banca mancuernas, RPE 7",
+       "note": "Press banca 10",
        "reps": 10
       },
       {
@@ -753,8 +731,7 @@
      "steps": [
       {
        "type": "interval",
-       "exercise": "ROW/DUMBBELL_ROW",
-       "note": "Remo mancuerna 10 por brazo, apoyado en banco",
+       "note": "Remo 10 x brazo",
        "reps": 20
       },
       {
@@ -769,8 +746,7 @@
      "steps": [
       {
        "type": "interval",
-       "exercise": "SHOULDER_PRESS/DUMBBELL_SHOULDER_PRESS",
-       "note": "Press militar de pie, sin arquear",
+       "note": "Press militar 10",
        "reps": 10
       },
       {
@@ -785,8 +761,7 @@
      "steps": [
       {
        "type": "interval",
-       "exercise": "HIP_STABILITY/DEAD_BUG",
-       "note": "Dead bug 10 por lado",
+       "note": "Dead bug 10 x lado",
        "reps": 20
       },
       {
@@ -795,8 +770,7 @@
       },
       {
        "type": "interval",
-       "exercise": "CORE/CABLE_CORE_PRESS",
-       "note": "Pallof press con goma 10 por lado",
+       "note": "Pallof 10 x lado",
        "reps": 20
       },
       {
@@ -805,8 +779,7 @@
       },
       {
        "type": "interval",
-       "exercise": "PLANK/PLANK",
-       "note": "Plancha frontal",
+       "note": "Plancha 40\"",
        "time_s": 40
       },
       {
@@ -887,8 +860,7 @@
      "steps": [
       {
        "type": "interval",
-       "exercise": "PLANK/PLANK",
-       "note": "Plancha frontal: glúteos apretados, sin hundir lumbar",
+       "note": "Plancha 40\"",
        "time_s": 40
       },
       {
@@ -897,8 +869,7 @@
       },
       {
        "type": "interval",
-       "exercise": "PLANK/SIDE_PLANK",
-       "note": "Plancha lateral lado izquierdo, cadera alta",
+       "note": "Lateral izq 30\"",
        "time_s": 30
       },
       {
@@ -907,8 +878,7 @@
       },
       {
        "type": "interval",
-       "exercise": "PLANK/SIDE_PLANK",
-       "note": "Plancha lateral lado derecho, cadera alta",
+       "note": "Lateral dcha 30\"",
        "time_s": 30
       },
       {
@@ -917,8 +887,7 @@
       },
       {
        "type": "interval",
-       "exercise": "HIP_STABILITY/DEAD_BUG",
-       "note": "Dead bug 10 por lado, lumbar pegada al suelo",
+       "note": "Dead bug 10 x lado",
        "reps": 20
       },
       {
@@ -927,8 +896,7 @@
       },
       {
        "type": "interval",
-       "exercise": "HIP_RAISE/SINGLE_LEG_HIP_RAISE",
-       "note": "Puente a una pierna 10 por lado, 1s arriba",
+       "note": "Puente 1 pierna 10 x lado",
        "reps": 20
       },
       {
@@ -937,8 +905,7 @@
       },
       {
        "type": "interval",
-       "exercise": "HIP_STABILITY/QUADRUPED_WITH_LEG_LIFT",
-       "note": "Bird dog 10 por lado, 2s arriba sin rotar cadera",
+       "note": "Bird dog 10 x lado",
        "reps": 20
       },
       {
@@ -947,8 +914,7 @@
       },
       {
        "type": "interval",
-       "exercise": "HYPEREXTENSION/SUPERMAN_FROM_FLOOR",
-       "note": "Superman brazos en Y, mirada al suelo",
+       "note": "Superman Y x12",
        "reps": 12
       },
       {
