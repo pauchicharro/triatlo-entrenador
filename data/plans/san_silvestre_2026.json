@@ -347,37 +347,59 @@
     {
      "name": "Activación",
      "short": "puente glúteo + monster walk",
-     "text": "2x10 puente de glúteo + 2x10 pasos laterales con goma (monster walk)"
+     "text": "2x10 puente de glúteo + 2x10 pasos laterales con goma (monster walk)",
+     "img": [
+      "Butt_Lift_Bridge",
+      "Monster_Walk"
+     ]
     },
     {
      "name": "Pliometría",
      "short": "pogo 3×15 · cajón 3×6",
-     "text": "3x15 pogo jumps (tobillo rígido) + 3x6 saltos a cajón bajando andando, descanso 60\". Siempre antes de la fuerza, con piernas frescas"
+     "text": "3x15 pogo jumps (tobillo rígido) + 3x6 saltos a cajón bajando andando, descanso 60\". Siempre antes de la fuerza, con piernas frescas",
+     "img": [
+      "Front_Box_Jump"
+     ]
     },
     {
      "name": "Sentadilla búlgara",
      "short": "3×8/pierna",
-     "text": "3x8 por pierna con mancuernas, RPE 7 (te quedan 3 reps), descanso 90\""
+     "text": "3x8 por pierna con mancuernas, RPE 7 (te quedan 3 reps), descanso 90\"",
+     "img": [
+      "Split_Squat_with_Dumbbells"
+     ]
     },
     {
      "name": "Peso muerto rumano",
      "short": "3×8",
-     "text": "3x8 con barra o mancuernas pesadas, espalda neutra, descanso 90\""
+     "text": "3x8 con barra o mancuernas pesadas, espalda neutra, descanso 90\"",
+     "img": [
+      "Romanian_Deadlift"
+     ]
     },
     {
      "name": "Hip thrust",
      "short": "3×10",
-     "text": "3x10, pausa 1 s arriba, descanso 60\""
+     "text": "3x10, pausa 1 s arriba, descanso 60\"",
+     "img": [
+      "Barbell_Hip_Thrust"
+     ]
     },
     {
      "name": "Gemelo excéntrico",
      "short": "3×12/pierna",
-     "text": "3x12 por pierna en escalón: subes con dos, bajas con una en 3 s (protege el Aquiles)"
+     "text": "3x12 por pierna en escalón: subes con dos, bajas con una en 3 s (protege el Aquiles)",
+     "img": [
+      "Standing_Calf_Raises"
+     ]
     },
     {
      "name": "Core lateral",
      "short": "plancha lateral 3×30 s · Copenhague 2×20 s",
-     "text": "3x30 s plancha lateral por lado + 2x20 s Copenhague por lado"
+     "text": "3x30 s plancha lateral por lado + 2x20 s Copenhague por lado",
+     "img": [
+      "Side_Bridge"
+     ]
     }
    ],
    "steps": [
@@ -553,12 +575,22 @@
     {
      "name": "Activación",
      "short": "puente glúteo + monster walk",
-     "text": "2x10 puente de glúteo + 2x10 monster walk"
+     "text": "2x10 puente de glúteo + 2x10 monster walk",
+     "img": [
+      "Butt_Lift_Bridge",
+      "Monster_Walk"
+     ]
     },
     {
      "name": "Circuito (2 rondas, sin llegar al fallo)",
      "short": "2 rondas: búlgara 6 · PM rumano 6 · gemelo 10 · plancha lat. 30 s",
-     "text": "sentadilla búlgara 6/pierna · peso muerto rumano 6 · gemelo excéntrico 10/pierna · plancha lateral 30 s/lado"
+     "text": "sentadilla búlgara 6/pierna · peso muerto rumano 6 · gemelo excéntrico 10/pierna · plancha lateral 30 s/lado",
+     "img": [
+      "Split_Squat_with_Dumbbells",
+      "Romanian_Deadlift",
+      "Standing_Calf_Raises",
+      "Side_Bridge"
+     ]
     }
    ],
    "steps": [
@@ -647,32 +679,54 @@
     {
      "name": "Activación",
      "short": "rotaciones + face pull goma 2×15",
-     "text": "rotaciones de hombro con goma + 2x15 face pull con goma"
+     "text": "rotaciones de hombro con goma + 2x15 face pull con goma",
+     "img": [
+      "Shoulder_Circles",
+      "Face_Pull"
+     ]
     },
     {
      "name": "Dominadas o jalón al pecho",
      "short": "3×8",
-     "text": "3x6-8 dominadas (asistidas si hace falta) o jalón al pecho, descanso 90\""
+     "text": "3x6-8 dominadas (asistidas si hace falta) o jalón al pecho, descanso 90\"",
+     "img": [
+      "Pullups",
+      "Wide-Grip_Lat_Pulldown"
+     ]
     },
     {
      "name": "Press de banca con mancuernas",
      "short": "3×10",
-     "text": "3x10, RPE 7, descanso 90\""
+     "text": "3x10, RPE 7, descanso 90\"",
+     "img": [
+      "Dumbbell_Bench_Press"
+     ]
     },
     {
      "name": "Remo con mancuerna",
      "short": "3×10/brazo",
-     "text": "3x10 por brazo apoyado en banco, descanso 60\""
+     "text": "3x10 por brazo apoyado en banco, descanso 60\"",
+     "img": [
+      "One-Arm_Dumbbell_Row"
+     ]
     },
     {
      "name": "Press militar con mancuernas",
      "short": "3×10",
-     "text": "3x10 de pie, sin arquear la espalda, descanso 60\""
+     "text": "3x10 de pie, sin arquear la espalda, descanso 60\"",
+     "img": [
+      "Dumbbell_Shoulder_Press"
+     ]
     },
     {
      "name": "Core",
      "short": "2 rondas: dead bug · Pallof · plancha 40 s",
-     "text": "2 rondas: dead bug 10/lado · Pallof press con goma 10/lado · plancha frontal 40 s"
+     "text": "2 rondas: dead bug 10/lado · Pallof press con goma 10/lado · plancha frontal 40 s",
+     "img": [
+      "Dead_Bug",
+      "Pallof_Press",
+      "Plank"
+     ]
     }
    ],
    "steps": [
@@ -825,22 +879,34 @@
     {
      "name": "Plancha frontal",
      "short": "40\"",
-     "text": "40\" con glúteos apretados y cadera alineada (sin hundir la lumbar)"
+     "text": "40\" con glúteos apretados y cadera alineada (sin hundir la lumbar)",
+     "img": [
+      "Plank"
+     ]
     },
     {
      "name": "Plancha lateral",
      "short": "30\"/lado",
-     "text": "30\" por lado, cadera alta"
+     "text": "30\" por lado, cadera alta",
+     "img": [
+      "Side_Bridge"
+     ]
     },
     {
      "name": "Dead bug",
      "short": "10/lado",
-     "text": "10 por lado, lento, con la lumbar pegada al suelo"
+     "text": "10 por lado, lento, con la lumbar pegada al suelo",
+     "img": [
+      "Dead_Bug"
+     ]
     },
     {
      "name": "Puente de glúteo a una pierna",
      "short": "10/lado",
-     "text": "10 por lado, 1\" arriba apretando glúteo"
+     "text": "10 por lado, 1\" arriba apretando glúteo",
+     "img": [
+      "Single_Leg_Glute_Bridge"
+     ]
     },
     {
      "name": "Bird dog",
@@ -850,7 +916,10 @@
     {
      "name": "Superman en Y",
      "short": "12",
-     "text": "12 repeticiones, brazos en Y, mirada al suelo"
+     "text": "12 repeticiones, brazos en Y, mirada al suelo",
+     "img": [
+      "Superman"
+     ]
     }
    ],
    "steps": [

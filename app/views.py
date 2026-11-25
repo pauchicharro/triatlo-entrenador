@@ -59,6 +59,15 @@ code{font-size:.85em}
 """
 
 
+def exercise_imgs(b, base):
+    """Fotos del ejercicio (inicio y final), de free-exercise-db (dominio público), en docs/ex/."""
+    ids = b.get("img") or []
+    return ('<div class="exi">' + "".join(
+        f'<figure><img src="{base}{i}/0.jpg" alt="{escape(i.replace("_", " "))} (inicio)" loading="lazy">'
+        f'<img src="{base}{i}/1.jpg" alt="{escape(i.replace("_", " "))} (final)" loading="lazy"></figure>' for i in ids)
+        + "</div>") if ids else ""
+
+
 def page(body, title="Entrenador de triatlón", head=""):
     return f"""<!doctype html><html lang="es"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -673,6 +682,8 @@ PLAN_CSS = """
 .sport{font-size:.8rem;color:var(--ink2);min-width:4.5rem}
 .block{padding:.55rem 0;border-bottom:1px solid var(--grid)} .block:last-child{border-bottom:0}
 .block .n{font-weight:600}
+.exi{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.45rem} .exi figure{margin:0;display:flex;gap:2px}
+.exi img{width:150px;max-width:42vw;height:auto;border-radius:6px;background:#fff}
 .hero{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:.6rem}
 .pz td:first-child{font-weight:600}
 .series{font-size:.8rem;color:var(--ink2);margin:0 0 .2rem 5rem}
@@ -1013,7 +1024,7 @@ def session_page(athlete_id, session_id, today=None):
     st, lab, act, detail = match_sessions(same_day, acts, today)[row["id"]]
 
     blocks = "".join(f'<div class="block"><div class="n">{escape(b.get("name",""))}</div>'
-                     f'<div>{escape(paces_text(b.get("text",""), pz))}</div></div>' for b in s.get("blocks") or [])
+                     f'<div>{escape(paces_text(b.get("text",""), pz))}</div>{exercise_imgs(b, "/ex/")}</div>' for b in s.get("blocks") or [])
     codes = sorted({c for b in s.get("blocks") or [] for c in (pz or {}) if "{" + c + "}" in b.get("text", "")},
                    key=lambda c: ["E", "M", "T", "I", "R", "CUR", "RP"].index(c))
     legend = "".join(f"<tr><td>{c} · {pz[c]['name']}</td><td>{pz[c]['text']}</td><td>FC {pz[c]['hr']}</td><td class='ink2'>{pz[c]['desc']}</td></tr>"

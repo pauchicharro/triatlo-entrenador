@@ -61,7 +61,8 @@ def _blocks_html(s, pz):
     out = ""
     for b in s.get("blocks") or []:
         out += (f'<div class="blk"><b>{escape(b.get("name", ""))}</b>'
-                f'<div>{escape(P.render_text(b.get("text", ""), pz) if pz else b.get("text", ""))}</div></div>')
+                f'<div>{escape(P.render_text(b.get("text", ""), pz) if pz else b.get("text", ""))}</div>'
+                f'{views.exercise_imgs(b, "../ex/")}</div>')
     if s.get("notes"):
         out += f'<p class="note">💡 {escape(P.render_text(s["notes"], pz) if pz else s["notes"])}</p>'
     return out
@@ -217,6 +218,7 @@ details.ses summary{cursor:pointer;list-style:none;line-height:1.5}
 details.ses summary::-webkit-details-marker{display:none}
 .ses.rest{padding:.35rem 0}
 .blk{padding:.35rem 0;border-top:1px solid var(--grid);font-size:.92rem}
+.exi{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.4rem} .exi figure{margin:0;display:flex;gap:2px} .exi img{width:42vw;max-width:170px;height:auto;border-radius:6px;background:#fff}
 .note{font-size:.88rem;color:var(--ink2);margin:.4rem 0 0}
 .series2{font-size:.8rem;color:var(--ink2)}
 details.week{margin:.5rem 0} details.week>summary{cursor:pointer;padding:.4rem 0}

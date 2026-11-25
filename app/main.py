@@ -25,6 +25,8 @@ BASE_URL = os.getenv("APP_BASE_URL", "http://localhost:8000")
 REDIRECT_URI = f"{BASE_URL}/callback"
 
 app = FastAPI(title="Entrenador de triatlón")
+from fastapi.staticfiles import StaticFiles  # noqa: E402
+app.mount("/ex", StaticFiles(directory=str(Path(__file__).parent.parent / "docs" / "ex")), name="ex")
 # La sesión es una cookie firmada: el navegador guarda "soy el atleta X" y
 # no la puede falsificar sin conocer SESSION_SECRET.
 SESSION_SECRET = os.environ.get("SESSION_SECRET") or secrets.token_hex(32)

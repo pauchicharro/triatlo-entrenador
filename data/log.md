@@ -25,6 +25,9 @@ Registre cronològic curt d'ajustos i decisions preses en converses amb l'entren
 
 
 
+## 2026-11-25 — Fotos dels exercicis
+- Les sessions de gimnàs i core mostren fotos de cada exercici (inici i final) a l'app i a la pàgina mòbil. Imatges de free-exercise-db (domini públic) a `docs/ex/`; camp `img` als blocs de les plantilles.
+
 ## 2026-11-24 — Temps a Múnic
 - Nou `app/weather.py` (Open-Meteo) → `data/weather.md` amb avisos de neu/gel/fred/vent. L'usen el reajust setmanal, el xat i les sessions manuals: amb neu o gel, sèries/llindar/test a un altre dia o a la cinta.
 - Aquesta setmana: possible gel dijous 26 (rodatge suau, amb compte); dissabte sec per al llindar.
