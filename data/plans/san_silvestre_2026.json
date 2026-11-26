@@ -1075,6 +1075,10 @@
   {
    "date": "2026-11-24",
    "summary": "Se añade la previsión del tiempo de Múnich (app/weather.py) al ajuste semanal. Esta semana: aviso de posible hielo el jueves 26 (rodaje suave, con cuidado); sábado seco para el umbral."
+  },
+  {
+   "date": "2026-11-26",
+   "summary": "Nieve en Múnich: se quita el rodaje suave del jueves 26 (no se recupera) y se mantiene el core en casa. Aviso de posible hielo para el umbral del sábado."
   }
  ],
  "sessions": [
@@ -1908,55 +1912,11 @@
   },
   {
    "date": "2026-11-26",
-   "sport": "run",
-   "title": "Rodaje suave + rectas",
-   "distance_km": 6,
-   "intensity": "E",
-   "duration_min": 36,
-   "key": false,
-   "blocks": [
-    {
-     "name": "Rodaje",
-     "text": "30' a {E} (FC <140)"
-    },
-    {
-     "name": "Rectas",
-     "text": "6 rectas de 20 s, progresivas hasta ritmo {R}, recuperando 40 s andando (técnica: zancada suelta, cadencia alta)"
-    }
-   ],
-   "why": "Construye base aeróbica y economía sin acumular fatiga. Las rectas activan la velocidad sin coste.",
-   "notes": "Ritmo del jueves 19/11 (5:35, FC 135): ese es el ritmo suave bueno. Previsión: -2/-1 °C con algo de nieve (~1 cm) y riesgo de hielo: zapatilla con agarre, ve por FC y no por ritmo, y salta las rectas si el suelo resbala. Si está muy helado, cámbialo por el miércoles (seco).",
-   "steps": [
-    {
-     "type": "interval",
-     "time_s": 1800,
-     "intensity": "E"
-    },
-    {
-     "type": "repeat",
-     "reps": 6,
-     "steps": [
-      {
-       "type": "interval",
-       "time_s": 20,
-       "note": "Recta progresiva"
-      },
-      {
-       "type": "recovery",
-       "time_s": 40,
-       "note": "Trote o andando"
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "date": "2026-11-26",
    "sport": "gym",
    "template": "coreHome",
    "focus": "Core",
    "intensity": null,
-   "notes": "En casa, justo después de correr.",
+   "notes": "Hoy sin rodaje por la nieve: haz el core igualmente en casa (15').",
    "why": "Core estable = postura y zancada eficientes al final del 10K y, sobre todo, en la maratón."
   },
   {
@@ -2000,7 +1960,7 @@
     }
    ],
    "why": "El umbral que se cayó el 21/11. Pasar de 3x5' a bloques de 10' es el paso hacia el ritmo de 10K.",
-   "notes": "A 4:13-4:18, NO a 4:03-4:07 como el 13/11: si sale más rápido deja de ser umbral y te deja cansado para el domingo.",
+   "notes": "A 4:13-4:18, NO a 4:03-4:07 como el 13/11: si sale más rápido deja de ser umbral y te deja cansado para el domingo. Ojo: nieve el jueves y bajo cero hasta el domingo. Si el suelo está con nieve pisada o hielo, haz el umbral en cinta (1 % de inclinación) o cámbialo con la tirada del domingo si ese día está mejor; no hagas series sobre hielo.",
    "steps": [
     {
      "type": "warmup",

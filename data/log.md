@@ -25,6 +25,9 @@ Registre cronològic curt d'ajustos i decisions preses en converses amb l'entren
 
 
 
+## 2026-11-26 — Neu
+- Neva a Múnic (2 cm, sota zero fins diumenge): es treu el rodatge suau de dijous (no es recupera); es manté el core a casa. Avís per al llindar de dissabte: cinta o intercanviar amb diumenge si hi ha gel.
+
 ## 2026-11-25 — Fotos dels exercicis
 - Les sessions de gimnàs i core mostren fotos de cada exercici (inici i final) a l'app i a la pàgina mòbil. Imatges de free-exercise-db (domini públic) a `docs/ex/`; camp `img` als blocs de les plantilles.
 
