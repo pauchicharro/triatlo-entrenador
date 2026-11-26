@@ -1079,6 +1079,10 @@
   {
    "date": "2026-11-26",
    "summary": "Nieve en Múnich: se quita el rodaje suave del jueves 26 (no se recupera) y se mantiene el core en casa. Aviso de posible hielo para el umbral del sábado."
+  },
+  {
+   "date": "2026-11-26",
+   "summary": "Por la nieve se intercambian jueves y viernes: hoy natación técnica + tren superior; el viernes, rodaje suave 30' + 4 rectas (cinta si hay hielo) y core en casa."
   }
  ],
  "sessions": [
@@ -1912,15 +1916,6 @@
   },
   {
    "date": "2026-11-26",
-   "sport": "gym",
-   "template": "coreHome",
-   "focus": "Core",
-   "intensity": null,
-   "notes": "Hoy sin rodaje por la nieve: haz el core igualmente en casa (15').",
-   "why": "Core estable = postura y zancada eficientes al final del 10K y, sobre todo, en la maratón."
-  },
-  {
-   "date": "2026-11-27",
    "sport": "swim",
    "template": "swimB",
    "intensity": "E",
@@ -1929,13 +1924,66 @@
    "why": "Mantener la natación para 2027 y sumar volumen aeróbico sin impacto."
   },
   {
-   "date": "2026-11-27",
+   "date": "2026-11-26",
    "sport": "gym",
    "template": "gymUpper",
    "focus": "Tren superior",
    "intensity": null,
    "notes": "Justo después de nadar.",
    "why": "Tren superior y core: postura y braceo eficientes al final de carrera, y base para nadar."
+  },
+  {
+   "date": "2026-11-27",
+   "sport": "run",
+   "title": "Rodaje suave + rectas",
+   "distance_km": 6,
+   "intensity": "E",
+   "duration_min": 36,
+   "key": false,
+   "blocks": [
+    {
+     "name": "Rodaje",
+     "text": "30' a {E} (FC <140)"
+    },
+    {
+     "name": "Rectas",
+     "text": "4 rectas de 20 s, progresivas hasta ritmo {R}, recuperando 40 s andando (técnica: zancada suelta, cadencia alta)"
+    }
+   ],
+   "why": "Rodaje del jueves movido por la nieve. Suave: mañana es el umbral.",
+   "notes": "Si la calle sigue con nieve o hielo, en la cinta del gimnasio al 1 % de inclinación. Solo 4 rectas: mañana hay umbral.",
+   "steps": [
+    {
+     "type": "interval",
+     "time_s": 1800,
+     "intensity": "E"
+    },
+    {
+     "type": "repeat",
+     "reps": 4,
+     "steps": [
+      {
+       "type": "interval",
+       "time_s": 20,
+       "note": "Recta progresiva"
+      },
+      {
+       "type": "recovery",
+       "time_s": 40,
+       "note": "Trote o andando"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "date": "2026-11-27",
+   "sport": "gym",
+   "template": "coreHome",
+   "focus": "Core",
+   "intensity": null,
+   "notes": "En casa, justo después de correr.",
+   "why": "Core estable = postura y zancada eficientes al final del 10K y, sobre todo, en la maratón."
   },
   {
    "date": "2026-11-28",

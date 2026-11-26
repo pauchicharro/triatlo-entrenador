@@ -104,3 +104,4 @@ Informe de valoració fisiològica (LabSportSalud), prova del 07/01/2025: compos
 espirometria, prova incremental en tapís amb llindars ventilatoris VT1/VT2. Document original
 a `~/Downloads/Informe rendimiento Pau Chicharro.pdf` (no es guarda còpia dins del projecte
 perquè conté dades personals identificatives que no calen per entrenar).
+- El gimnàs (mateix lloc que la piscina) té **cinta de córrer**: opció per defecte per a sèries/llindar els dies de neu o gel (1 % d'inclinació).

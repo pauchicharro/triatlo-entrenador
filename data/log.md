@@ -26,6 +26,7 @@ Registre cronològic curt d'ajustos i decisions preses en converses amb l'entren
 
 
 ## 2026-11-26 — Neu
+- Canvi: dijous natació tècnica + tren superior (en lloc de divendres); divendres rodatge suau 30' + 4 rectes (cinta si hi ha gel) i core a casa. El gimnàs té cinta.
 - Neva a Múnic (2 cm, sota zero fins diumenge): es treu el rodatge suau de dijous (no es recupera); es manté el core a casa. Avís per al llindar de dissabte: cinta o intercanviar amb diumenge si hi ha gel.
 
 ## 2026-11-25 — Fotos dels exercicis

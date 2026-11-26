@@ -14,7 +14,7 @@ El JSON del plan activo es: {{PLAN}}. Hoy: {{TODAY}}. El próximo lunes: {{NEXT_
 - Si hay datos de Garmin recientes en `data/garmin/` (sueño, training status), tenlos en cuenta.
 - **Tiempo en Múnich**: lee `data/weather.md` (previsión de la semana con avisos). Días con ❄️ NIEVE o 🧊 HIELO:
   no pongas series, umbral ni test al aire libre → muévelos a un día seco (respetando que no vayan dos claves
-  seguidas ni pierna el día antes) o, si no hay hueco, indícalos en cinta (en la cinta, 1 % de inclinación).
+  seguidas ni pierna el día antes) o hazlos en la cinta del gimnasio (la tiene; 1 % de inclinación).
   Rodajes suaves con nieve: permitidos, más cortos si hace falta, por FC y no por ritmo, con aviso de cuidado.
   Frío fuerte (sensación ≤ −10 °C): calentamiento más largo y dentro de casa si se puede. Menciona en las notas
   de la sesión afectada el porqué. La previsión a más de 5 días es orientativa.
