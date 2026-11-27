@@ -34,7 +34,8 @@ Todos los ritmos del plan se recalculan solos. Comenta si el objetivo de tiempo 
 - Respeta las restricciones: 1 día de descanso completo por semana (por defecto miércoles, pero flexible: ponlo donde mejor encaje), máx. 2 h/día entre semana, **2 días de gimnasio por
   semana y siempre el mismo día que natación** (están en el mismo sitio: p. ej. lunes natación + tren inferior,
   viernes natación + tren superior), sin tren inferior el día antes de un test o sesión clave (cada semana, pierna el lunes o el viernes según cuál de los dos días siguientes NO sea clave; si ambos lo son, el lunes con RPE ≤7 y sin pliometría); gimnasio con
-  `focus` (Tren superior / Tren inferior), **core en casa** (plantilla `coreHome`, sport gym, focus Core) 2 días por semana
+  `focus` (Tren superior / Tren inferior), **core en casa** (plantillas `coreHome` nivel 1, `coreHome2` nivel 2, `coreHome3` nivel 3; sport gym, focus Core) 2 días por semana —
+  progresión: nivel 2 hasta el 13/12, nivel 3 desde el 14/12, nivel 1 la semana de una carrera; al atleta le gusta acabar notándolo—
   justo después de un rodaje suave o de la tirada (nunca después de series/umbral, test ni carrera), natación con bloques que tengan `short` (series en una línea),
   carrera **por tiempo** (bloques y series en minutos, p. ej. "10' a {E}", "3x5' a {T}, recuperando 1' trotando"; solo tests y carreras por distancia) con intensidades en códigos ({E}, {T}, {I}, {R}, {CUR}, {RP}), nunca ritmos fijos.
 - Las sesiones de carrera, natación y bici deben llevar `steps` (se suben al reloj): para carrera,

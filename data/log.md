@@ -25,6 +25,9 @@ Registre cronològic curt d'ajustos i decisions preses en converses amb l'entren
 
 
 
+## 2026-11-27 — Core progressiu
+- L'atleta vol acabar notant-lo: nivell 2 (`coreHome2`: planxa amb elevació de cama, lateral amb cama, dead bug lent, pont amb peu al sofà, bird dog 3", nedador + planxa final a tope) des del 29/11 i també el 6/12; nivell 3 (`coreHome3`, 3 voltes) des del 14/12; nivell 1 la setmana de la cursa.
+
 ## 2026-11-27 — Força al rellotge
 - Sense exercici del catàleg de Garmin el rellotge mostrava «Ir» a cada pas: es tornen a posar els exercicis de Garmin (el rellotge mostra el nom traduït) i la nota curta queda com a descripció.
 

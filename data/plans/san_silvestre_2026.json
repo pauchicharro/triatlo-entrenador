@@ -1027,6 +1027,302 @@
      ]
     }
    ]
+  },
+  "coreHome2": {
+   "title": "Core en casa (nivel 2)",
+   "focus": "Core",
+   "duration_min": 20,
+   "blocks": [
+    {
+     "name": "Formato",
+     "short": "2 vueltas · 30\" descanso · final: plancha a tope",
+     "text": "Justo al llegar de correr, antes de la ducha. 2 vueltas de los 6 ejercicios con 30\" de descanso, y al final una plancha frontal hasta casi no poder (que te queden 5\")."
+    },
+    {
+     "name": "Plancha con elevación de pierna",
+     "short": "45\"",
+     "text": "45\": en plancha, levanta una pierna 2\" y cambia, sin mover la cadera",
+     "img": [
+      "Plank"
+     ]
+    },
+    {
+     "name": "Plancha lateral con elevación de pierna",
+     "short": "30\"/lado",
+     "text": "30\" por lado, cadera alta, subiendo y bajando la pierna de arriba",
+     "img": [
+      "Side_Bridge"
+     ]
+    },
+    {
+     "name": "Dead bug lento",
+     "short": "10/lado",
+     "text": "10 por lado, 3\" para bajar brazo y pierna, lumbar pegada al suelo",
+     "img": [
+      "Dead_Bug"
+     ]
+    },
+    {
+     "name": "Puente a una pierna con pie en sofá",
+     "short": "12/lado",
+     "text": "12 por lado, talón sobre el sofá o una silla, 2\" arriba apretando glúteo",
+     "img": [
+      "Single_Leg_Glute_Bridge"
+     ]
+    },
+    {
+     "name": "Bird dog",
+     "short": "12/lado",
+     "text": "12 por lado, 3\" arriba con brazo y pierna estirados, sin rotar la cadera"
+    },
+    {
+     "name": "Nadador",
+     "short": "30\"",
+     "text": "30\" boca abajo, brazos y piernas alternando como si nadaras, sin apoyarlos",
+     "img": [
+      "Superman"
+     ]
+    },
+    {
+     "name": "Final",
+     "short": "plancha a tope",
+     "text": "1 plancha frontal hasta casi el fallo (para cuando te queden ~5\")",
+     "img": [
+      "Plank"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "type": "repeat",
+     "reps": 2,
+     "steps": [
+      {
+       "type": "interval",
+       "exercise": "PLANK/PLANK_WITH_LEG_LIFT",
+       "note": "Plancha elev. pierna alterna 45\"",
+       "time_s": 45
+      },
+      {
+       "type": "rest",
+       "time_s": 30
+      },
+      {
+       "type": "interval",
+       "exercise": "PLANK/SIDE_PLANK_WITH_LEG_LIFT",
+       "note": "Lateral + pierna izq 30\"",
+       "time_s": 30
+      },
+      {
+       "type": "rest",
+       "time_s": 10
+      },
+      {
+       "type": "interval",
+       "exercise": "PLANK/SIDE_PLANK_WITH_LEG_LIFT",
+       "note": "Lateral + pierna dcha 30\"",
+       "time_s": 30
+      },
+      {
+       "type": "rest",
+       "time_s": 30
+      },
+      {
+       "type": "interval",
+       "exercise": "HIP_STABILITY/DEAD_BUG",
+       "note": "Dead bug lento 10 x lado (3s bajar)",
+       "reps": 20
+      },
+      {
+       "type": "rest",
+       "time_s": 30
+      },
+      {
+       "type": "interval",
+       "exercise": "HIP_RAISE/SINGLE_LEG_HIP_RAISE_WITH_FOOT_ON_BENCH",
+       "note": "Puente 1 pierna pie en sofá 12 x lado",
+       "reps": 24
+      },
+      {
+       "type": "rest",
+       "time_s": 30
+      },
+      {
+       "type": "interval",
+       "exercise": "HIP_STABILITY/QUADRUPED_WITH_LEG_LIFT",
+       "note": "Bird dog 12 x lado (3s arriba)",
+       "reps": 24
+      },
+      {
+       "type": "rest",
+       "time_s": 30
+      },
+      {
+       "type": "interval",
+       "exercise": "HYPEREXTENSION/SUPERMAN_FROM_FLOOR",
+       "note": "Nadador 30\"",
+       "time_s": 30
+      },
+      {
+       "type": "rest",
+       "time_s": 30
+      }
+     ]
+    },
+    {
+     "type": "interval",
+     "exercise": "PLANK/PLANK",
+     "note": "Plancha a tope (casi fallo)"
+    }
+   ]
+  },
+  "coreHome3": {
+   "title": "Core en casa (nivel 3)",
+   "focus": "Core",
+   "duration_min": 27,
+   "blocks": [
+    {
+     "name": "Formato",
+     "short": "3 vueltas · 30\" descanso · final: plancha a tope",
+     "text": "Justo al llegar de correr, antes de la ducha. 3 vueltas de los 6 ejercicios con 30\" de descanso, y al final una plancha frontal hasta casi no poder (que te queden 5\")."
+    },
+    {
+     "name": "Plancha con elevación de pierna",
+     "short": "45\"",
+     "text": "45\": en plancha, levanta una pierna 2\" y cambia, sin mover la cadera",
+     "img": [
+      "Plank"
+     ]
+    },
+    {
+     "name": "Plancha lateral con elevación de pierna",
+     "short": "30\"/lado",
+     "text": "30\" por lado, cadera alta, subiendo y bajando la pierna de arriba",
+     "img": [
+      "Side_Bridge"
+     ]
+    },
+    {
+     "name": "Dead bug lento",
+     "short": "10/lado",
+     "text": "10 por lado, 3\" para bajar brazo y pierna, lumbar pegada al suelo",
+     "img": [
+      "Dead_Bug"
+     ]
+    },
+    {
+     "name": "Puente a una pierna con pie en sofá",
+     "short": "12/lado",
+     "text": "12 por lado, talón sobre el sofá o una silla, 2\" arriba apretando glúteo",
+     "img": [
+      "Single_Leg_Glute_Bridge"
+     ]
+    },
+    {
+     "name": "Bird dog",
+     "short": "12/lado",
+     "text": "12 por lado, 3\" arriba con brazo y pierna estirados, sin rotar la cadera"
+    },
+    {
+     "name": "Nadador",
+     "short": "30\"",
+     "text": "30\" boca abajo, brazos y piernas alternando como si nadaras, sin apoyarlos",
+     "img": [
+      "Superman"
+     ]
+    },
+    {
+     "name": "Final",
+     "short": "plancha a tope",
+     "text": "1 plancha frontal hasta casi el fallo (para cuando te queden ~5\")",
+     "img": [
+      "Plank"
+     ]
+    }
+   ],
+   "steps": [
+    {
+     "type": "repeat",
+     "reps": 3,
+     "steps": [
+      {
+       "type": "interval",
+       "exercise": "PLANK/PLANK_WITH_LEG_LIFT",
+       "note": "Plancha elev. pierna alterna 45\"",
+       "time_s": 45
+      },
+      {
+       "type": "rest",
+       "time_s": 30
+      },
+      {
+       "type": "interval",
+       "exercise": "PLANK/SIDE_PLANK_WITH_LEG_LIFT",
+       "note": "Lateral + pierna izq 30\"",
+       "time_s": 30
+      },
+      {
+       "type": "rest",
+       "time_s": 10
+      },
+      {
+       "type": "interval",
+       "exercise": "PLANK/SIDE_PLANK_WITH_LEG_LIFT",
+       "note": "Lateral + pierna dcha 30\"",
+       "time_s": 30
+      },
+      {
+       "type": "rest",
+       "time_s": 30
+      },
+      {
+       "type": "interval",
+       "exercise": "HIP_STABILITY/DEAD_BUG",
+       "note": "Dead bug lento 10 x lado (3s bajar)",
+       "reps": 20
+      },
+      {
+       "type": "rest",
+       "time_s": 30
+      },
+      {
+       "type": "interval",
+       "exercise": "HIP_RAISE/SINGLE_LEG_HIP_RAISE_WITH_FOOT_ON_BENCH",
+       "note": "Puente 1 pierna pie en sofá 12 x lado",
+       "reps": 24
+      },
+      {
+       "type": "rest",
+       "time_s": 30
+      },
+      {
+       "type": "interval",
+       "exercise": "HIP_STABILITY/QUADRUPED_WITH_LEG_LIFT",
+       "note": "Bird dog 12 x lado (3s arriba)",
+       "reps": 24
+      },
+      {
+       "type": "rest",
+       "time_s": 30
+      },
+      {
+       "type": "interval",
+       "exercise": "HYPEREXTENSION/SUPERMAN_FROM_FLOOR",
+       "note": "Nadador 30\"",
+       "time_s": 30
+      },
+      {
+       "type": "rest",
+       "time_s": 30
+      }
+     ]
+    },
+    {
+     "type": "interval",
+     "exercise": "PLANK/PLANK",
+     "note": "Plancha a tope (casi fallo)"
+    }
+   ]
   }
  },
  "revisions": [
@@ -1121,6 +1417,10 @@
   {
    "date": "2026-11-27",
    "summary": "Fuerza en el reloj: se recuperan los ejercicios del catálogo de Garmin (sin ellos el reloj mostraba «Ir»); la nota corta queda como descripción."
+  },
+  {
+   "date": "2026-11-27",
+   "summary": "Core progresivo a petición del atleta: nivel 2 (variantes más duras + plancha final a tope) desde el 29/11, nivel 3 (3 vueltas) desde el 14/12, y vuelta al nivel 1 la semana de la carrera."
   }
  ],
  "sessions": [
@@ -2103,7 +2403,7 @@
   {
    "date": "2026-11-29",
    "sport": "gym",
-   "template": "coreHome",
+   "template": "coreHome2",
    "focus": "Core",
    "intensity": null,
    "notes": "En casa, justo después de correr.",
@@ -2306,6 +2606,15 @@
      "time_s": 3300
     }
    ]
+  },
+  {
+   "date": "2026-12-06",
+   "sport": "gym",
+   "template": "coreHome2",
+   "focus": "Core",
+   "intensity": null,
+   "notes": "En casa, justo después de correr.",
+   "why": "Core estable = postura y zancada eficientes al final del 10K y en la maratón."
   },
   {
    "date": "2026-12-07",
