@@ -46,6 +46,7 @@ STROKES = {"any": (1, "any_stroke"), "back": (2, "backstroke"), "breast": (3, "b
            "drill": (4, "drill"), "fly": (5, "fly"), "free": (6, "free")}
 EQUIPMENT = {"fins": (1, "fins"), "kickboard": (2, "kickboard"), "paddles": (3, "paddles"),
              "pull_buoy": (4, "pull_buoy")}
+EASY_HR = [115, 140]  # FC objetivo de los tramos {E} (zonas de laboratorio: Z2 hasta 139)
 PREFIX = "[Plan] "  # para reconocer (y poder borrar) los entrenos que sube la app
 
 
@@ -74,6 +75,10 @@ def _step(st, order, pz):
            "endCondition": end, "endConditionValue": val,
            "targetType": {"workoutTargetTypeId": 1, "workoutTargetTypeKey": "no.target"}}
     code = st.get("intensity")
+    if code == "E" and not st.get("hr"):
+        # Rodajes suaves por pulsaciones, no por ritmo: el atleta tiende a ir a 5:05-5:15 con FC 145-150.
+        # Con objetivo de FC el reloj avisa en cuanto pasa de 140.
+        st = dict(st, hr=EASY_HR)
     if code and pz and code in pz:
         # Objetivo de ritmo: Garmin lo quiere como velocidad (m/s), de lenta a rápida
         slow, fast = pz[code]["slow"], pz[code]["fast"]

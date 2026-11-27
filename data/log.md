@@ -25,6 +25,9 @@ Registre cronològic curt d'ajustos i decisions preses en converses amb l'entren
 
 
 
+## 2026-11-27 — Rodatges per FC al rellotge
+- Rodatge 30' amb neu fet a 5:08/km i FC 145-151 (límit 140): quarta sessió suau seguida massa ràpida. Els trams {E} es pugen ara a Garmin amb objectiu de FC 115-140 (no de ritme), perquè el rellotge avisi en passar de 140.
+
 ## 2026-11-27 — Core progressiu
 - L'atleta vol acabar notant-lo: nivell 2 (`coreHome2`: planxa amb elevació de cama, lateral amb cama, dead bug lent, pont amb peu al sofà, bird dog 3", nedador + planxa final a tope) des del 29/11 i també el 6/12; nivell 3 (`coreHome3`, 3 voltes) des del 14/12; nivell 1 la setmana de la cursa.
 
