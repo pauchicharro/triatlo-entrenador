@@ -410,7 +410,8 @@
       {
        "type": "interval",
        "note": "Puente glúteo 10",
-       "reps": 10
+       "reps": 10,
+       "exercise": "HIP_RAISE/HIP_RAISE"
       },
       {
        "type": "rest",
@@ -419,7 +420,8 @@
       {
        "type": "interval",
        "note": "Monster walk 10 x lado",
-       "reps": 20
+       "reps": 20,
+       "exercise": "HIP_STABILITY/LATERAL_WALKS_WITH_BAND_AT_ANKLES"
       },
       {
        "type": "rest",
@@ -434,7 +436,8 @@
       {
        "type": "interval",
        "note": "Pogo jumps 15",
-       "reps": 15
+       "reps": 15,
+       "exercise": "PLYO/LATERAL_LEAP_AND_HOP"
       },
       {
        "type": "rest",
@@ -449,7 +452,8 @@
       {
        "type": "interval",
        "note": "Saltos cajón 6",
-       "reps": 6
+       "reps": 6,
+       "exercise": "PLYO/BOX_JUMP"
       },
       {
        "type": "rest",
@@ -464,7 +468,8 @@
       {
        "type": "interval",
        "note": "Búlgara 8 x pierna",
-       "reps": 16
+       "reps": 16,
+       "exercise": "LUNGE/DUMBBELL_BULGARIAN_SPLIT_SQUAT"
       },
       {
        "type": "rest",
@@ -479,7 +484,8 @@
       {
        "type": "interval",
        "note": "Peso muerto rumano 8",
-       "reps": 8
+       "reps": 8,
+       "exercise": "DEADLIFT/ROMANIAN_DEADLIFT"
       },
       {
        "type": "rest",
@@ -494,7 +500,8 @@
       {
        "type": "interval",
        "note": "Hip thrust 10",
-       "reps": 10
+       "reps": 10,
+       "exercise": "HIP_RAISE/BARBELL_HIP_THRUST_WITH_BENCH"
       },
       {
        "type": "rest",
@@ -509,7 +516,8 @@
       {
        "type": "interval",
        "note": "Gemelo excéntrico 12 x pierna",
-       "reps": 24
+       "reps": 24,
+       "exercise": "CALF_RAISE/SINGLE_LEG_STANDING_CALF_RAISE"
       },
       {
        "type": "rest",
@@ -524,7 +532,8 @@
       {
        "type": "interval",
        "note": "Lateral izq 30\"",
-       "time_s": 30
+       "time_s": 30,
+       "exercise": "PLANK/SIDE_PLANK"
       },
       {
        "type": "rest",
@@ -533,7 +542,8 @@
       {
        "type": "interval",
        "note": "Lateral dcha 30\"",
-       "time_s": 30
+       "time_s": 30,
+       "exercise": "PLANK/SIDE_PLANK"
       },
       {
        "type": "rest",
@@ -548,7 +558,8 @@
       {
        "type": "interval",
        "note": "Copenhague izq 20\"",
-       "time_s": 20
+       "time_s": 20,
+       "exercise": "PLANK/SIDE_PLANK_WITH_FEET_ON_BENCH"
       },
       {
        "type": "rest",
@@ -557,7 +568,8 @@
       {
        "type": "interval",
        "note": "Copenhague dcha 20\"",
-       "time_s": 20
+       "time_s": 20,
+       "exercise": "PLANK/SIDE_PLANK_WITH_FEET_ON_BENCH"
       },
       {
        "type": "rest",
@@ -601,7 +613,8 @@
       {
        "type": "interval",
        "note": "Puente glúteo 10",
-       "reps": 10
+       "reps": 10,
+       "exercise": "HIP_RAISE/HIP_RAISE"
       },
       {
        "type": "rest",
@@ -610,7 +623,8 @@
       {
        "type": "interval",
        "note": "Monster walk 10 x lado",
-       "reps": 20
+       "reps": 20,
+       "exercise": "HIP_STABILITY/LATERAL_WALKS_WITH_BAND_AT_ANKLES"
       },
       {
        "type": "rest",
@@ -625,7 +639,8 @@
       {
        "type": "interval",
        "note": "Búlgara 6 x pierna",
-       "reps": 12
+       "reps": 12,
+       "exercise": "LUNGE/DUMBBELL_BULGARIAN_SPLIT_SQUAT"
       },
       {
        "type": "rest",
@@ -634,7 +649,8 @@
       {
        "type": "interval",
        "note": "Peso muerto rumano 6",
-       "reps": 6
+       "reps": 6,
+       "exercise": "DEADLIFT/ROMANIAN_DEADLIFT"
       },
       {
        "type": "rest",
@@ -643,7 +659,8 @@
       {
        "type": "interval",
        "note": "Gemelo excéntrico 10 x pierna",
-       "reps": 20
+       "reps": 20,
+       "exercise": "CALF_RAISE/SINGLE_LEG_STANDING_CALF_RAISE"
       },
       {
        "type": "rest",
@@ -652,7 +669,8 @@
       {
        "type": "interval",
        "note": "Lateral izq 30\"",
-       "time_s": 30
+       "time_s": 30,
+       "exercise": "PLANK/SIDE_PLANK"
       },
       {
        "type": "rest",
@@ -661,7 +679,8 @@
       {
        "type": "interval",
        "note": "Lateral dcha 30\"",
-       "time_s": 30
+       "time_s": 30,
+       "exercise": "PLANK/SIDE_PLANK"
       },
       {
        "type": "rest",
@@ -741,7 +760,8 @@
       {
        "type": "interval",
        "note": "Face pull 15",
-       "reps": 15
+       "reps": 15,
+       "exercise": "ROW/BANDED_FACE_PULLS"
       },
       {
        "type": "rest",
@@ -756,7 +776,8 @@
       {
        "type": "interval",
        "note": "Dominadas/jalón 6-8",
-       "reps": 8
+       "reps": 8,
+       "exercise": "PULL_UP/PULL_UP"
       },
       {
        "type": "rest",
@@ -771,7 +792,8 @@
       {
        "type": "interval",
        "note": "Press banca 10",
-       "reps": 10
+       "reps": 10,
+       "exercise": "BENCH_PRESS/DUMBBELL_BENCH_PRESS"
       },
       {
        "type": "rest",
@@ -786,7 +808,8 @@
       {
        "type": "interval",
        "note": "Remo 10 x brazo",
-       "reps": 20
+       "reps": 20,
+       "exercise": "ROW/DUMBBELL_ROW"
       },
       {
        "type": "rest",
@@ -801,7 +824,8 @@
       {
        "type": "interval",
        "note": "Press militar 10",
-       "reps": 10
+       "reps": 10,
+       "exercise": "SHOULDER_PRESS/DUMBBELL_SHOULDER_PRESS"
       },
       {
        "type": "rest",
@@ -816,7 +840,8 @@
       {
        "type": "interval",
        "note": "Dead bug 10 x lado",
-       "reps": 20
+       "reps": 20,
+       "exercise": "HIP_STABILITY/DEAD_BUG"
       },
       {
        "type": "rest",
@@ -825,7 +850,8 @@
       {
        "type": "interval",
        "note": "Pallof 10 x lado",
-       "reps": 20
+       "reps": 20,
+       "exercise": "CORE/CABLE_CORE_PRESS"
       },
       {
        "type": "rest",
@@ -834,7 +860,8 @@
       {
        "type": "interval",
        "note": "Plancha 40\"",
-       "time_s": 40
+       "time_s": 40,
+       "exercise": "PLANK/PLANK"
       },
       {
        "type": "rest",
@@ -930,7 +957,8 @@
       {
        "type": "interval",
        "note": "Plancha 40\"",
-       "time_s": 40
+       "time_s": 40,
+       "exercise": "PLANK/PLANK"
       },
       {
        "type": "rest",
@@ -939,7 +967,8 @@
       {
        "type": "interval",
        "note": "Lateral izq 30\"",
-       "time_s": 30
+       "time_s": 30,
+       "exercise": "PLANK/SIDE_PLANK"
       },
       {
        "type": "rest",
@@ -948,7 +977,8 @@
       {
        "type": "interval",
        "note": "Lateral dcha 30\"",
-       "time_s": 30
+       "time_s": 30,
+       "exercise": "PLANK/SIDE_PLANK"
       },
       {
        "type": "rest",
@@ -957,7 +987,8 @@
       {
        "type": "interval",
        "note": "Dead bug 10 x lado",
-       "reps": 20
+       "reps": 20,
+       "exercise": "HIP_STABILITY/DEAD_BUG"
       },
       {
        "type": "rest",
@@ -966,7 +997,8 @@
       {
        "type": "interval",
        "note": "Puente 1 pierna 10 x lado",
-       "reps": 20
+       "reps": 20,
+       "exercise": "HIP_RAISE/SINGLE_LEG_HIP_RAISE"
       },
       {
        "type": "rest",
@@ -975,7 +1007,8 @@
       {
        "type": "interval",
        "note": "Bird dog 10 x lado",
-       "reps": 20
+       "reps": 20,
+       "exercise": "HIP_STABILITY/QUADRUPED_WITH_LEG_LIFT"
       },
       {
        "type": "rest",
@@ -984,7 +1017,8 @@
       {
        "type": "interval",
        "note": "Superman Y x12",
-       "reps": 12
+       "reps": 12,
+       "exercise": "HYPEREXTENSION/SUPERMAN_FROM_FLOOR"
       },
       {
        "type": "rest",
@@ -1083,6 +1117,10 @@
   {
    "date": "2026-11-26",
    "summary": "Por la nieve se intercambian jueves y viernes: hoy natación técnica + tren superior; el viernes, rodaje suave 30' + 4 rectas (cinta si hay hielo) y core en casa."
+  },
+  {
+   "date": "2026-11-27",
+   "summary": "Fuerza en el reloj: se recuperan los ejercicios del catálogo de Garmin (sin ellos el reloj mostraba «Ir»); la nota corta queda como descripción."
   }
  ],
  "sessions": [
