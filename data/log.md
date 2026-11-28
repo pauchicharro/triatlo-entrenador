@@ -25,6 +25,9 @@ Registre cronològic curt d'ajustos i decisions preses en converses amb l'entren
 
 
 
+## 2026-11-28 — Rodatges per ritme ample
+- L'avís de FC pitava massa (puja i baixa). Els trams {E} es pugen al rellotge amb un rang de ritme propi 5:25-6:30/km: només avisa si va més ràpid de 5:25. La FC <140 es manté com a referència a la nota.
+
 ## 2026-11-27 — Rodatges per FC al rellotge
 - Rodatge 30' amb neu fet a 5:08/km i FC 145-151 (límit 140): quarta sessió suau seguida massa ràpida. Els trams {E} es pugen ara a Garmin amb objectiu de FC 115-140 (no de ritme), perquè el rellotge avisi en passar de 140.
 

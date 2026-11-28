@@ -46,7 +46,7 @@ STROKES = {"any": (1, "any_stroke"), "back": (2, "backstroke"), "breast": (3, "b
            "drill": (4, "drill"), "fly": (5, "fly"), "free": (6, "free")}
 EQUIPMENT = {"fins": (1, "fins"), "kickboard": (2, "kickboard"), "paddles": (3, "paddles"),
              "pull_buoy": (4, "pull_buoy")}
-EASY_HR = [115, 140]  # FC objetivo de los tramos {E} (zonas de laboratorio: Z2 hasta 139)
+EASY_PACE = (390, 325)  # s/km de los tramos {E} en el reloj: 6:30 (lento) – 5:25 (rápido)
 PREFIX = "[Plan] "  # para reconocer (y poder borrar) los entrenos que sube la app
 
 
@@ -76,9 +76,13 @@ def _step(st, order, pz):
            "targetType": {"workoutTargetTypeId": 1, "workoutTargetTypeKey": "no.target"}}
     code = st.get("intensity")
     if code == "E" and not st.get("hr"):
-        # Rodajes suaves por pulsaciones, no por ritmo: el atleta tiende a ir a 5:05-5:15 con FC 145-150.
-        # Con objetivo de FC el reloj avisa en cuanto pasa de 140.
-        st = dict(st, hr=EASY_HR)
+        # Rodajes suaves: rango de ritmo propio, más lento que la zona E de Daniels. El atleta tiende a
+        # ir a 5:05-5:15 con FC 145-150; el aviso de FC pitaba demasiado (sube y baja), así que se avisa
+        # solo si va más rápido de 5:25 (el lado lento, 6:30, casi nunca salta).
+        out["targetType"] = {"workoutTargetTypeId": 6, "workoutTargetTypeKey": "pace.zone"}
+        out["targetValueOne"], out["targetValueTwo"] = round(1000 / EASY_PACE[0], 3), round(1000 / EASY_PACE[1], 3)
+        out["description"] = (st.get("note") or "Suave: 5:25-6:30/km, FC <140")[:120]
+        return out
     if code and pz and code in pz:
         # Objetivo de ritmo: Garmin lo quiere como velocidad (m/s), de lenta a rápida
         slow, fast = pz[code]["slow"], pz[code]["fast"]
